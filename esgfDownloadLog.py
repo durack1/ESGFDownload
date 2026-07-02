@@ -21,6 +21,7 @@ Design notes
 
 PJD 2 Jul 2026 - flipped {stamp} in log files - get these to sequentially order
                  correctly in a directory listing.
+PJD 2 Jul 2026 - reorganised timestamping.
 
 Edit the TARGETS list below with the files/nodes you want to test.
 """
@@ -53,16 +54,58 @@ from urllib.parse import urlsplit
 # Fill these in with the actual replica URLs you resolve from the ESGF search
 # API for your ~1 / ~2 / ~4 GB files on each node.
 TARGETS = [
-    # artemis - ORNL
+    # CEDA
+    {
+        "label": "CEDA_1GB",
+        "url": "https://esgf.ceda.ac.uk/thredds/fileServer/esg_cmip6/CMIP6/CMIP/CCCma/CanESM5/historical/r1i1p2f1/Omon/thetao/gn/v20190429/thetao_Omon_CanESM5_historical_r1i1p2f1_gn_185001-186012.nc",
+        "sha256": "fa7c3a0a6cbe4aec8805fda48948972a0bc42aec4fdd065ff3c5b61763522ea6",
+    },
+    {
+        "label": "CEDA_2GB",
+        "url": "https://esgf.ceda.ac.uk/thredds/fileServer/esg_cmip6/CMIP6/CMIP/MOHC/UKESM1-0-LL/historical/r1i1p1f2/Omon/thetao/gn/v20190627/thetao_Omon_UKESM1-0-LL_historical_r1i1p1f2_gn_200001-201412.nc",
+        "sha256": "8ad3a8d96cddf553fe9ab4b7494ca1049c9d5c070c79adc542af13f925644b41",
+    },
+    {
+        "label": "CEDA_3GB",
+        "url": "https://esgf.ceda.ac.uk/thredds/fileServer/esg_cmip6/CMIP6/CMIP/CNRM-CERFACS/CNRM-CM6-1/historical/r9i1p1f2/Omon/thetao/gn/v20190125/thetao_Omon_CNRM-CM6-1_historical_r9i1p1f2_gn_187501-189912.nc",
+        "sha256": "e825584ab437e3e1c754d8e171378fb724486e5dfbbcbe53fc3b45fea645dec7",
+    },
+    {
+        "label": "CEDA_9GB",
+        "url": "https://esgf.ceda.ac.uk/thredds/fileServer/esg_cmip6/CMIP6/CMIP/MIROC/MIROC-ES2L/piControl/r1i1p1f2/Omon/thetao/gn/v20190823/thetao_Omon_MIROC-ES2L_piControl_r1i1p1f2_gn_225001-234912.nc",
+        "sha256": "22836d086f0f441220d0608b2106497f98936a9e74539516a478ef26b07e93ab",
+    },
+    # DKRZ
+    {
+        "label": "DKRZ_1GB",
+        "url": "https://esgf3.dkrz.de/thredds/fileServer/cmip6/CMIP/CCCma/CanESM5/historical/r1i1p2f1/Omon/thetao/gn/v20190429/thetao_Omon_CanESM5_historical_r1i1p2f1_gn_185001-186012.nc",
+        "sha256": "fa7c3a0a6cbe4aec8805fda48948972a0bc42aec4fdd065ff3c5b61763522ea6",
+    },
+    {
+        "label": "DKRZ_2GB",
+        "url": "https://esgf3.dkrz.de/thredds/fileServer/cmip6/CMIP/MOHC/UKESM1-0-LL/historical/r1i1p1f2/Omon/thetao/gn/v20190627/thetao_Omon_UKESM1-0-LL_historical_r1i1p1f2_gn_200001-201412.nc",
+        "sha256": "8ad3a8d96cddf553fe9ab4b7494ca1049c9d5c070c79adc542af13f925644b41",
+    },
+    {
+        "label": "DKRZ_3GB",
+        "url": "https://esgf3.dkrz.de/thredds/fileServer/cmip6/CMIP/CNRM-CERFACS/CNRM-CM6-1/historical/r9i1p1f2/Omon/thetao/gn/v20190125/thetao_Omon_CNRM-CM6-1_historical_r9i1p1f2_gn_187501-189912.nc",
+        "sha256": "e825584ab437e3e1c754d8e171378fb724486e5dfbbcbe53fc3b45fea645dec7",
+    },
+    {
+        "label": "DKRZ_11GB",
+        "url": "https://esgf3.dkrz.de/thredds/fileServer/cmip6/CMIP/MIROC/MIROC-ES2L/historical/r7i1p1f2/Omon/thetao/gr1/v20200731/thetao_Omon_MIROC-ES2L_historical_r7i1p1f2_gr1_185001-201412.nc",
+        "sha256": "7b7b5be4d98fec9fc3db458ab9cceb54adcf26d4895f5151b18eb0461f39ca1a",
+    },
+    # ORNL - artemis
     {
         "label": "ORNL_1GB",
-        "url": "https://esgf-node.ornl.gov/thredds/fileServer/css03_data/CMIP6/CMIP/CCCma/CanESM5-1/historical/r24i1p1f1/Omon/thetao/gn/v20190429/thetao_Omon_CanESM5-1_historical_r24i1p1f1_gn_190101-191012.nc",
-        "sha256": "2c1c74b5472e6972601e046c2a970dc34e94af69868972e14614e8ce694d4ab0",
+        "url": "https://esgf-node.ornl.gov/thredds/fileServer/css03_data/CMIP6/CMIP/CCCma/CanESM5/historical/r1i1p2f1/Omon/thetao/gn/v20190429/thetao_Omon_CanESM5_historical_r1i1p2f1_gn_185001-186012.nc",
+        "sha256": "fa7c3a0a6cbe4aec8805fda48948972a0bc42aec4fdd065ff3c5b61763522ea6",
     },
     {
         "label": "ORNL_2GB",
-        "url": "https://esgf-node.ornl.gov/thredds/fileServer/css03_data/CMIP6/CMIP/MOHC/UKESM1-1-LL/historical/r1i1p1f2/Omon/thetao/gn/v20220512/thetao_Omon_UKESM1-1-LL_historical_r1i1p1f2_gn_200001-201412.nc",
-        "sha256": "2247f00cda628a7c2204ff511d138f91f90d0c8d6ef24ba5f6a1e019eeaf56a9",
+        "url": "https://esgf-node.ornl.gov/thredds/fileServer/css03_data/CMIP6/CMIP/MOHC/UKESM1-0-LL/historical/r1i1p1f2/Omon/thetao/gn/v20190627/thetao_Omon_UKESM1-0-LL_historical_r1i1p1f2_gn_200001-201412.nc",
+        "sha256": "8ad3a8d96cddf553fe9ab4b7494ca1049c9d5c070c79adc542af13f925644b41",
     },
     {
         "label": "ORNL_3GB",
@@ -72,13 +115,13 @@ TARGETS = [
     # Perlmutter - NERSC
     {
         "label": "NERSC-GLOBUS_1GB",
-        "url": "https://g-52ba3.fd635.8443.data.globus.org/css03_data/CMIP6/CMIP/CCCma/CanESM5-1/historical/r24i1p1f1/Omon/thetao/gn/v20190429/thetao_Omon_CanESM5-1_historical_r24i1p1f1_gn_190101-191012.nc",
-        "sha256": "2c1c74b5472e6972601e046c2a970dc34e94af69868972e14614e8ce694d4ab0",
+        "url": "https://g-52ba3.fd635.8443.data.globus.org/css03_data/CMIP6/CMIP/CCCma/CanESM5/historical/r1i1p2f1/Omon/thetao/gn/v20190429/thetao_Omon_CanESM5_historical_r1i1p2f1_gn_185001-186012.nc",
+        "sha256": "fa7c3a0a6cbe4aec8805fda48948972a0bc42aec4fdd065ff3c5b61763522ea6",
     },
     {
         "label": "NERSC-GLOBUS_2GB",
-        "url": "https://g-52ba3.fd635.8443.data.globus.org/css03_data/CMIP6/CMIP/MOHC/UKESM1-1-LL/historical/r1i1p1f2/Omon/thetao/gn/v20220512/thetao_Omon_UKESM1-1-LL_historical_r1i1p1f2_gn_200001-201412.nc",
-        "sha256": "2247f00cda628a7c2204ff511d138f91f90d0c8d6ef24ba5f6a1e019eeaf56a9",
+        "url": "https://g-52ba3.fd635.8443.data.globus.org/css03_data/CMIP6/CMIP/MOHC/UKESM1-0-LL/historical/r1i1p1f2/Omon/thetao/gn/v20190627/thetao_Omon_UKESM1-0-LL_historical_r1i1p1f2_gn_200001-201412.nc",
+        "sha256": "8ad3a8d96cddf553fe9ab4b7494ca1049c9d5c070c79adc542af13f925644b41",
     },
     {
         "label": "NERSC-GLOBUS_3GB",
@@ -90,9 +133,6 @@ TARGETS = [
         "url": "https://g-52ba3.fd635.8443.data.globus.org/css03_data/CMIP6/CMIP/MIROC/MIROC-ES2L/historical/r7i1p1f2/Omon/thetao/gr1/v20200731/thetao_Omon_MIROC-ES2L_historical_r7i1p1f2_gr1_185001-201412.nc",
         "sha256": "7b7b5be4d98fec9fc3db458ab9cceb54adcf26d4895f5151b18eb0461f39ca1a",
     },
-    # DKRZ
-    # BADC
-    # IPSL
 ]
 
 CHUNK_SIZE = 1 << 20  # 1 MiB read size
@@ -362,7 +402,8 @@ def collect_host_diagnostics(host, do_isp, do_trace):
         "reverse_dns": reverse_dns(primary) if primary else None,
         "dest_isp": lookup_isp(primary) if (do_isp and primary) else None,
         "traceroute": (
-            traceroute(host) if do_trace else {"status": "skipped (--no-traceroute)"}
+            traceroute(host) if do_trace else {
+                "status": "skipped (--no-traceroute)"}
         ),
     }
 
@@ -376,7 +417,8 @@ def open_connection(url, timeout):
     """
     parts = urlsplit(url)
     if parts.scheme != "https":
-        raise ValueError(f"Only https is supported, got scheme={parts.scheme!r}")
+        raise ValueError(
+            f"Only https is supported, got scheme={parts.scheme!r}")
     host = parts.hostname
     port = parts.port or 443
     path = parts.path + (("?" + parts.query) if parts.query else "")
@@ -556,7 +598,8 @@ def download_target(target, tmp_dir, progress_path=None):
             else:
                 body = resp.read(512)
                 conn.close()
-                raise RuntimeError(f"HTTP {resp.status} {resp.reason}: {body[:200]!r}")
+                raise RuntimeError(
+                    f"HTTP {resp.status} {resp.reason}: {body[:200]!r}")
 
             # Determine total size
             clen = resp.getheader("Content-Length")
@@ -618,7 +661,8 @@ def download_target(target, tmp_dir, progress_path=None):
                         )
                         result["downloaded_bytes"] = downloaded
                         pct = (
-                            round(100.0 * downloaded / result["total_bytes"], 1)
+                            round(100.0 * downloaded /
+                                  result["total_bytes"], 1)
                             if result["total_bytes"]
                             else None
                         )
@@ -637,9 +681,11 @@ def download_target(target, tmp_dir, progress_path=None):
             finally:
                 f.close()
                 # Final bar paint for this segment, then move to a new line.
-                render_progress_bar(label, downloaded, result["total_bytes"], bar_rate)
+                render_progress_bar(label, downloaded,
+                                    result["total_bytes"], bar_rate)
                 finish_progress_bar()
-                result["active_transfer_s"] += time.perf_counter() - transfer_start
+                result["active_transfer_s"] += time.perf_counter() - \
+                    transfer_start
                 conn.close()
 
             result["downloaded_bytes"] = downloaded
@@ -678,7 +724,8 @@ def download_target(target, tmp_dir, progress_path=None):
             result["errors"].append(
                 f"attempt {result['attempts']}: {type(e).__name__}: {e}"
             )
-            backoff = min(BACKOFF_CAP, BACKOFF_BASE ** min(result["attempts"], 6))
+            backoff = min(BACKOFF_CAP, BACKOFF_BASE **
+                          min(result["attempts"], 6))
             log_progress(
                 "error",
                 attempt=result["attempts"],
@@ -693,7 +740,8 @@ def download_target(target, tmp_dir, progress_path=None):
     result["wall_time_s"] = round(time.perf_counter() - wall_start, 2)
     result["downloaded_bytes"] = downloaded
     if result["active_transfer_s"] > 0:
-        result["avg_rate_MBps"] = human_rate(downloaded / result["active_transfer_s"])
+        result["avg_rate_MBps"] = human_rate(
+            downloaded / result["active_transfer_s"])
 
     complete = (
         result["total_bytes"] is not None and downloaded >= result["total_bytes"]
@@ -916,18 +964,20 @@ def main(argv=None):
     with tempfile.TemporaryDirectory(prefix="esgf_dl_") as tmp_dir:
         for target in TARGETS:
             print(f"\n=== {target['label']} ===", flush=True)
+            print(f"  {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
             host = urlsplit(target["url"]).hostname
             if host and host not in host_diag_cache:
                 print(
-                    f"  {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n"
                     f"  diagnostics for {host} "
                     f"(traceroute={'on' if do_trace else 'off'}) ...",
                     flush=True,
                 )
-                host_diag_cache[host] = collect_host_diagnostics(host, do_isp, do_trace)
+                host_diag_cache[host] = collect_host_diagnostics(
+                    host, do_isp, do_trace)
                 run_meta["host_diagnostics"] = host_diag_cache
 
-            progress_path = os.path.join(out_dir, f"{stamp}_esgf_progress.jsonl")
+            progress_path = os.path.join(
+                out_dir, f"{stamp}_esgf_progress.jsonl")
             r = download_target(target, tmp_dir, progress_path=progress_path)
             r["host"] = host
             run_meta["results"].append(r)
