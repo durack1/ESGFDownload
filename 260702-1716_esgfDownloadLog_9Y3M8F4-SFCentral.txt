@@ -1,0 +1,52 @@
+(xcd0112) C:\Users\durackp\Downloads\260702_esgfDownloadLog>python esgfDownloadLog.py
+Collecting run/host diagnostics ...
+
+=== ORNL_1GB ===
+  2026-07-02 15:52:55
+  diagnostics for esgf-node.ornl.gov (traceroute=on) ...
+  ORNL_1GB             [############################] 100.0%  934.8MB/934.8MB  2.63MB/s  ETA 00:
+  2026-07-02 16:04:30
+  status=verified  bytes=980172278  resumes=0  stalls=0  avg=1.559 MB/s  sha_match=True
+  logged -> esgf_results_20260702T155255.json / esgf_results_20260702T155255.csv
+
+=== ORNL_2GB ===
+  ORNL_2GB             [############################] 100.0%  1.9GB/1.9GB  3.34MB/s  ETA 00:00
+  2026-07-02 16:32:02
+  status=verified  bytes=2069864679  resumes=0  stalls=0  avg=1.197 MB/s  sha_match=True
+  logged -> esgf_results_20260702T155255.json / esgf_results_20260702T155255.csv
+
+=== ORNL_3GB ===
+  ORNL_3GB             [############################] 100.0%  3.2GB/3.2GB  3.45MB/s  ETA 00:00
+  2026-07-02 17:02:32
+  status=verified  bytes=3453324820  resumes=0  stalls=0  avg=1.802 MB/s  sha_match=True
+  logged -> esgf_results_20260702T155255.json / esgf_results_20260702T155255.csv
+
+=== NERSC-GLOBUS_1GB ===
+  2026-07-02 17:02:32
+  diagnostics for g-52ba3.fd635.8443.data.globus.org (traceroute=on) ...
+  NERSC-GLOBUS_1GB     934.8MB (size unknown)  24.71MB/s
+  2026-07-02 17:03:36
+  status=verified  bytes=980172278  resumes=0  stalls=0  avg=15.847 MB/s  sha_match=True
+  logged -> esgf_results_20260702T155255.json / esgf_results_20260702T155255.csv
+
+=== NERSC-GLOBUS_2GB ===
+  NERSC-GLOBUS_2GB     1.9GB (size unknown)  57.93MB/s
+  2026-07-02 17:04:52
+  status=verified  bytes=2069864679  resumes=0  stalls=0  avg=26.902 MB/s  sha_match=True
+  logged -> esgf_results_20260702T155255.json / esgf_results_20260702T155255.csv
+
+=== NERSC-GLOBUS_3GB ===
+  NERSC-GLOBUS_3GB     3.2GB (size unknown)  58.71MB/s
+  2026-07-02 17:06:05
+  status=verified  bytes=3453324820  resumes=0  stalls=0  avg=46.101 MB/s  sha_match=True
+  logged -> esgf_results_20260702T155255.json / esgf_results_20260702T155255.csv
+
+=== NERSC-GLOBUS_11GB ===
+  NERSC-GLOBUS_11GB    11.2GB (size unknown)  29.68MB/s
+  2026-07-02 17:13:37
+  status=verified  bytes=12047537377  resumes=0  stalls=0  avg=25.66 MB/s  sha_match=True
+  logged -> esgf_results_20260702T155255.json / esgf_results_20260702T155255.csv
+
+Wrote:
+  C:\Users\durackp\Downloads\260702_esgfDownloadLog\esgf_results_20260702T155255.json
+  C:\Users\durackp\Downloads\260702_esgfDownloadLog\esgf_results_20260702T155255.csv

@@ -1,0 +1,58 @@
+(base) airy2:Downloads paully$ python esgfDownloadLog.py 
+Collecting run/host diagnostics ...
+
+=== ORNL_1GB ===
+  2026-07-02 08:58:36
+  diagnostics for esgf-node.ornl.gov (traceroute=on) ...
+  ORNL_1GB             [############################] 100.0%  934.8MB/934.8MB  5.77MB/s  ETA 00:
+  2026-07-02 09:03:30
+  status=verified  bytes=980172278  resumes=0  stalls=0  avg=3.208 MB/s  sha_match=True
+  logged -> esgf_results_20260702T085836.json / esgf_results_20260702T085836.csv
+
+=== ORNL_2GB ===
+  ORNL_2GB             [############################] 100.0%  1.9GB/1.9GB  3.90MB/s  ETA 00:00  
+  2026-07-02 09:10:59
+  status=verified  bytes=2069864679  resumes=0  stalls=0  avg=4.418 MB/s  sha_match=True
+  logged -> esgf_results_20260702T085836.json / esgf_results_20260702T085836.csv
+
+=== ORNL_3GB ===
+  ORNL_3GB             [#########-------------------]  34.5%  1.1GB/3.2GB  1.61MB/s  ETA 22:22  
+  ORNL_3GB             [##########------------------]  38.6%  1.2GB/3.2GB  3.52MB/s  ETA 09:34  
+  ORNL_3GB             [###########-----------------]  42.6%  1.4GB/3.2GB  10.62MB/s  ETA 02:58 
+  ORNL_3GB             [###########-----------------]  42.7%  1.4GB/3.2GB  0.02MB/s  ETA 25:10:3
+  ORNL_3GB             [###########-----------------]  42.8%  1.4GB/3.2GB  0.20MB/s  ETA 2:35:18
+  ORNL_3GB             [############----------------]  44.4%  1.4GB/3.2GB  3.37MB/s  ETA 09:03  
+  ORNL_3GB             [############################] 100.0%  3.2GB/3.2GB  1.59MB/s  ETA 00:00  
+  2026-07-02 09:58:22
+  status=verified  bytes=3453324820  resumes=7  stalls=3  avg=3.895 MB/s  sha_match=True
+  logged -> esgf_results_20260702T085836.json / esgf_results_20260702T085836.csv
+
+=== NERSC-GLOBUS_1GB ===
+  2026-07-02 09:58:22
+  diagnostics for g-52ba3.fd635.8443.data.globus.org (traceroute=on) ...
+  NERSC-GLOBUS_1GB     934.8MB (size unknown)  13.18MB/s                                        
+  2026-07-02 09:59:37
+  status=verified  bytes=980172278  resumes=0  stalls=0  avg=13.16 MB/s  sha_match=True
+  logged -> esgf_results_20260702T085836.json / esgf_results_20260702T085836.csv
+
+=== NERSC-GLOBUS_2GB ===
+  NERSC-GLOBUS_2GB     1.9GB (size unknown)  9.72MB/s                                           
+  2026-07-02 10:03:21
+  status=verified  bytes=2069864679  resumes=0  stalls=0  avg=8.869 MB/s  sha_match=True
+  logged -> esgf_results_20260702T085836.json / esgf_results_20260702T085836.csv
+
+=== NERSC-GLOBUS_3GB ===
+  NERSC-GLOBUS_3GB     3.2GB (size unknown)  14.30MB/s                                          
+  2026-07-02 10:10:20
+  status=verified  bytes=3453324820  resumes=0  stalls=0  avg=7.901 MB/s  sha_match=True
+  logged -> esgf_results_20260702T085836.json / esgf_results_20260702T085836.csv
+
+=== NERSC-GLOBUS_11GB ===
+  NERSC-GLOBUS_11GB    11.2GB (size unknown)  13.98MB/s                                         
+  2026-07-02 10:31:47
+  status=verified  bytes=12047537377  resumes=0  stalls=0  avg=8.947 MB/s  sha_match=True
+  logged -> esgf_results_20260702T085836.json / esgf_results_20260702T085836.csv
+
+Wrote:
+  /Users/paully/Downloads/esgf_results_20260702T085836.json
+  /Users/paully/Downloads/esgf_results_20260702T085836.csv
