@@ -1,0 +1,115 @@
+(xcd0112) duro@trusty3:~/git/ESGFDownload$ python esgfDownloadLog.py
+Collecting run/host diagnostics ...
+
+=== CEDA_1GB ===
+  diagnostics for esgf.ceda.ac.uk (traceroute=on) ...
+  2026-07-02 22:19:33
+  CEDA_1GB             [############################] 100.0%  1.0GB/1.0GB  0.72MB/s  ETA 00:00
+  2026-07-02 22:38:24
+  status=verified  bytes=1110603079  resumes=0  stalls=0  avg=0.937 MB/s  sha_match=True
+  logged -> 20260702T221932_esgf_results.json / 20260702T221932_esgf_results.csv
+
+=== CEDA_2GB ===
+  2026-07-02 22:38:24
+  CEDA_2GB             [############################] 100.0%  1.9GB/1.9GB  3.10MB/s  ETA 00:00
+  2026-07-02 23:14:31
+  status=verified  bytes=2072144713  resumes=0  stalls=0  avg=0.913 MB/s  sha_match=True
+  logged -> 20260702T221932_esgf_results.json / 20260702T221932_esgf_results.csv
+
+=== CEDA_3GB ===
+  2026-07-02 23:14:31
+  CEDA_3GB             [############################] 100.0%  3.2GB/3.2GB  5.10MB/s  ETA 00:00
+  2026-07-02 23:53:44
+  status=verified  bytes=3453324820  resumes=0  stalls=0  avg=1.401 MB/s  sha_match=True
+  logged -> 20260702T221932_esgf_results.json / 20260702T221932_esgf_results.csv
+
+=== CEDA_9GB ===
+  2026-07-02 23:53:44
+  CEDA_9GB             [############################] 100.0%  8.8GB/8.8GB  1.17MB/s  ETA 00:00
+  2026-07-03 01:25:47
+  status=verified  bytes=9433718291  resumes=0  stalls=0  avg=1.63 MB/s  sha_match=True
+  logged -> 20260702T221932_esgf_results.json / 20260702T221932_esgf_results.csv
+
+=== DKRZ_1GB ===
+  diagnostics for esgf3.dkrz.de (traceroute=on) ...
+  2026-07-03 01:25:49
+  DKRZ_1GB             [############################] 100.0%  1.0GB/1.0GB  7.05MB/s  ETA 00:00
+  2026-07-03 01:28:10
+  status=verified  bytes=1110603079  resumes=0  stalls=0  avg=7.624 MB/s  sha_match=True
+  logged -> 20260702T221932_esgf_results.json / 20260702T221932_esgf_results.csv
+
+=== DKRZ_2GB ===
+  2026-07-03 01:28:10
+  DKRZ_2GB             [############################] 100.0%  1.9GB/1.9GB  7.08MB/s  ETA 00:00
+  2026-07-03 01:32:14
+  status=verified  bytes=2072144713  resumes=0  stalls=0  avg=8.15 MB/s  sha_match=True
+  logged -> 20260702T221932_esgf_results.json / 20260702T221932_esgf_results.csv
+
+=== DKRZ_3GB ===
+  2026-07-03 01:32:14
+  DKRZ_3GB             [############################] 100.0%  3.2GB/3.2GB  6.56MB/s  ETA 00:00
+  2026-07-03 01:40:00
+  status=verified  bytes=3453324820  resumes=0  stalls=0  avg=7.099 MB/s  sha_match=True
+  logged -> 20260702T221932_esgf_results.json / 20260702T221932_esgf_results.csv
+
+=== DKRZ_11GB ===
+  2026-07-03 01:40:00
+  DKRZ_11GB            [############################] 100.0%  11.2GB/11.2GB  2.08MB/s  ETA 00:00
+  2026-07-03 02:03:15
+  status=verified  bytes=12047537377  resumes=0  stalls=0  avg=8.253 MB/s  sha_match=True
+  logged -> 20260702T221932_esgf_results.json / 20260702T221932_esgf_results.csv
+
+=== ORNL_1GB ===
+  diagnostics for esgf-node.ornl.gov (traceroute=on) ...
+  2026-07-03 02:03:16
+  ORNL_1GB             [############################] 100.0%  1.0GB/1.0GB  7.41MB/s  ETA 00:00
+  2026-07-03 02:05:22
+  status=verified  bytes=1110603079  resumes=0  stalls=0  avg=8.454 MB/s  sha_match=True
+  logged -> 20260702T221932_esgf_results.json / 20260702T221932_esgf_results.csv
+
+=== ORNL_2GB ===
+  2026-07-03 02:05:22
+  ORNL_2GB             [############################] 100.0%  1.9GB/1.9GB  7.02MB/s  ETA 00:00
+  2026-07-03 02:11:36
+  status=verified  bytes=2072144713  resumes=0  stalls=0  avg=5.309 MB/s  sha_match=True
+  logged -> 20260702T221932_esgf_results.json / 20260702T221932_esgf_results.csv
+
+=== ORNL_3GB ===
+  2026-07-03 02:11:36
+  ORNL_3GB             [############################] 100.0%  3.2GB/3.2GB  9.33MB/s  ETA 00:00
+  2026-07-03 02:18:39
+  status=verified  bytes=3453324820  resumes=0  stalls=0  avg=7.819 MB/s  sha_match=True
+  logged -> 20260702T221932_esgf_results.json / 20260702T221932_esgf_results.csv
+
+=== NERSC-GLOBUS_1GB ===
+  diagnostics for g-52ba3.fd635.8443.data.globus.org (traceroute=on) ...
+  2026-07-03 02:18:39
+  NERSC-GLOBUS_1GB     1.0GB (size unknown)  16.92MB/s
+  2026-07-03 02:19:45
+  status=verified  bytes=1110603079  resumes=0  stalls=0  avg=16.527 MB/s  sha_match=True
+  logged -> 20260702T221932_esgf_results.json / 20260702T221932_esgf_results.csv
+
+=== NERSC-GLOBUS_2GB ===
+  2026-07-03 02:19:45
+  NERSC-GLOBUS_2GB     1.9GB (size unknown)  11.40MB/s
+  2026-07-03 02:22:23
+  status=verified  bytes=2072144713  resumes=0  stalls=0  avg=12.733 MB/s  sha_match=True
+  logged -> 20260702T221932_esgf_results.json / 20260702T221932_esgf_results.csv
+
+=== NERSC-GLOBUS_3GB ===
+  2026-07-03 02:22:23
+  NERSC-GLOBUS_3GB     3.2GB (size unknown)  16.50MB/s
+  2026-07-03 02:26:31
+  status=verified  bytes=3453324820  resumes=0  stalls=0  avg=13.361 MB/s  sha_match=True
+  logged -> 20260702T221932_esgf_results.json / 20260702T221932_esgf_results.csv
+
+=== NERSC-GLOBUS_11GB ===
+  2026-07-03 02:26:31
+  NERSC-GLOBUS_11GB    11.2GB (size unknown)  16.64MB/s
+  2026-07-03 02:38:06
+  status=verified  bytes=12047537377  resumes=0  stalls=0  avg=16.629 MB/s  sha_match=True
+  logged -> 20260702T221932_esgf_results.json / 20260702T221932_esgf_results.csv
+
+Wrote:
+  /home/duro/git/ESGFDownload/20260702T221932_esgf_results.json
+  /home/duro/git/ESGFDownload/20260702T221932_esgf_results.csv
