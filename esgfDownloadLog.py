@@ -964,7 +964,7 @@ def main(argv=None):
     with tempfile.TemporaryDirectory(prefix="esgf_dl_") as tmp_dir:
         for target in TARGETS:
             print(f"\n=== {target['label']} ===", flush=True)
-            print(f"  {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
+            print(f"  {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
             host = urlsplit(target["url"]).hostname
             if host and host not in host_diag_cache:
                 print(
