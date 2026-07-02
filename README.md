@@ -1,2 +1,2 @@
 # ESGFDownload
-A collation of download statistics interrogated CMIP files across the globe
+A collation of download statistics interrogating CMIP files across the globe
