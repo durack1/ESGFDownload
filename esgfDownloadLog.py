@@ -22,6 +22,7 @@ Design notes
 PJD 2 Jul 2026 - flipped {stamp} in log files - get these to sequentially order
                  correctly in a directory listing.
 PJD 2 Jul 2026 - reorganised timestamping.
+PJD 3 Jul 2026 - cleanup ANL vs NERSC globus endpoints.
 
 Edit the TARGETS list below with the files/nodes you want to test.
 """
@@ -112,25 +113,46 @@ TARGETS = [
         "url": "https://esgf-node.ornl.gov/thredds/fileServer/css03_data/CMIP6/CMIP/CNRM-CERFACS/CNRM-CM6-1/historical/r9i1p1f2/Omon/thetao/gn/v20190125/thetao_Omon_CNRM-CM6-1_historical_r9i1p1f2_gn_187501-189912.nc",
         "sha256": "e825584ab437e3e1c754d8e171378fb724486e5dfbbcbe53fc3b45fea645dec7",
     },
-    # Perlmutter - NERSC
+    # Eagle - ANL
     {
-        "label": "NERSC-GLOBUS_1GB",
+        "label": "ANL-GLOBUS_1GB",
         "url": "https://g-52ba3.fd635.8443.data.globus.org/css03_data/CMIP6/CMIP/CCCma/CanESM5/historical/r1i1p2f1/Omon/thetao/gn/v20190429/thetao_Omon_CanESM5_historical_r1i1p2f1_gn_185001-186012.nc",
         "sha256": "fa7c3a0a6cbe4aec8805fda48948972a0bc42aec4fdd065ff3c5b61763522ea6",
     },
     {
-        "label": "NERSC-GLOBUS_2GB",
+        "label": "ANL-GLOBUS_2GB",
         "url": "https://g-52ba3.fd635.8443.data.globus.org/css03_data/CMIP6/CMIP/MOHC/UKESM1-0-LL/historical/r1i1p1f2/Omon/thetao/gn/v20190627/thetao_Omon_UKESM1-0-LL_historical_r1i1p1f2_gn_200001-201412.nc",
         "sha256": "8ad3a8d96cddf553fe9ab4b7494ca1049c9d5c070c79adc542af13f925644b41",
     },
     {
-        "label": "NERSC-GLOBUS_3GB",
+        "label": "ANL-GLOBUS_3GB",
         "url": "https://g-52ba3.fd635.8443.data.globus.org/css03_data/CMIP6/CMIP/CNRM-CERFACS/CNRM-CM6-1/historical/r9i1p1f2/Omon/thetao/gn/v20190125/thetao_Omon_CNRM-CM6-1_historical_r9i1p1f2_gn_187501-189912.nc",
         "sha256": "e825584ab437e3e1c754d8e171378fb724486e5dfbbcbe53fc3b45fea645dec7",
     },
     {
-        "label": "NERSC-GLOBUS_11GB",
+        "label": "ANL-GLOBUS_11GB",
         "url": "https://g-52ba3.fd635.8443.data.globus.org/css03_data/CMIP6/CMIP/MIROC/MIROC-ES2L/historical/r7i1p1f2/Omon/thetao/gr1/v20200731/thetao_Omon_MIROC-ES2L_historical_r7i1p1f2_gr1_185001-201412.nc",
+        "sha256": "7b7b5be4d98fec9fc3db458ab9cceb54adcf26d4895f5151b18eb0461f39ca1a",
+    },
+    # Perlmutter - NERSC
+    {
+        "label": "NERSC-GLOBUS_1GB",
+        "url": "https://g-eba899.6b7bd8.0ec8.data.globus.org/css03_data/CMIP6/CMIP/CCCma/CanESM5/historical/r1i1p2f1/Omon/thetao/gn/v20190429/thetao_Omon_CanESM5_historical_r1i1p2f1_gn_185001-186012.nc",
+        "sha256": "fa7c3a0a6cbe4aec8805fda48948972a0bc42aec4fdd065ff3c5b61763522ea6",
+    },
+    {
+        "label": "NERSC-GLOBUS_2GB",
+        "url": "https://g-eba899.6b7bd8.0ec8.data.globus.org/css03_data/CMIP6/CMIP/MOHC/UKESM1-0-LL/historical/r1i1p1f2/Omon/thetao/gn/v20190627/thetao_Omon_UKESM1-0-LL_historical_r1i1p1f2_gn_200001-201412.nc",
+        "sha256": "8ad3a8d96cddf553fe9ab4b7494ca1049c9d5c070c79adc542af13f925644b41",
+    },
+    {
+        "label": "NERSC-GLOBUS_3GB",
+        "url": "https://g-eba899.6b7bd8.0ec8.data.globus.org/css03_data/CMIP6/CMIP/CNRM-CERFACS/CNRM-CM6-1/historical/r9i1p1f2/Omon/thetao/gn/v20190125/thetao_Omon_CNRM-CM6-1_historical_r9i1p1f2_gn_187501-189912.nc",
+        "sha256": "e825584ab437e3e1c754d8e171378fb724486e5dfbbcbe53fc3b45fea645dec7",
+    },
+    {
+        "label": "NERSC-GLOBUS_11GB",
+        "url": "https://g-eba899.6b7bd8.0ec8.data.globus.org/css03_data/CMIP6/CMIP/MIROC/MIROC-ES2L/historical/r7i1p1f2/Omon/thetao/gr1/v20200731/thetao_Omon_MIROC-ES2L_historical_r7i1p1f2_gr1_185001-201412.nc",
         "sha256": "7b7b5be4d98fec9fc3db458ab9cceb54adcf26d4895f5151b18eb0461f39ca1a",
     },
 ]
