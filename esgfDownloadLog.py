@@ -964,7 +964,6 @@ def main(argv=None):
     with tempfile.TemporaryDirectory(prefix="esgf_dl_") as tmp_dir:
         for target in TARGETS:
             print(f"\n=== {target['label']} ===", flush=True)
-            print(f"  {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
             host = urlsplit(target["url"]).hostname
             if host and host not in host_diag_cache:
                 print(
@@ -976,6 +975,7 @@ def main(argv=None):
                     host, do_isp, do_trace)
                 run_meta["host_diagnostics"] = host_diag_cache
 
+            print(f"  {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
             progress_path = os.path.join(
                 out_dir, f"{stamp}_esgf_progress.jsonl")
             r = download_target(target, tmp_dir, progress_path=progress_path)
