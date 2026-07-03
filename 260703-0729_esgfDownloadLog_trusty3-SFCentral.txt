@@ -1,0 +1,50 @@
+(xcd0112) duro@trusty3:~/git/ESGFDownload$ python esgfDownloadLog.py
+Collecting run/host diagnostics ...
+
+=== ANL-GLOBUS_1GB ===
+  diagnostics for g-52ba3.fd635.8443.data.globus.org (traceroute=on) ...
+  2026-07-03 07:15:35
+  ANL-GLOBUS_1GB       1.0GB (size unknown)  17.02MB/s
+  2026-07-03 07:16:41
+  status=verified  bytes=1110603079  resumes=0  stalls=0  avg=16.324 MB/s  sha_match=True
+  logged -> 20260703T071535_esgf_results.json / 20260703T071535_esgf_results.csv
+
+=== ANL-GLOBUS_2GB ===
+  2026-07-03 07:16:41
+  ANL-GLOBUS_2GB       1.9GB (size unknown)  17.45MB/s
+  2026-07-03 07:18:40
+  status=verified  bytes=2072144713  resumes=0  stalls=0  avg=16.867 MB/s  sha_match=True
+  logged -> 20260703T071535_esgf_results.json / 20260703T071535_esgf_results.csv
+
+=== ANL-GLOBUS_3GB ===
+  2026-07-03 07:18:40
+  ANL-GLOBUS_3GB       3.2GB (size unknown)  17.44MB/s
+  2026-07-03 07:21:57
+  status=verified  bytes=3453324820  resumes=0  stalls=0  avg=16.889 MB/s  sha_match=True
+  logged -> 20260703T071535_esgf_results.json / 20260703T071535_esgf_results.csv
+
+=== NERSC-GLOBUS_1GB ===
+  diagnostics for g-eba899.6b7bd8.0ec8.data.globus.org (traceroute=on) ...
+  2026-07-03 07:21:59
+  NERSC-GLOBUS_1GB     1.0GB (size unknown)  21.02MB/s
+  2026-07-03 07:23:06
+  status=verified  bytes=1110603079  resumes=0  stalls=0  avg=16.078 MB/s  sha_match=True
+  logged -> 20260703T071535_esgf_results.json / 20260703T071535_esgf_results.csv
+
+=== NERSC-GLOBUS_2GB ===
+  2026-07-03 07:23:06
+  NERSC-GLOBUS_2GB     1.9GB (size unknown)  11.96MB/s
+  2026-07-03 07:25:54
+  status=verified  bytes=2072144713  resumes=0  stalls=0  avg=11.983 MB/s  sha_match=True
+  logged -> 20260703T071535_esgf_results.json / 20260703T071535_esgf_results.csv
+
+=== NERSC-GLOBUS_3GB ===
+  2026-07-03 07:25:54
+  NERSC-GLOBUS_3GB     3.2GB (size unknown)  21.93MB/s
+  2026-07-03 07:29:11
+  status=verified  bytes=3453324820  resumes=0  stalls=0  avg=16.969 MB/s  sha_match=True
+  logged -> 20260703T071535_esgf_results.json / 20260703T071535_esgf_results.csv
+
+Wrote:
+  /home/duro/git/ESGFDownload/20260703T071535_esgf_results.json
+  /home/duro/git/ESGFDownload/20260703T071535_esgf_results.csv

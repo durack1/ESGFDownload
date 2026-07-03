@@ -1,0 +1,880 @@
+{
+  "run_started": "2026-07-02T23:15:35.040891+00:00",
+  "platform": "Linux-6.6.87.1-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+  "python": "3.14.5",
+  "config": {
+    "chunk_size": 1048576,
+    "max_attempts": 100,
+    "connect_timeout": 30.0,
+    "read_timeout": 60.0,
+    "isp_lookup": false,
+    "traceroute": true
+  },
+  "run_diagnostics": {
+    "hostname": "trusty3",
+    "platform": "Linux-6.6.87.1-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "system": "Linux",
+    "release": "6.6.87.1-microsoft-standard-WSL2",
+    "machine": "x86_64",
+    "processor": "x86_64",
+    "python_version": "3.14.5",
+    "python_build": "main May 20 2026 00:15:36",
+    "local_ip": "172.28.160.176",
+    "public_ip": null,
+    "isp_lookup_enabled": false,
+    "local_isp": null
+  },
+  "host_diagnostics": {
+    "g-52ba3.fd635.8443.data.globus.org": {
+      "host": "g-52ba3.fd635.8443.data.globus.org",
+      "resolved_ips": [
+        "140.221.68.105",
+        "140.221.68.106",
+        "140.221.68.107",
+        "140.221.68.108",
+        "140.221.68.109"
+      ],
+      "reverse_dns": "dtn-05.pub.alcf.anl.gov",
+      "dest_isp": null,
+      "traceroute": {
+        "tool": null,
+        "hop_count": null,
+        "status": "unavailable: traceroute not installed (try `apt install traceroute` / `brew install traceroute`)",
+        "raw": null
+      }
+    },
+    "g-eba899.6b7bd8.0ec8.data.globus.org": {
+      "host": "g-eba899.6b7bd8.0ec8.data.globus.org",
+      "resolved_ips": [
+        "128.55.200.27"
+      ],
+      "reverse_dns": "dtn-ro-new.nersc.gov",
+      "dest_isp": null,
+      "traceroute": {
+        "tool": null,
+        "hop_count": null,
+        "status": "unavailable: traceroute not installed (try `apt install traceroute` / `brew install traceroute`)",
+        "raw": null
+      }
+    }
+  },
+  "results": [
+    {
+      "label": "ANL-GLOBUS_1GB",
+      "url": "https://g-52ba3.fd635.8443.data.globus.org/css03_data/CMIP6/CMIP/CCCma/CanESM5/historical/r1i1p2f1/Omon/thetao/gn/v20190429/thetao_Omon_CanESM5_historical_r1i1p2f1_gn_185001-186012.nc",
+      "started": "2026-07-02T23:15:35.381963+00:00",
+      "status": "verified",
+      "expected_sha256": "fa7c3a0a6cbe4aec8805fda48948972a0bc42aec4fdd065ff3c5b61763522ea6",
+      "computed_sha256": "fa7c3a0a6cbe4aec8805fda48948972a0bc42aec4fdd065ff3c5b61763522ea6",
+      "sha256_match": true,
+      "total_bytes": null,
+      "downloaded_bytes": 1110603079,
+      "accept_ranges": true,
+      "resumes": 0,
+      "attempts": 1,
+      "wall_time_s": 66.44,
+      "active_transfer_s": 64.88229589799448,
+      "avg_rate_MBps": 16.324,
+      "first_connect_timings": {
+        "dns_s": 0.0026,
+        "tcp_connect_s": 0.277,
+        "tls_handshake_s": 0.2844,
+        "tls_version": "TLSv1.3",
+        "peer_ip": "140.221.68.108",
+        "ttfb_s": 0.9868
+      },
+      "throughput_samples": [
+        [
+          6.61,
+          10.09
+        ],
+        [
+          11.65,
+          16.882
+        ],
+        [
+          16.69,
+          16.87
+        ],
+        [
+          21.72,
+          16.883
+        ],
+        [
+          26.79,
+          16.772
+        ],
+        [
+          31.79,
+          16.796
+        ],
+        [
+          36.8,
+          16.756
+        ],
+        [
+          41.85,
+          16.858
+        ],
+        [
+          46.87,
+          16.908
+        ],
+        [
+          51.92,
+          16.853
+        ],
+        [
+          56.93,
+          16.953
+        ],
+        [
+          61.97,
+          16.862
+        ]
+      ],
+      "stalls": 0,
+      "errors": [],
+      "redirect_chain": [],
+      "finished": "2026-07-02T23:16:41.916522+00:00",
+      "host": "g-52ba3.fd635.8443.data.globus.org"
+    },
+    {
+      "label": "ANL-GLOBUS_2GB",
+      "url": "https://g-52ba3.fd635.8443.data.globus.org/css03_data/CMIP6/CMIP/MOHC/UKESM1-0-LL/historical/r1i1p1f2/Omon/thetao/gn/v20190627/thetao_Omon_UKESM1-0-LL_historical_r1i1p1f2_gn_200001-201412.nc",
+      "started": "2026-07-02T23:16:41.935170+00:00",
+      "status": "verified",
+      "expected_sha256": "8ad3a8d96cddf553fe9ab4b7494ca1049c9d5c070c79adc542af13f925644b41",
+      "computed_sha256": "8ad3a8d96cddf553fe9ab4b7494ca1049c9d5c070c79adc542af13f925644b41",
+      "sha256_match": true,
+      "total_bytes": null,
+      "downloaded_bytes": 2072144713,
+      "accept_ranges": true,
+      "resumes": 0,
+      "attempts": 1,
+      "wall_time_s": 118.92,
+      "active_transfer_s": 117.16077277600562,
+      "avg_rate_MBps": 16.867,
+      "first_connect_timings": {
+        "dns_s": 0.1194,
+        "tcp_connect_s": 0.2726,
+        "tls_handshake_s": 0.2764,
+        "tls_version": "TLSv1.3",
+        "peer_ip": "140.221.68.107",
+        "ttfb_s": 1.083
+      },
+      "throughput_samples": [
+        [
+          6.77,
+          10.377
+        ],
+        [
+          11.78,
+          17.154
+        ],
+        [
+          16.8,
+          17.143
+        ],
+        [
+          21.82,
+          17.127
+        ],
+        [
+          26.84,
+          17.139
+        ],
+        [
+          31.86,
+          17.135
+        ],
+        [
+          36.87,
+          17.15
+        ],
+        [
+          41.88,
+          17.183
+        ],
+        [
+          46.89,
+          17.144
+        ],
+        [
+          51.95,
+          17.206
+        ],
+        [
+          56.97,
+          17.123
+        ],
+        [
+          61.98,
+          17.156
+        ],
+        [
+          67.0,
+          17.156
+        ],
+        [
+          72.02,
+          17.136
+        ],
+        [
+          77.02,
+          17.191
+        ],
+        [
+          82.03,
+          17.163
+        ],
+        [
+          87.04,
+          17.166
+        ],
+        [
+          92.06,
+          17.132
+        ],
+        [
+          97.07,
+          17.15
+        ],
+        [
+          102.08,
+          17.193
+        ],
+        [
+          107.1,
+          17.115
+        ],
+        [
+          112.11,
+          17.176
+        ],
+        [
+          117.17,
+          17.198
+        ]
+      ],
+      "stalls": 0,
+      "errors": [],
+      "redirect_chain": [],
+      "finished": "2026-07-02T23:18:40.982868+00:00",
+      "host": "g-52ba3.fd635.8443.data.globus.org"
+    },
+    {
+      "label": "ANL-GLOBUS_3GB",
+      "url": "https://g-52ba3.fd635.8443.data.globus.org/css03_data/CMIP6/CMIP/CNRM-CERFACS/CNRM-CM6-1/historical/r9i1p1f2/Omon/thetao/gn/v20190125/thetao_Omon_CNRM-CM6-1_historical_r9i1p1f2_gn_187501-189912.nc",
+      "started": "2026-07-02T23:18:40.999675+00:00",
+      "status": "verified",
+      "expected_sha256": "e825584ab437e3e1c754d8e171378fb724486e5dfbbcbe53fc3b45fea645dec7",
+      "computed_sha256": "e825584ab437e3e1c754d8e171378fb724486e5dfbbcbe53fc3b45fea645dec7",
+      "sha256_match": true,
+      "total_bytes": null,
+      "downloaded_bytes": 3453324820,
+      "accept_ranges": true,
+      "resumes": 0,
+      "attempts": 1,
+      "wall_time_s": 196.71,
+      "active_transfer_s": 194.99925150900526,
+      "avg_rate_MBps": 16.889,
+      "first_connect_timings": {
+        "dns_s": 0.1176,
+        "tcp_connect_s": 0.2739,
+        "tls_handshake_s": 0.2775,
+        "tls_version": "TLSv1.3",
+        "peer_ip": "140.221.68.105",
+        "ttfb_s": 1.0276
+      },
+      "throughput_samples": [
+        [
+          6.75,
+          10.324
+        ],
+        [
+          11.78,
+          17.073
+        ],
+        [
+          16.81,
+          17.106
+        ],
+        [
+          21.84,
+          17.095
+        ],
+        [
+          26.86,
+          17.136
+        ],
+        [
+          31.88,
+          16.93
+        ],
+        [
+          36.89,
+          16.965
+        ],
+        [
+          41.93,
+          17.074
+        ],
+        [
+          46.97,
+          17.041
+        ],
+        [
+          52.01,
+          17.075
+        ],
+        [
+          57.06,
+          17.026
+        ],
+        [
+          62.09,
+          17.103
+        ],
+        [
+          67.14,
+          17.018
+        ],
+        [
+          72.17,
+          17.104
+        ],
+        [
+          77.19,
+          17.131
+        ],
+        [
+          82.24,
+          17.04
+        ],
+        [
+          87.29,
+          17.029
+        ],
+        [
+          92.35,
+          17.009
+        ],
+        [
+          97.38,
+          17.077
+        ],
+        [
+          102.44,
+          16.994
+        ],
+        [
+          107.48,
+          17.077
+        ],
+        [
+          112.52,
+          17.048
+        ],
+        [
+          117.56,
+          17.06
+        ],
+        [
+          122.62,
+          16.999
+        ],
+        [
+          127.65,
+          17.122
+        ],
+        [
+          132.68,
+          17.085
+        ],
+        [
+          137.7,
+          17.12
+        ],
+        [
+          142.74,
+          17.074
+        ],
+        [
+          147.78,
+          17.052
+        ],
+        [
+          152.82,
+          17.078
+        ],
+        [
+          157.83,
+          17.145
+        ],
+        [
+          162.86,
+          17.118
+        ],
+        [
+          167.91,
+          17.019
+        ],
+        [
+          172.94,
+          17.1
+        ],
+        [
+          178.0,
+          17.017
+        ],
+        [
+          183.02,
+          17.127
+        ],
+        [
+          188.03,
+          16.949
+        ],
+        [
+          193.06,
+          17.114
+        ]
+      ],
+      "stalls": 0,
+      "errors": [],
+      "redirect_chain": [],
+      "finished": "2026-07-02T23:21:57.952081+00:00",
+      "host": "g-52ba3.fd635.8443.data.globus.org"
+    },
+    {
+      "label": "NERSC-GLOBUS_1GB",
+      "url": "https://g-eba899.6b7bd8.0ec8.data.globus.org/css03_data/CMIP6/CMIP/CCCma/CanESM5/historical/r1i1p2f1/Omon/thetao/gn/v20190429/thetao_Omon_CanESM5_historical_r1i1p2f1_gn_185001-186012.nc",
+      "started": "2026-07-02T23:21:59.006848+00:00",
+      "status": "verified",
+      "expected_sha256": "fa7c3a0a6cbe4aec8805fda48948972a0bc42aec4fdd065ff3c5b61763522ea6",
+      "computed_sha256": "fa7c3a0a6cbe4aec8805fda48948972a0bc42aec4fdd065ff3c5b61763522ea6",
+      "sha256_match": true,
+      "total_bytes": null,
+      "downloaded_bytes": 1110603079,
+      "accept_ranges": true,
+      "resumes": 0,
+      "attempts": 1,
+      "wall_time_s": 67.62,
+      "active_transfer_s": 65.87608667599852,
+      "avg_rate_MBps": 16.078,
+      "first_connect_timings": {
+        "dns_s": 0.0028,
+        "tcp_connect_s": 0.2281,
+        "tls_handshake_s": 0.2346,
+        "tls_version": "TLSv1.3",
+        "peer_ip": "128.55.200.27",
+        "ttfb_s": 1.2664
+      },
+      "throughput_samples": [
+        [
+          6.77,
+          13.725
+        ],
+        [
+          11.84,
+          13.395
+        ],
+        [
+          16.88,
+          13.887
+        ],
+        [
+          21.92,
+          20.251
+        ],
+        [
+          26.95,
+          20.691
+        ],
+        [
+          31.98,
+          12.515
+        ],
+        [
+          37.02,
+          11.109
+        ],
+        [
+          42.1,
+          10.439
+        ],
+        [
+          47.1,
+          11.587
+        ],
+        [
+          52.14,
+          19.279
+        ],
+        [
+          57.17,
+          20.64
+        ],
+        [
+          62.18,
+          20.574
+        ],
+        [
+          67.22,
+          20.642
+        ]
+      ],
+      "stalls": 0,
+      "errors": [],
+      "redirect_chain": [],
+      "finished": "2026-07-02T23:23:06.707864+00:00",
+      "host": "g-eba899.6b7bd8.0ec8.data.globus.org"
+    },
+    {
+      "label": "NERSC-GLOBUS_2GB",
+      "url": "https://g-eba899.6b7bd8.0ec8.data.globus.org/css03_data/CMIP6/CMIP/MOHC/UKESM1-0-LL/historical/r1i1p1f2/Omon/thetao/gn/v20190627/thetao_Omon_UKESM1-0-LL_historical_r1i1p1f2_gn_200001-201412.nc",
+      "started": "2026-07-02T23:23:06.726473+00:00",
+      "status": "verified",
+      "expected_sha256": "8ad3a8d96cddf553fe9ab4b7494ca1049c9d5c070c79adc542af13f925644b41",
+      "computed_sha256": "8ad3a8d96cddf553fe9ab4b7494ca1049c9d5c070c79adc542af13f925644b41",
+      "sha256_match": true,
+      "total_bytes": null,
+      "downloaded_bytes": 2072144713,
+      "accept_ranges": true,
+      "resumes": 0,
+      "attempts": 1,
+      "wall_time_s": 167.66,
+      "active_transfer_s": 164.90934201300115,
+      "avg_rate_MBps": 11.983,
+      "first_connect_timings": {
+        "dns_s": 0.1516,
+        "tcp_connect_s": 0.2286,
+        "tls_handshake_s": 0.7426,
+        "tls_version": "TLSv1.3",
+        "peer_ip": "128.55.200.27",
+        "ttfb_s": 1.6179
+      },
+      "throughput_samples": [
+        [
+          7.78,
+          0.795
+        ],
+        [
+          13.01,
+          3.633
+        ],
+        [
+          18.07,
+          5.929
+        ],
+        [
+          23.1,
+          14.119
+        ],
+        [
+          28.15,
+          20.41
+        ],
+        [
+          33.19,
+          20.435
+        ],
+        [
+          38.21,
+          19.493
+        ],
+        [
+          43.29,
+          12.224
+        ],
+        [
+          48.32,
+          17.886
+        ],
+        [
+          53.34,
+          20.318
+        ],
+        [
+          58.34,
+          20.394
+        ],
+        [
+          63.34,
+          20.393
+        ],
+        [
+          68.36,
+          9.959
+        ],
+        [
+          73.38,
+          7.764
+        ],
+        [
+          78.4,
+          7.583
+        ],
+        [
+          83.53,
+          13.04
+        ],
+        [
+          88.62,
+          10.424
+        ],
+        [
+          93.64,
+          17.132
+        ],
+        [
+          98.65,
+          11.367
+        ],
+        [
+          103.67,
+          2.791
+        ],
+        [
+          108.76,
+          3.141
+        ],
+        [
+          113.84,
+          3.15
+        ],
+        [
+          118.87,
+          6.76
+        ],
+        [
+          123.97,
+          12.172
+        ],
+        [
+          129.0,
+          5.758
+        ],
+        [
+          134.05,
+          11.093
+        ],
+        [
+          139.07,
+          19.505
+        ],
+        [
+          144.11,
+          20.457
+        ],
+        [
+          149.15,
+          20.438
+        ],
+        [
+          154.36,
+          17.082
+        ],
+        [
+          159.47,
+          5.482
+        ],
+        [
+          164.51,
+          4.759
+        ]
+      ],
+      "stalls": 0,
+      "errors": [],
+      "redirect_chain": [],
+      "finished": "2026-07-02T23:25:54.471478+00:00",
+      "host": "g-eba899.6b7bd8.0ec8.data.globus.org"
+    },
+    {
+      "label": "NERSC-GLOBUS_3GB",
+      "url": "https://g-eba899.6b7bd8.0ec8.data.globus.org/css03_data/CMIP6/CMIP/CNRM-CERFACS/CNRM-CM6-1/historical/r9i1p1f2/Omon/thetao/gn/v20190125/thetao_Omon_CNRM-CM6-1_historical_r9i1p1f2_gn_187501-189912.nc",
+      "started": "2026-07-02T23:25:54.487853+00:00",
+      "status": "verified",
+      "expected_sha256": "e825584ab437e3e1c754d8e171378fb724486e5dfbbcbe53fc3b45fea645dec7",
+      "computed_sha256": "e825584ab437e3e1c754d8e171378fb724486e5dfbbcbe53fc3b45fea645dec7",
+      "sha256_match": true,
+      "total_bytes": null,
+      "downloaded_bytes": 3453324820,
+      "accept_ranges": true,
+      "resumes": 0,
+      "attempts": 1,
+      "wall_time_s": 196.95,
+      "active_transfer_s": 194.0796754779949,
+      "avg_rate_MBps": 16.969,
+      "first_connect_timings": {
+        "dns_s": 0.1177,
+        "tcp_connect_s": 0.2301,
+        "tls_handshake_s": 0.7595,
+        "tls_version": "TLSv1.3",
+        "peer_ip": "128.55.200.27",
+        "ttfb_s": 1.7496
+      },
+      "throughput_samples": [
+        [
+          7.91,
+          0.595
+        ],
+        [
+          12.95,
+          5.553
+        ],
+        [
+          18.05,
+          14.719
+        ],
+        [
+          23.07,
+          20.482
+        ],
+        [
+          28.11,
+          20.452
+        ],
+        [
+          33.13,
+          20.329
+        ],
+        [
+          38.16,
+          20.465
+        ],
+        [
+          43.21,
+          20.385
+        ],
+        [
+          48.25,
+          20.471
+        ],
+        [
+          53.25,
+          20.394
+        ],
+        [
+          58.27,
+          20.522
+        ],
+        [
+          63.28,
+          20.337
+        ],
+        [
+          68.3,
+          20.504
+        ],
+        [
+          73.32,
+          20.319
+        ],
+        [
+          78.35,
+          20.486
+        ],
+        [
+          83.38,
+          20.297
+        ],
+        [
+          88.39,
+          20.366
+        ],
+        [
+          93.42,
+          20.449
+        ],
+        [
+          98.45,
+          20.494
+        ],
+        [
+          103.56,
+          17.601
+        ],
+        [
+          108.64,
+          12.198
+        ],
+        [
+          113.69,
+          18.629
+        ],
+        [
+          118.72,
+          20.476
+        ],
+        [
+          123.73,
+          20.38
+        ],
+        [
+          128.75,
+          20.492
+        ],
+        [
+          133.75,
+          20.393
+        ],
+        [
+          138.95,
+          16.555
+        ],
+        [
+          144.04,
+          7.068
+        ],
+        [
+          149.13,
+          3.929
+        ],
+        [
+          154.38,
+          4.386
+        ],
+        [
+          159.43,
+          4.55
+        ],
+        [
+          164.45,
+          9.565
+        ],
+        [
+          169.48,
+          18.499
+        ],
+        [
+          174.52,
+          20.227
+        ],
+        [
+          179.53,
+          20.375
+        ],
+        [
+          184.54,
+          20.529
+        ],
+        [
+          189.58,
+          20.468
+        ],
+        [
+          194.63,
+          20.384
+        ]
+      ],
+      "stalls": 0,
+      "errors": [],
+      "redirect_chain": [],
+      "finished": "2026-07-02T23:29:11.505212+00:00",
+      "host": "g-eba899.6b7bd8.0ec8.data.globus.org"
+    }
+  ],
+  "run_finished": "2026-07-02T23:29:11.510394+00:00"
+}
