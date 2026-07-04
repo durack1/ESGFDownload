@@ -29,9 +29,11 @@ PJD  4 Jul 2026 - added host diagnostics (rDNS, traceroute, ISP) and
                   optional geo/ISP lookups.
 PJD  4 Jul 2026 - commented >2 GB targets to reduce test time, and
                   download burden.
-PJD  4 Jul 2026 - added BSC, IPSL, NORESG targets.
+PJD  4 Jul 2026 - added BSC, IPSL, LIU, NORESG targets.
 
-TODO: add additional nodes:
+TODO: add additional nodes - dataset counts below targeting
+experiment_id = historical
+---
 esgf3.dkrz.de (102801) - logged
 esgf.ceda.ac.uk (45278) - logged
 esgf.nci.org.au (43289) - logged
@@ -40,18 +42,16 @@ noresg.nird.sigma2.no (18279) - logged
 esg1.umr-cnrm.fr (18173) - downloads failing 260704
 esgf.bsc.es (7583) - logged, only 1GB files
 esgf-node2.cmcc.it (5052)
-esg-dn1.nsc.liu.se (4832)
+esg-dn1.nsc.liu.se (4832) - logged (esg-dn2.*(839),esg-dn3.*(631))
 esgf.ichec.ie (1915)
 esgdata.gfdl.noaa.gov (939)
-esg-dn2.nsc.liu.se (839)
 esgf-cnr.hpc.ext.cineca.it (805)
-esg-dn3.nsc.liu.se (631)
 dmiesgf0.dmi.dk (461)
 esgf.rcec.sinica.edu.tw (350)
 esgf-data.csc.fi (300)
-cmip.fio.org.cn (279)
-esg.camscma.cn (228)
-esg-cccr.tropmet.res.in (99)
+cmip.fio.org.cn (279) - downloads failing 260704
+esg.camscma.cn (228) - downloads failing 260704
+esg-cccr.tropmet.res.in (99) - downloads failing 260704
 s3.eu-dkrz-1.dkrz.cloud (17)
 
 Edit the TARGETS list below with the files/nodes you want to test.
@@ -86,7 +86,7 @@ from urllib.parse import urlsplit
 # Fill these in with the actual replica URLs you resolve from the ESGF search
 # API for your ~1 / ~2 / ~4 GB files on each node.
 TARGETS = [
-    # BSC - esgf.bsc.es
+    # BSC - esgf
     {
         "label": "BSC_1GB",
         "url": "https://esgf.bsc.es/thredds/fileServer/esg_dataroot/a1u8-CMIP-r20/CMIP6/CMIP/EC-Earth-Consortium/EC-Earth3/historical/r20i1p1f1/day/hur/gr/v20210303/hur_day_EC-Earth3_historical_r20i1p1f1_gr_18500101-18501231.nc",
@@ -134,12 +134,12 @@ TARGETS = [
     #    "url": "https://esgf3.dkrz.de/thredds/fileServer/cmip6/CMIP/MIROC/MIROC-ES2L/historical/r7i1p1f2/Omon/thetao/gr1/v20200731/thetao_Omon_MIROC-ES2L_historical_r7i1p1f2_gr1_185001-201412.nc",
     #    "sha256": "7b7b5be4d98fec9fc3db458ab9cceb54adcf26d4895f5151b18eb0461f39ca1a",
     # },
-    # IPSL - vesq
+    # IPSL - vesg
     {
         "label": "IPSL_1GB",
         "url": "https://vesg.ipsl.upmc.fr/thredds/fileServer/cmip6/CMIP/IPSL/IPSL-CM5A2-INCA/historical/r1i1p1f1/E3hrPt/o3/gr/v20240619/o3_E3hrPt_IPSL-CM5A2-INCA_historical_r1i1p1f1_gr_185001010300-185101010000.nc",
         "sha256": "74b74462397db381104f051b3ffd9f9d9af86c54d0f28e2152b1e8dd73c25ce1",
-    }
+    },
     # {
     #    "label": "IPSL_2GB",
     #    "url": "https://vesg.ipsl.upmc.fr/thredds/fileServer/cmip6/CMIP/IPSL/IPSL-CM5A2-INCA/historical/r1i1p1f1/Omon/thetao/gn/v20240619/thetao_Omon_IPSL-CM5A2-INCA_historical_r1i1p1f1_gn_187001-201412.nc",
@@ -191,6 +191,17 @@ TARGETS = [
     #    "label": "NORESG_12GB",
     #    "url": "https://noresg.nird.sigma2.no/thredds/fileServer/esg_dataroot/cmor/CMIP6/CMIP/NCC/NorCPM1/historical/r11i1p1f1/Omon/thetao/gr/v20200724/thetao_Omon_NorCPM1_historical_r11i1p1f1_gr_185001-201412.nc",
     #    "sha256": "6ea31d6e30a283746eb39a3eb6329126e0fdfb8cca818dc8b5dfcf486da0373f",
+    # },
+    # LIU - nsc
+    {
+        "label": "LIU_1GB",
+        "url": "https://esg-dn1.nsc.liu.se/thredds/fileServer/esg_dataroot10/cmip6data/20250305_smhi_req00232/CMIP6/CMIP/EC-Earth-Consortium/EC-Earth3-HR/historical/r1i1p1f1/Omon/so/gn/v20250225/so_Omon_EC-Earth3-HR_historical_r1i1p1f1_gn_185101-185112.nc",
+        "sha256": "8b0ca29dc71af8ccf11bf7c9670acbf8dae33f1239263a98419b5385350bddc8",
+    },
+    # {
+    #    "label": "LIU_2GB",
+    #    "url": "https://esg-dn1.nsc.liu.se/thredds/fileServer/esg_dataroot10/cmip6data/20250305_smhi_req00232/CMIP6/CMIP/EC-Earth-Consortium/EC-Earth3-HR/historical/r1i1p1f1/Omon/bigthetao/gn/v20250225/bigthetao_Omon_EC-Earth3-HR_historical_r1i1p1f1_gn_185101-185112.nc",
+    #    "sha256": "5ba1b16e3b22f525ae9456b82aea0a27b96c11c3b1c8e8cfc69279f894d30dd0",
     # },
     # ORNL - artemis
     {
