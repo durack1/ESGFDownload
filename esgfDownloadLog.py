@@ -23,12 +23,14 @@ PJD 2 Jul 2026 - flipped {stamp} in log files - get these to sequentially order
                  correctly in a directory listing.
 PJD 2 Jul 2026 - reorganised timestamping.
 PJD 3 Jul 2026 - cleanup ANL vs NERSC globus endpoints.
+PJD 4 Jul 2026 - added NCI downloads.
 
 Edit the TARGETS list below with the files/nodes you want to test.
 """
 
 import argparse
 import csv
+import getpass
 import hashlib
 import http.client
 import json
@@ -71,11 +73,11 @@ TARGETS = [
         "url": "https://esgf.ceda.ac.uk/thredds/fileServer/esg_cmip6/CMIP6/CMIP/CNRM-CERFACS/CNRM-CM6-1/historical/r9i1p1f2/Omon/thetao/gn/v20190125/thetao_Omon_CNRM-CM6-1_historical_r9i1p1f2_gn_187501-189912.nc",
         "sha256": "e825584ab437e3e1c754d8e171378fb724486e5dfbbcbe53fc3b45fea645dec7",
     },
-    {
-        "label": "CEDA_9GB",
-        "url": "https://esgf.ceda.ac.uk/thredds/fileServer/esg_cmip6/CMIP6/CMIP/MIROC/MIROC-ES2L/piControl/r1i1p1f2/Omon/thetao/gn/v20190823/thetao_Omon_MIROC-ES2L_piControl_r1i1p1f2_gn_225001-234912.nc",
-        "sha256": "22836d086f0f441220d0608b2106497f98936a9e74539516a478ef26b07e93ab",
-    },
+    # {
+    #    "label": "CEDA_9GB",
+    #    "url": "https://esgf.ceda.ac.uk/thredds/fileServer/esg_cmip6/CMIP6/CMIP/MIROC/MIROC-ES2L/piControl/r1i1p1f2/Omon/thetao/gn/v20190823/thetao_Omon_MIROC-ES2L_piControl_r1i1p1f2_gn_225001-234912.nc",
+    #    "sha256": "22836d086f0f441220d0608b2106497f98936a9e74539516a478ef26b07e93ab",
+    # },
     # DKRZ
     {
         "label": "DKRZ_1GB",
@@ -92,10 +94,26 @@ TARGETS = [
         "url": "https://esgf3.dkrz.de/thredds/fileServer/cmip6/CMIP/CNRM-CERFACS/CNRM-CM6-1/historical/r9i1p1f2/Omon/thetao/gn/v20190125/thetao_Omon_CNRM-CM6-1_historical_r9i1p1f2_gn_187501-189912.nc",
         "sha256": "e825584ab437e3e1c754d8e171378fb724486e5dfbbcbe53fc3b45fea645dec7",
     },
+    # {
+    #    "label": "DKRZ_11GB",
+    #    "url": "https://esgf3.dkrz.de/thredds/fileServer/cmip6/CMIP/MIROC/MIROC-ES2L/historical/r7i1p1f2/Omon/thetao/gr1/v20200731/thetao_Omon_MIROC-ES2L_historical_r7i1p1f2_gr1_185001-201412.nc",
+    #    "sha256": "7b7b5be4d98fec9fc3db458ab9cceb54adcf26d4895f5151b18eb0461f39ca1a",
+    # },
+    # NCI - gadi
     {
-        "label": "DKRZ_11GB",
-        "url": "https://esgf3.dkrz.de/thredds/fileServer/cmip6/CMIP/MIROC/MIROC-ES2L/historical/r7i1p1f2/Omon/thetao/gr1/v20200731/thetao_Omon_MIROC-ES2L_historical_r7i1p1f2_gr1_185001-201412.nc",
-        "sha256": "7b7b5be4d98fec9fc3db458ab9cceb54adcf26d4895f5151b18eb0461f39ca1a",
+        "label": "NCI_1GB",
+        "url": "https://esgf.nci.org.au/thredds/fileServer/esgcet/replica/CMIP6/CMIP/CCCma/CanESM5/historical/r1i1p2f1/Omon/thetao/gn/v20190429/thetao_Omon_CanESM5_historical_r1i1p2f1_gn_185001-186012.nc",
+        "sha256": "fa7c3a0a6cbe4aec8805fda48948972a0bc42aec4fdd065ff3c5b61763522ea6",
+    },
+    {
+        "label": "NCI_3GB",
+        "url": "https://esgf.nci.org.au/thredds/fileServer/esgcet/replica/CMIP6/CMIP/CNRM-CERFACS/CNRM-CM6-1/historical/r9i1p1f2/Omon/thetao/gn/v20190125/thetao_Omon_CNRM-CM6-1_historical_r9i1p1f2_gn_187501-189912.nc",
+        "sha256": "e825584ab437e3e1c754d8e171378fb724486e5dfbbcbe53fc3b45fea645dec7",
+    },
+    {
+        "label": "NCI_11GB",
+        "url": "https://esgf.nci.org.au/thredds/fileServer/esgcet/replica/CMIP6/CMIP/MIROC/MIROC-ES2L/historical/r1i1p1f2/Omon/thetao/gr1/v20200731/thetao_Omon_MIROC-ES2L_historical_r1i1p1f2_gr1_185001-201412.nc",
+        "sha256": "36a71995bb3fa7a09903561917848fd8a404454af9755d1f8c9458f659d6312b",
     },
     # ORNL - artemis
     {
@@ -129,11 +147,11 @@ TARGETS = [
         "url": "https://g-52ba3.fd635.8443.data.globus.org/css03_data/CMIP6/CMIP/CNRM-CERFACS/CNRM-CM6-1/historical/r9i1p1f2/Omon/thetao/gn/v20190125/thetao_Omon_CNRM-CM6-1_historical_r9i1p1f2_gn_187501-189912.nc",
         "sha256": "e825584ab437e3e1c754d8e171378fb724486e5dfbbcbe53fc3b45fea645dec7",
     },
-    {
-        "label": "ANL-GLOBUS_11GB",
-        "url": "https://g-52ba3.fd635.8443.data.globus.org/css03_data/CMIP6/CMIP/MIROC/MIROC-ES2L/historical/r7i1p1f2/Omon/thetao/gr1/v20200731/thetao_Omon_MIROC-ES2L_historical_r7i1p1f2_gr1_185001-201412.nc",
-        "sha256": "7b7b5be4d98fec9fc3db458ab9cceb54adcf26d4895f5151b18eb0461f39ca1a",
-    },
+    # {
+    #    "label": "ANL-GLOBUS_11GB",
+    #    "url": "https://g-52ba3.fd635.8443.data.globus.org/css03_data/CMIP6/CMIP/MIROC/MIROC-ES2L/historical/r7i1p1f2/Omon/thetao/gr1/v20200731/thetao_Omon_MIROC-ES2L_historical_r7i1p1f2_gr1_185001-201412.nc",
+    #    "sha256": "7b7b5be4d98fec9fc3db458ab9cceb54adcf26d4895f5151b18eb0461f39ca1a",
+    # },
     # Perlmutter - NERSC
     {
         "label": "NERSC-GLOBUS_1GB",
@@ -150,11 +168,11 @@ TARGETS = [
         "url": "https://g-eba899.6b7bd8.0ec8.data.globus.org/css03_data/CMIP6/CMIP/CNRM-CERFACS/CNRM-CM6-1/historical/r9i1p1f2/Omon/thetao/gn/v20190125/thetao_Omon_CNRM-CM6-1_historical_r9i1p1f2_gn_187501-189912.nc",
         "sha256": "e825584ab437e3e1c754d8e171378fb724486e5dfbbcbe53fc3b45fea645dec7",
     },
-    {
-        "label": "NERSC-GLOBUS_11GB",
-        "url": "https://g-eba899.6b7bd8.0ec8.data.globus.org/css03_data/CMIP6/CMIP/MIROC/MIROC-ES2L/historical/r7i1p1f2/Omon/thetao/gr1/v20200731/thetao_Omon_MIROC-ES2L_historical_r7i1p1f2_gr1_185001-201412.nc",
-        "sha256": "7b7b5be4d98fec9fc3db458ab9cceb54adcf26d4895f5151b18eb0461f39ca1a",
-    },
+    # {
+    #    "label": "NERSC-GLOBUS_11GB",
+    #    "url": "https://g-eba899.6b7bd8.0ec8.data.globus.org/css03_data/CMIP6/CMIP/MIROC/MIROC-ES2L/historical/r7i1p1f2/Omon/thetao/gr1/v20200731/thetao_Omon_MIROC-ES2L_historical_r7i1p1f2_gr1_185001-201412.nc",
+    #    "sha256": "7b7b5be4d98fec9fc3db458ab9cceb54adcf26d4895f5151b18eb0461f39ca1a",
+    # },
 ]
 
 CHUNK_SIZE = 1 << 20  # 1 MiB read size
@@ -177,6 +195,10 @@ TRACEROUTE_PER_HOP_MS = 2000  # per-hop probe wait
 # Returns JSON; no key required for light use.
 ISP_LOOKUP_URL = "https://ipinfo.io/{ip}/json"
 ISP_LOOKUP_TIMEOUT_S = 10
+# Origin geolocation for log provenance (on by default; disable with --no-geo).
+# ip-api.com needs no key and returns country/city/ISP in one call.
+GEO_LOOKUP_URL = "http://ip-api.com/json/?fields=status,country,countryCode,region,regionName,city,lat,lon,isp,org,as,query"
+GEO_LOOKUP_TIMEOUT_S = 10
 
 # Heuristic: a redirect Location matching any of these implies a login wall.
 AUTH_HINTS = (
@@ -388,11 +410,98 @@ def _parse_hop_count(raw, system):
     return hops or None
 
 
-def collect_run_diagnostics(do_isp):
+def geolocate_origin():
+    """
+    Best-effort geolocation of this machine's public IP, for log provenance.
+    Uses ip-api.com (no key). Returns a tidy dict or {"error": ...}.
+    Never raises. This is what tells you a log came from Dakar vs Colombo.
+    """
+    try:
+        req = urllib.request.Request(
+            GEO_LOOKUP_URL, headers={"User-Agent": USER_AGENT}
+        )
+        with urllib.request.urlopen(req, timeout=GEO_LOOKUP_TIMEOUT_S) as r:
+            data = json.loads(r.read().decode())
+        if data.get("status") != "success":
+            return {"error": data.get("message", "lookup failed")}
+        return {
+            "public_ip": data.get("query"),
+            "country": data.get("country"),
+            "country_code": data.get("countryCode"),
+            "region": data.get("regionName"),
+            "city": data.get("city"),
+            "latitude": data.get("lat"),
+            "longitude": data.get("lon"),
+            "isp": data.get("isp"),
+            "org": data.get("org"),
+            "asn": data.get("as"),
+        }
+    except Exception as e:
+        return {"error": f"{type(e).__name__}: {e}"}
+
+
+def get_all_local_ips():
+    """All local IPs bound to this host (best-effort), for multi-homed boxes."""
+    ips = set()
+    try:
+        for info in socket.getaddrinfo(socket.gethostname(), None):
+            ip = info[4][0]
+            if not ip.startswith("127.") and ip != "::1":
+                ips.add(ip)
+    except Exception:
+        pass
+    primary = get_local_ip()
+    if primary:
+        ips.add(primary)
+    return sorted(ips)
+
+
+def collect_origin_identity(do_geo):
+    """
+    Self-identifying provenance for the log: who/where/what machine produced it.
+    Captured once per run, on by default so colleagues' logs are always
+    attributable without needing to pass any flags.
+    """
+    fqdn = None
+    try:
+        fqdn = socket.getfqdn()
+    except Exception:
+        pass
+    identity = {
+        "hostname": socket.gethostname(),
+        "fqdn": fqdn,
+        "username": _safe_username(),
+        "local_ips": get_all_local_ips(),
+        "timezone": _local_timezone(),
+        "geo": geolocate_origin() if do_geo else {"status": "skipped (--no-geo)"},
+    }
+    return identity
+
+
+def _safe_username():
+    try:
+        return getpass.getuser()
+    except Exception:
+        return os.environ.get("USER") or os.environ.get("USERNAME")
+
+
+def _local_timezone():
+    try:
+        offset = time.strftime("%z")
+        name = time.strftime("%Z")
+        return f"{name} (UTC{offset[:3]}:{offset[3:]})" if offset else name
+    except Exception:
+        return None
+
+
+def collect_run_diagnostics(do_isp, do_geo=True):
     """Host/platform/network context captured once per run."""
     local_ip = get_local_ip()
-    public_ip = get_public_ip() if do_isp else None
+    # If geo is on we get the public IP from the geo lookup for free; only fall
+    # back to the dedicated public-IP probe when geo is off but --isp is on.
+    public_ip = get_public_ip() if (do_isp and not do_geo) else None
     diag = {
+        "origin": collect_origin_identity(do_geo),
         "hostname": socket.gethostname(),
         "platform": platform.platform(),
         "system": platform.system(),
@@ -808,6 +917,11 @@ def _cleanup(path):
 # --------------------------------------------------------------------------- #
 
 CSV_FIELDS = [
+    "origin_hostname",
+    "origin_country",
+    "origin_city",
+    "origin_isp",
+    "origin_public_ip",
     "label",
     "status",
     "url",
@@ -838,12 +952,19 @@ CSV_FIELDS = [
 ]
 
 
-def flatten_for_csv(r, host_diag=None):
+def flatten_for_csv(r, host_diag=None, origin=None):
     t = r.get("first_connect_timings") or {}
     hd = host_diag or {}
     tr = hd.get("traceroute") or {}
     isp = hd.get("dest_isp") or {}
+    o = origin or {}
+    geo = o.get("geo") or {}
     return {
+        "origin_hostname": o.get("hostname"),
+        "origin_country": geo.get("country"),
+        "origin_city": geo.get("city"),
+        "origin_isp": geo.get("isp"),
+        "origin_public_ip": geo.get("public_ip"),
         "label": r["label"],
         "status": r["status"],
         "url": r["url"],
@@ -904,11 +1025,12 @@ def flush_outputs(run_meta, json_path, csv_path):
     _atomic_write(json_path, _json)
 
     def _csv(f):
+        origin = (run_meta.get("run_diagnostics") or {}).get("origin")
         w = csv.DictWriter(f, fieldnames=CSV_FIELDS)
         w.writeheader()
         for r in run_meta["results"]:
             hd = run_meta["host_diagnostics"].get(r.get("host"))
-            w.writerow(flatten_for_csv(r, hd))
+            w.writerow(flatten_for_csv(r, hd, origin))
 
     _atomic_write(csv_path, _csv)
 
@@ -936,6 +1058,13 @@ def parse_args(argv):
         help="Disable the live progress bar (auto-disabled anyway when "
         "stderr is not a terminal, e.g. when piping to a log file).",
     )
+    p.add_argument(
+        "--no-geo",
+        action="store_true",
+        help="Disable origin geolocation. By default the log records the "
+        "machine's country/city/ISP + public IP (one lightweight HTTPS call) "
+        "so shared logs are self-identifying; use this for privacy.",
+    )
     return p.parse_args(argv)
 
 
@@ -943,6 +1072,7 @@ def main(argv=None):
     args = parse_args(argv if argv is not None else sys.argv[1:])
     do_isp = args.isp
     do_trace = not args.no_traceroute
+    do_geo = not args.no_geo
     global _BAR_ENABLED
     _BAR_ENABLED = not args.no_bar
 
@@ -970,6 +1100,7 @@ def main(argv=None):
             "read_timeout": READ_TIMEOUT,
             "isp_lookup": do_isp,
             "traceroute": do_trace,
+            "geolocate_origin": do_geo,
         },
         "run_diagnostics": None,
         "host_diagnostics": {},
@@ -977,7 +1108,23 @@ def main(argv=None):
     }
 
     print("Collecting run/host diagnostics ...", flush=True)
-    run_meta["run_diagnostics"] = collect_run_diagnostics(do_isp)
+    run_meta["run_diagnostics"] = collect_run_diagnostics(do_isp, do_geo)
+
+    # Print a provenance banner so it's obvious which machine/location this
+    # log belongs to (also written into the JSON/CSV).
+    origin = run_meta["run_diagnostics"].get("origin", {})
+    geo = origin.get("geo", {})
+    if geo and "error" not in geo and "status" not in geo:
+        print(
+            f"  origin: {origin.get('hostname')} | "
+            f"{geo.get('city')}, {geo.get('country')} | "
+            f"{geo.get('isp')} | {geo.get('public_ip')}",
+            flush=True,
+        )
+    else:
+        print(f"  origin: {origin.get('hostname')} "
+              f"(geo {'disabled' if not do_geo else 'unavailable'})",
+              flush=True)
 
     # Per-host diagnostics, cached so each node is probed once even if it
     # serves several files.
