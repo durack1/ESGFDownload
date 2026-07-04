@@ -7,7 +7,8 @@ connection timing, throughput, stability and integrity (SHA256).
 
 Design notes
 ------------
-* Standard library only (urllib/http.client/socket/ssl/hashlib). No pip installs.
+* Standard library only (urllib/http.client/socket/ssl/hashlib). No pip
+  installs.
 * Cross-platform (Linux/WSL2, macOS, Windows).
 * Direct HTTPS, anonymous only. If a target redirects to a login page, the
   attempt is logged as "auth_required" and skipped.
@@ -19,11 +20,39 @@ Design notes
   verification (download -> verify -> discard -> next).
 * Output: one JSON file (full detail) and one CSV (flat summary) per run.
 
-PJD 2 Jul 2026 - flipped {stamp} in log files - get these to sequentially order
-                 correctly in a directory listing.
-PJD 2 Jul 2026 - reorganised timestamping.
-PJD 3 Jul 2026 - cleanup ANL vs NERSC globus endpoints.
-PJD 4 Jul 2026 - added NCI downloads.
+PJD  2 Jul 2026 - flipped {stamp} in log files - get these to sequentially
+                  order correctly in a directory listing.
+PJD  2 Jul 2026 - reorganised timestamping.
+PJD  3 Jul 2026 - cleanup ANL vs NERSC globus endpoints.
+PJD  4 Jul 2026 - added NCI downloads.
+PJD  4 Jul 2026 - added host diagnostics (rDNS, traceroute, ISP) and
+                  optional geo/ISP lookups.
+PJD  4 Jul 2026 - commented >2 GB targets to reduce test time, and
+                  download burden.
+PJD  4 Jul 2026 - added BSC, IPSL, NORESG targets.
+
+TODO: add additional nodes:
+esgf3.dkrz.de (102801) - logged
+esgf.ceda.ac.uk (45278) - logged
+esgf.nci.org.au (43289) - logged
+vesg.ipsl.upmc.fr (25691) - logged
+noresg.nird.sigma2.no (18279) - logged
+esg1.umr-cnrm.fr (18173) - downloads failing 260704
+esgf.bsc.es (7583) - logged, only 1GB files
+esgf-node2.cmcc.it (5052)
+esg-dn1.nsc.liu.se (4832)
+esgf.ichec.ie (1915)
+esgdata.gfdl.noaa.gov (939)
+esg-dn2.nsc.liu.se (839)
+esgf-cnr.hpc.ext.cineca.it (805)
+esg-dn3.nsc.liu.se (631)
+dmiesgf0.dmi.dk (461)
+esgf.rcec.sinica.edu.tw (350)
+esgf-data.csc.fi (300)
+cmip.fio.org.cn (279)
+esg.camscma.cn (228)
+esg-cccr.tropmet.res.in (99)
+s3.eu-dkrz-1.dkrz.cloud (17)
 
 Edit the TARGETS list below with the files/nodes you want to test.
 """
@@ -57,47 +86,74 @@ from urllib.parse import urlsplit
 # Fill these in with the actual replica URLs you resolve from the ESGF search
 # API for your ~1 / ~2 / ~4 GB files on each node.
 TARGETS = [
-    # CEDA
+    # BSC - esgf.bsc.es
+    {
+        "label": "BSC_1GB",
+        "url": "https://esgf.bsc.es/thredds/fileServer/esg_dataroot/a1u8-CMIP-r20/CMIP6/CMIP/EC-Earth-Consortium/EC-Earth3/historical/r20i1p1f1/day/hur/gr/v20210303/hur_day_EC-Earth3_historical_r20i1p1f1_gr_18500101-18501231.nc",
+        "sha256": "616e02c9704f9b39f6585d3e1c1241abf18c21b94d7f8262ba2c37662cf8100d",
+    },
+    # CEDA - jasmin
     {
         "label": "CEDA_1GB",
         "url": "https://esgf.ceda.ac.uk/thredds/fileServer/esg_cmip6/CMIP6/CMIP/CCCma/CanESM5/historical/r1i1p2f1/Omon/thetao/gn/v20190429/thetao_Omon_CanESM5_historical_r1i1p2f1_gn_185001-186012.nc",
         "sha256": "fa7c3a0a6cbe4aec8805fda48948972a0bc42aec4fdd065ff3c5b61763522ea6",
     },
-    {
-        "label": "CEDA_2GB",
-        "url": "https://esgf.ceda.ac.uk/thredds/fileServer/esg_cmip6/CMIP6/CMIP/MOHC/UKESM1-0-LL/historical/r1i1p1f2/Omon/thetao/gn/v20190627/thetao_Omon_UKESM1-0-LL_historical_r1i1p1f2_gn_200001-201412.nc",
-        "sha256": "8ad3a8d96cddf553fe9ab4b7494ca1049c9d5c070c79adc542af13f925644b41",
-    },
-    {
-        "label": "CEDA_3GB",
-        "url": "https://esgf.ceda.ac.uk/thredds/fileServer/esg_cmip6/CMIP6/CMIP/CNRM-CERFACS/CNRM-CM6-1/historical/r9i1p1f2/Omon/thetao/gn/v20190125/thetao_Omon_CNRM-CM6-1_historical_r9i1p1f2_gn_187501-189912.nc",
-        "sha256": "e825584ab437e3e1c754d8e171378fb724486e5dfbbcbe53fc3b45fea645dec7",
-    },
+    # {
+    #    "label": "CEDA_2GB",
+    #    "url": "https://esgf.ceda.ac.uk/thredds/fileServer/esg_cmip6/CMIP6/CMIP/MOHC/UKESM1-0-LL/historical/r1i1p1f2/Omon/thetao/gn/v20190627/thetao_Omon_UKESM1-0-LL_historical_r1i1p1f2_gn_200001-201412.nc",
+    #    "sha256": "8ad3a8d96cddf553fe9ab4b7494ca1049c9d5c070c79adc542af13f925644b41",
+    # },
+    # {
+    #    "label": "CEDA_3GB",
+    #    "url": "https://esgf.ceda.ac.uk/thredds/fileServer/esg_cmip6/CMIP6/CMIP/CNRM-CERFACS/CNRM-CM6-1/historical/r9i1p1f2/Omon/thetao/gn/v20190125/thetao_Omon_CNRM-CM6-1_historical_r9i1p1f2_gn_187501-189912.nc",
+    #    "sha256": "e825584ab437e3e1c754d8e171378fb724486e5dfbbcbe53fc3b45fea645dec7",
+    # },
     # {
     #    "label": "CEDA_9GB",
     #    "url": "https://esgf.ceda.ac.uk/thredds/fileServer/esg_cmip6/CMIP6/CMIP/MIROC/MIROC-ES2L/piControl/r1i1p1f2/Omon/thetao/gn/v20190823/thetao_Omon_MIROC-ES2L_piControl_r1i1p1f2_gn_225001-234912.nc",
     #    "sha256": "22836d086f0f441220d0608b2106497f98936a9e74539516a478ef26b07e93ab",
     # },
-    # DKRZ
+    # DKRZ - esgf3
     {
         "label": "DKRZ_1GB",
         "url": "https://esgf3.dkrz.de/thredds/fileServer/cmip6/CMIP/CCCma/CanESM5/historical/r1i1p2f1/Omon/thetao/gn/v20190429/thetao_Omon_CanESM5_historical_r1i1p2f1_gn_185001-186012.nc",
         "sha256": "fa7c3a0a6cbe4aec8805fda48948972a0bc42aec4fdd065ff3c5b61763522ea6",
     },
-    {
-        "label": "DKRZ_2GB",
-        "url": "https://esgf3.dkrz.de/thredds/fileServer/cmip6/CMIP/MOHC/UKESM1-0-LL/historical/r1i1p1f2/Omon/thetao/gn/v20190627/thetao_Omon_UKESM1-0-LL_historical_r1i1p1f2_gn_200001-201412.nc",
-        "sha256": "8ad3a8d96cddf553fe9ab4b7494ca1049c9d5c070c79adc542af13f925644b41",
-    },
-    {
-        "label": "DKRZ_3GB",
-        "url": "https://esgf3.dkrz.de/thredds/fileServer/cmip6/CMIP/CNRM-CERFACS/CNRM-CM6-1/historical/r9i1p1f2/Omon/thetao/gn/v20190125/thetao_Omon_CNRM-CM6-1_historical_r9i1p1f2_gn_187501-189912.nc",
-        "sha256": "e825584ab437e3e1c754d8e171378fb724486e5dfbbcbe53fc3b45fea645dec7",
-    },
+    # {
+    #    "label": "DKRZ_2GB",
+    #    "url": "https://esgf3.dkrz.de/thredds/fileServer/cmip6/CMIP/MOHC/UKESM1-0-LL/historical/r1i1p1f2/Omon/thetao/gn/v20190627/thetao_Omon_UKESM1-0-LL_historical_r1i1p1f2_gn_200001-201412.nc",
+    #    "sha256": "8ad3a8d96cddf553fe9ab4b7494ca1049c9d5c070c79adc542af13f925644b41",
+    # },
+    # {
+    #    "label": "DKRZ_3GB",
+    #    "url": "https://esgf3.dkrz.de/thredds/fileServer/cmip6/CMIP/CNRM-CERFACS/CNRM-CM6-1/historical/r9i1p1f2/Omon/thetao/gn/v20190125/thetao_Omon_CNRM-CM6-1_historical_r9i1p1f2_gn_187501-189912.nc",
+    #    "sha256": "e825584ab437e3e1c754d8e171378fb724486e5dfbbcbe53fc3b45fea645dec7",
+    # },
     # {
     #    "label": "DKRZ_11GB",
     #    "url": "https://esgf3.dkrz.de/thredds/fileServer/cmip6/CMIP/MIROC/MIROC-ES2L/historical/r7i1p1f2/Omon/thetao/gr1/v20200731/thetao_Omon_MIROC-ES2L_historical_r7i1p1f2_gr1_185001-201412.nc",
     #    "sha256": "7b7b5be4d98fec9fc3db458ab9cceb54adcf26d4895f5151b18eb0461f39ca1a",
+    # },
+    # IPSL - vesq
+    {
+        "label": "IPSL_1GB",
+        "url": "https://vesg.ipsl.upmc.fr/thredds/fileServer/cmip6/CMIP/IPSL/IPSL-CM5A2-INCA/historical/r1i1p1f1/E3hrPt/o3/gr/v20240619/o3_E3hrPt_IPSL-CM5A2-INCA_historical_r1i1p1f1_gr_185001010300-185101010000.nc",
+        "sha256": "74b74462397db381104f051b3ffd9f9d9af86c54d0f28e2152b1e8dd73c25ce1",
+    }
+    # {
+    #    "label": "IPSL_2GB",
+    #    "url": "https://vesg.ipsl.upmc.fr/thredds/fileServer/cmip6/CMIP/IPSL/IPSL-CM5A2-INCA/historical/r1i1p1f1/Omon/thetao/gn/v20240619/thetao_Omon_IPSL-CM5A2-INCA_historical_r1i1p1f1_gn_187001-201412.nc",
+    #    "sha256": "54bc662938571f5b94a6fad2179f6ae470a7dcdc660889e19495224bc508b3be",
+    # },
+    # {
+    #    "label": "IPSL_3GB",
+    #    "url": "https://vesg.ipsl.upmc.fr/thredds/fileServer/cmip6/CMIP/IPSL/IPSL-CM5A2-INCA/historical/r1i1p1f1/E3hr/uas/gr/v20240619/uas_E3hr_IPSL-CM5A2-INCA_historical_r1i1p1f1_gr_197901010130-201412312230.nc",
+    #    "sha256": "68fd6dd22e5c7bf8e5150e208252c101e3642f74287a3c16e319de4b4f63c490",
+    # }
+    # {
+    #    "label": "IPSL_10GB",
+    #    "url": "https://vesg.ipsl.upmc.fr/thredds/fileServer/cmip6/CMIP/IPSL/IPSL-CM5A2-INCA/historical/r1i1p1f1/Eday/hus/gr/v20240619/hus_Eday_IPSL-CM5A2-INCA_historical_r1i1p1f1_gr_19500101-20141231.nc",
+    #    "sha256": "fd1ec2bcf8ac918ac5380a4a9b2e5d9e9e58240b0e02c0b61c0cd9af7aa9cb70",
     # },
     # NCI - gadi
     {
@@ -105,48 +161,69 @@ TARGETS = [
         "url": "https://esgf.nci.org.au/thredds/fileServer/esgcet/replica/CMIP6/CMIP/CCCma/CanESM5/historical/r1i1p2f1/Omon/thetao/gn/v20190429/thetao_Omon_CanESM5_historical_r1i1p2f1_gn_185001-186012.nc",
         "sha256": "fa7c3a0a6cbe4aec8805fda48948972a0bc42aec4fdd065ff3c5b61763522ea6",
     },
+    # {
+    #    "label": "NCI_2GB",
+    #    "url": "https://esgf.nci.org.au/thredds/fileServer/esgcet/replica/CMIP6/CMIP/MOHC/UKESM1-0-LL/historical/r16i1p1f2/Omon/thetao/gn/v20191209/thetao_Omon_UKESM1-0-LL_historical_r16i1p1f2_gn_200001-201412.nc",
+    #    "sha256": "e1a8b1cb820ff81f963b7b4ed3f2bb08d3188128b5f44d7c124afaeb35e2c156",
+    # },
+    # {
+    #    "label": "NCI_3GB",
+    #    "url": "https://esgf.nci.org.au/thredds/fileServer/esgcet/replica/CMIP6/CMIP/CNRM-CERFACS/CNRM-CM6-1/historical/r9i1p1f2/Omon/thetao/gn/v20190125/thetao_Omon_CNRM-CM6-1_historical_r9i1p1f2_gn_187501-189912.nc",
+    #    "sha256": "e825584ab437e3e1c754d8e171378fb724486e5dfbbcbe53fc3b45fea645dec7",
+    # },
+    # {
+    #    "label": "NCI_11GB",
+    #    "url": "https://esgf.nci.org.au/thredds/fileServer/esgcet/replica/CMIP6/CMIP/MIROC/MIROC-ES2L/historical/r1i1p1f2/Omon/thetao/gr1/v20200731/thetao_Omon_MIROC-ES2L_historical_r1i1p1f2_gr1_185001-201412.nc",
+    #    "sha256": "36a71995bb3fa7a09903561917848fd8a404454af9755d1f8c9458f659d6312b",
+    # },
+    # NORESG - sigma2
     {
-        "label": "NCI_3GB",
-        "url": "https://esgf.nci.org.au/thredds/fileServer/esgcet/replica/CMIP6/CMIP/CNRM-CERFACS/CNRM-CM6-1/historical/r9i1p1f2/Omon/thetao/gn/v20190125/thetao_Omon_CNRM-CM6-1_historical_r9i1p1f2_gn_187501-189912.nc",
-        "sha256": "e825584ab437e3e1c754d8e171378fb724486e5dfbbcbe53fc3b45fea645dec7",
+        "label": "NORESG_1GB",
+        "url": "https://noresg.nird.sigma2.no/thredds/fileServer/esg_dataroot/cmor/CMIP6/CMIP/NCC/NorCPM1/historical/r4i1p1f1/Amon/hus/gn/v20200724/hus_Amon_NorCPM1_historical_r4i1p1f1_gn_185001-201412.nc",
+        "sjha256": "ce22a4694c5cd6901b6090fdcdf6bf3f946e9c2c6cd26b1b49cf347476274093",
     },
-    {
-        "label": "NCI_11GB",
-        "url": "https://esgf.nci.org.au/thredds/fileServer/esgcet/replica/CMIP6/CMIP/MIROC/MIROC-ES2L/historical/r1i1p1f2/Omon/thetao/gr1/v20200731/thetao_Omon_MIROC-ES2L_historical_r1i1p1f2_gr1_185001-201412.nc",
-        "sha256": "36a71995bb3fa7a09903561917848fd8a404454af9755d1f8c9458f659d6312b",
-    },
+    # {
+    #    "label": "NORESG_2GB",
+    #    "url": "https://noresg.nird.sigma2.no/thredds/fileServer/esg_dataroot/cmor/CMIP6/CMIP/NCC/NorESM2-MM/historical/r1i1p1f1/Omon/wo/gr/v20191108/wo_Omon_NorESM2-MM_historical_r1i1p1f1_gr_185001-185912.nc",
+    #    "sha256": "dfdf64c385f4ae8c760e9609197779393cf3e4bc652e73cfc4e267b97733156b",
+    # },
+    # {
+    #    "label": "NORESG_12GB",
+    #    "url": "https://noresg.nird.sigma2.no/thredds/fileServer/esg_dataroot/cmor/CMIP6/CMIP/NCC/NorCPM1/historical/r11i1p1f1/Omon/thetao/gr/v20200724/thetao_Omon_NorCPM1_historical_r11i1p1f1_gr_185001-201412.nc",
+    #    "sha256": "6ea31d6e30a283746eb39a3eb6329126e0fdfb8cca818dc8b5dfcf486da0373f",
+    # },
     # ORNL - artemis
     {
         "label": "ORNL_1GB",
         "url": "https://esgf-node.ornl.gov/thredds/fileServer/css03_data/CMIP6/CMIP/CCCma/CanESM5/historical/r1i1p2f1/Omon/thetao/gn/v20190429/thetao_Omon_CanESM5_historical_r1i1p2f1_gn_185001-186012.nc",
         "sha256": "fa7c3a0a6cbe4aec8805fda48948972a0bc42aec4fdd065ff3c5b61763522ea6",
     },
-    {
-        "label": "ORNL_2GB",
-        "url": "https://esgf-node.ornl.gov/thredds/fileServer/css03_data/CMIP6/CMIP/MOHC/UKESM1-0-LL/historical/r1i1p1f2/Omon/thetao/gn/v20190627/thetao_Omon_UKESM1-0-LL_historical_r1i1p1f2_gn_200001-201412.nc",
-        "sha256": "8ad3a8d96cddf553fe9ab4b7494ca1049c9d5c070c79adc542af13f925644b41",
-    },
-    {
-        "label": "ORNL_3GB",
-        "url": "https://esgf-node.ornl.gov/thredds/fileServer/css03_data/CMIP6/CMIP/CNRM-CERFACS/CNRM-CM6-1/historical/r9i1p1f2/Omon/thetao/gn/v20190125/thetao_Omon_CNRM-CM6-1_historical_r9i1p1f2_gn_187501-189912.nc",
-        "sha256": "e825584ab437e3e1c754d8e171378fb724486e5dfbbcbe53fc3b45fea645dec7",
-    },
+    # {
+    #    "label": "ORNL_2GB",
+    #    "url": "https://esgf-node.ornl.gov/thredds/fileServer/css03_data/CMIP6/CMIP/MOHC/UKESM1-0-LL/historical/r1i1p1f2/Omon/thetao/gn/v20190627/thetao_Omon_UKESM1-0-LL_historical_r1i1p1f2_gn_200001-201412.nc",
+    #    "sha256": "8ad3a8d96cddf553fe9ab4b7494ca1049c9d5c070c79adc542af13f925644b41",
+    # },
+    # {
+    #    "label": "ORNL_3GB",
+    #    "url": "https://esgf-node.ornl.gov/thredds/fileServer/css03_data/CMIP6/CMIP/CNRM-CERFACS/CNRM-CM6-1/historical/r9i1p1f2/Omon/thetao/gn/v20190125/thetao_Omon_CNRM-CM6-1_historical_r9i1p1f2_gn_187501-189912.nc",
+    #    "sha256": "e825584ab437e3e1c754d8e171378fb724486e5dfbbcbe53fc3b45fea645dec7",
+    # },
     # Eagle - ANL
     {
         "label": "ANL-GLOBUS_1GB",
         "url": "https://g-52ba3.fd635.8443.data.globus.org/css03_data/CMIP6/CMIP/CCCma/CanESM5/historical/r1i1p2f1/Omon/thetao/gn/v20190429/thetao_Omon_CanESM5_historical_r1i1p2f1_gn_185001-186012.nc",
         "sha256": "fa7c3a0a6cbe4aec8805fda48948972a0bc42aec4fdd065ff3c5b61763522ea6",
     },
-    {
-        "label": "ANL-GLOBUS_2GB",
-        "url": "https://g-52ba3.fd635.8443.data.globus.org/css03_data/CMIP6/CMIP/MOHC/UKESM1-0-LL/historical/r1i1p1f2/Omon/thetao/gn/v20190627/thetao_Omon_UKESM1-0-LL_historical_r1i1p1f2_gn_200001-201412.nc",
-        "sha256": "8ad3a8d96cddf553fe9ab4b7494ca1049c9d5c070c79adc542af13f925644b41",
-    },
-    {
-        "label": "ANL-GLOBUS_3GB",
-        "url": "https://g-52ba3.fd635.8443.data.globus.org/css03_data/CMIP6/CMIP/CNRM-CERFACS/CNRM-CM6-1/historical/r9i1p1f2/Omon/thetao/gn/v20190125/thetao_Omon_CNRM-CM6-1_historical_r9i1p1f2_gn_187501-189912.nc",
-        "sha256": "e825584ab437e3e1c754d8e171378fb724486e5dfbbcbe53fc3b45fea645dec7",
-    },
+    # {
+    #    "label": "ANL-GLOBUS_2GB",
+    #    "url": "https://g-52ba3.fd635.8443.data.globus.org/css03_data/CMIP6/CMIP/MOHC/UKESM1-0-LL/historical/r1i1p1f2/Omon/thetao/gn/v20190627/thetao_Omon_UKESM1-0-LL_historical_r1i1p1f2_gn_200001-201412.nc",
+    #    "sha256": "8ad3a8d96cddf553fe9ab4b7494ca1049c9d5c070c79adc542af13f925644b41",
+    # },
+    # {
+    #    "label": "ANL-GLOBUS_3GB",
+    #    "url": "https://g-52ba3.fd635.8443.data.globus.org/css03_data/CMIP6/CMIP/CNRM-CERFACS/CNRM-CM6-1/historical/r9i1p1f2/Omon/thetao/gn/v20190125/thetao_Omon_CNRM-CM6-1_historical_r9i1p1f2_gn_187501-189912.nc",
+    #    "sha256": "e825584ab437e3e1c754d8e171378fb724486e5dfbbcbe53fc3b45fea645dec7",
+    # },
     # {
     #    "label": "ANL-GLOBUS_11GB",
     #    "url": "https://g-52ba3.fd635.8443.data.globus.org/css03_data/CMIP6/CMIP/MIROC/MIROC-ES2L/historical/r7i1p1f2/Omon/thetao/gr1/v20200731/thetao_Omon_MIROC-ES2L_historical_r7i1p1f2_gr1_185001-201412.nc",
@@ -158,16 +235,16 @@ TARGETS = [
         "url": "https://g-eba899.6b7bd8.0ec8.data.globus.org/css03_data/CMIP6/CMIP/CCCma/CanESM5/historical/r1i1p2f1/Omon/thetao/gn/v20190429/thetao_Omon_CanESM5_historical_r1i1p2f1_gn_185001-186012.nc",
         "sha256": "fa7c3a0a6cbe4aec8805fda48948972a0bc42aec4fdd065ff3c5b61763522ea6",
     },
-    {
-        "label": "NERSC-GLOBUS_2GB",
-        "url": "https://g-eba899.6b7bd8.0ec8.data.globus.org/css03_data/CMIP6/CMIP/MOHC/UKESM1-0-LL/historical/r1i1p1f2/Omon/thetao/gn/v20190627/thetao_Omon_UKESM1-0-LL_historical_r1i1p1f2_gn_200001-201412.nc",
-        "sha256": "8ad3a8d96cddf553fe9ab4b7494ca1049c9d5c070c79adc542af13f925644b41",
-    },
-    {
-        "label": "NERSC-GLOBUS_3GB",
-        "url": "https://g-eba899.6b7bd8.0ec8.data.globus.org/css03_data/CMIP6/CMIP/CNRM-CERFACS/CNRM-CM6-1/historical/r9i1p1f2/Omon/thetao/gn/v20190125/thetao_Omon_CNRM-CM6-1_historical_r9i1p1f2_gn_187501-189912.nc",
-        "sha256": "e825584ab437e3e1c754d8e171378fb724486e5dfbbcbe53fc3b45fea645dec7",
-    },
+    # {
+    #    "label": "NERSC-GLOBUS_2GB",
+    #    "url": "https://g-eba899.6b7bd8.0ec8.data.globus.org/css03_data/CMIP6/CMIP/MOHC/UKESM1-0-LL/historical/r1i1p1f2/Omon/thetao/gn/v20190627/thetao_Omon_UKESM1-0-LL_historical_r1i1p1f2_gn_200001-201412.nc",
+    #    "sha256": "8ad3a8d96cddf553fe9ab4b7494ca1049c9d5c070c79adc542af13f925644b41",
+    # },
+    # {
+    #    "label": "NERSC-GLOBUS_3GB",
+    #    "url": "https://g-eba899.6b7bd8.0ec8.data.globus.org/css03_data/CMIP6/CMIP/CNRM-CERFACS/CNRM-CM6-1/historical/r9i1p1f2/Omon/thetao/gn/v20190125/thetao_Omon_CNRM-CM6-1_historical_r9i1p1f2_gn_187501-189912.nc",
+    #    "sha256": "e825584ab437e3e1c754d8e171378fb724486e5dfbbcbe53fc3b45fea645dec7",
+    # },
     # {
     #    "label": "NERSC-GLOBUS_11GB",
     #    "url": "https://g-eba899.6b7bd8.0ec8.data.globus.org/css03_data/CMIP6/CMIP/MIROC/MIROC-ES2L/historical/r7i1p1f2/Omon/thetao/gr1/v20200731/thetao_Omon_MIROC-ES2L_historical_r7i1p1f2_gr1_185001-201412.nc",
@@ -196,9 +273,12 @@ TRACEROUTE_PER_HOP_MS = 2000  # per-hop probe wait
 ISP_LOOKUP_URL = "https://ipinfo.io/{ip}/json"
 ISP_LOOKUP_TIMEOUT_S = 10
 # Origin geolocation for log provenance (on by default; disable with --no-geo).
-# ip-api.com needs no key and returns country/city/ISP in one call.
-GEO_LOOKUP_URL = "http://ip-api.com/json/?fields=status,country,countryCode,region,regionName,city,lat,lon,isp,org,as,query"
-GEO_LOOKUP_TIMEOUT_S = 10
+# Tried in order until one succeeds. All are HTTPS + no API key, because plain
+# HTTP (e.g. ip-api.com free tier) is silently blocked on many corporate/
+# campus/WSL2 networks and just times out. Each entry maps a provider's JSON
+# into our common schema.
+GEO_PROVIDERS = ("ipwho.is", "freeipapi", "ipapi.co")
+GEO_LOOKUP_TIMEOUT_S = 6  # short: a blocked lookup shouldn't stall the run
 
 # Heuristic: a redirect Location matching any of these implies a login wall.
 AUTH_HINTS = (
@@ -410,34 +490,111 @@ def _parse_hop_count(raw, system):
     return hops or None
 
 
+def _http_get_json_ipv4(url, timeout):
+    """GET a URL forcing IPv4, return parsed JSON. Raises on failure.
+
+    IPv4 is forced because on WSL2/dual-stack hosts a stalled IPv6 route is a
+    common cause of silent timeouts on these tiny lookup calls.
+    """
+    orig_getaddrinfo = socket.getaddrinfo
+
+    def ipv4_only(host, port, family=0, type=0, proto=0, flags=0):
+        return orig_getaddrinfo(host, port, socket.AF_INET, type, proto, flags)
+
+    socket.getaddrinfo = ipv4_only
+    try:
+        req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
+        with urllib.request.urlopen(req, timeout=timeout) as r:
+            return json.loads(r.read().decode())
+    finally:
+        socket.getaddrinfo = orig_getaddrinfo
+
+
+def _geo_from_ipwho():
+    d = _http_get_json_ipv4("https://ipwho.is/", GEO_LOOKUP_TIMEOUT_S)
+    if not d.get("success", True):
+        raise RuntimeError(d.get("message", "ipwho.is reported failure"))
+    conn = d.get("connection", {}) or {}
+    return {
+        "public_ip": d.get("ip"),
+        "country": d.get("country"),
+        "country_code": d.get("country_code"),
+        "region": d.get("region"),
+        "city": d.get("city"),
+        "latitude": d.get("latitude"),
+        "longitude": d.get("longitude"),
+        "isp": conn.get("isp") or conn.get("org"),
+        "org": conn.get("org"),
+        "asn": (f"AS{conn.get('asn')}" if conn.get("asn") else None),
+        "_provider": "ipwho.is",
+    }
+
+
+def _geo_from_freeipapi():
+    d = _http_get_json_ipv4("https://freeipapi.com/api/json",
+                            GEO_LOOKUP_TIMEOUT_S)
+    return {
+        "public_ip": d.get("ipAddress"),
+        "country": d.get("countryName"),
+        "country_code": d.get("countryCode"),
+        "region": d.get("regionName"),
+        "city": d.get("cityName"),
+        "latitude": d.get("latitude"),
+        "longitude": d.get("longitude"),
+        "isp": d.get("isp"),
+        "org": d.get("isp"),
+        "asn": d.get("asn"),
+        "_provider": "freeipapi.com",
+    }
+
+
+def _geo_from_ipapi_co():
+    d = _http_get_json_ipv4("https://ipapi.co/json/", GEO_LOOKUP_TIMEOUT_S)
+    if d.get("error"):
+        raise RuntimeError(d.get("reason", "ipapi.co reported error"))
+    return {
+        "public_ip": d.get("ip"),
+        "country": d.get("country_name"),
+        "country_code": d.get("country_code"),
+        "region": d.get("region"),
+        "city": d.get("city"),
+        "latitude": d.get("latitude"),
+        "longitude": d.get("longitude"),
+        "isp": d.get("org"),
+        "org": d.get("org"),
+        "asn": d.get("asn"),
+        "_provider": "ipapi.co",
+    }
+
+
+_GEO_DISPATCH = {
+    "ipwho.is": _geo_from_ipwho,
+    "freeipapi": _geo_from_freeipapi,
+    "ipapi.co": _geo_from_ipapi_co,
+}
+
+
 def geolocate_origin():
     """
     Best-effort geolocation of this machine's public IP, for log provenance.
-    Uses ip-api.com (no key). Returns a tidy dict or {"error": ...}.
-    Never raises. This is what tells you a log came from Dakar vs Colombo.
+    Tries several HTTPS, no-key providers in order until one works. Returns a
+    tidy dict (with "_provider" noting which succeeded) or, if all fail,
+    {"error": ...} listing what was tried. Never raises. This is what tells you
+    a log came from Dakar vs Colombo.
     """
-    try:
-        req = urllib.request.Request(
-            GEO_LOOKUP_URL, headers={"User-Agent": USER_AGENT}
-        )
-        with urllib.request.urlopen(req, timeout=GEO_LOOKUP_TIMEOUT_S) as r:
-            data = json.loads(r.read().decode())
-        if data.get("status") != "success":
-            return {"error": data.get("message", "lookup failed")}
-        return {
-            "public_ip": data.get("query"),
-            "country": data.get("country"),
-            "country_code": data.get("countryCode"),
-            "region": data.get("regionName"),
-            "city": data.get("city"),
-            "latitude": data.get("lat"),
-            "longitude": data.get("lon"),
-            "isp": data.get("isp"),
-            "org": data.get("org"),
-            "asn": data.get("as"),
-        }
-    except Exception as e:
-        return {"error": f"{type(e).__name__}: {e}"}
+    attempts = []
+    for name in GEO_PROVIDERS:
+        fn = _GEO_DISPATCH.get(name)
+        if not fn:
+            continue
+        try:
+            result = fn()
+            if result.get("public_ip") or result.get("country"):
+                return result
+            attempts.append(f"{name}: empty response")
+        except Exception as e:
+            attempts.append(f"{name}: {type(e).__name__}: {e}")
+    return {"error": "all geo providers failed", "attempts": attempts}
 
 
 def get_all_local_ips():
@@ -922,6 +1079,7 @@ CSV_FIELDS = [
     "origin_city",
     "origin_isp",
     "origin_public_ip",
+    "origin_geo_status",
     "label",
     "status",
     "url",
@@ -959,12 +1117,22 @@ def flatten_for_csv(r, host_diag=None, origin=None):
     isp = hd.get("dest_isp") or {}
     o = origin or {}
     geo = o.get("geo") or {}
+    if geo.get("error"):
+        geo_status = geo["error"]
+    elif geo.get("status"):  # e.g. "skipped (--no-geo)"
+        geo_status = geo["status"]
+    elif geo.get("public_ip") or geo.get("country"):
+        geo_status = "ok" + \
+            (f" ({geo['_provider']})" if geo.get("_provider") else "")
+    else:
+        geo_status = None
     return {
         "origin_hostname": o.get("hostname"),
         "origin_country": geo.get("country"),
         "origin_city": geo.get("city"),
         "origin_isp": geo.get("isp"),
         "origin_public_ip": geo.get("public_ip"),
+        "origin_geo_status": geo_status,
         "label": r["label"],
         "status": r["status"],
         "url": r["url"],
@@ -1118,13 +1286,20 @@ def main(argv=None):
         print(
             f"  origin: {origin.get('hostname')} | "
             f"{geo.get('city')}, {geo.get('country')} | "
-            f"{geo.get('isp')} | {geo.get('public_ip')}",
+            f"{geo.get('isp')} | {geo.get('public_ip')} "
+            f"[{geo.get('_provider', 'geo')}]",
             flush=True,
         )
-    else:
-        print(f"  origin: {origin.get('hostname')} "
-              f"(geo {'disabled' if not do_geo else 'unavailable'})",
+    elif not do_geo:
+        print(f"  origin: {origin.get('hostname')} (geo disabled via --no-geo)",
               flush=True)
+    else:
+        detail = geo.get("error", "unavailable")
+        print(f"  origin: {origin.get('hostname')} "
+              f"(geo unavailable: {detail})", flush=True)
+        if geo.get("attempts"):
+            for a in geo["attempts"]:
+                print(f"    - {a}", flush=True)
 
     # Per-host diagnostics, cached so each node is probed once even if it
     # serves several files.
