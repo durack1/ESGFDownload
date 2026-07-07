@@ -1,0 +1,89 @@
+(xcd0112) C:\Users\durackp\git\ESGFDownload>python esgfDownloadLog.py
+Collecting run/host diagnostics ...
+  origin: 9Y3M8F4 | Perth, Australia | DATACOM SYSTEMS (AU) PTY LTD | 203.20.249.7 [ipwho.is]
+
+=== BSC_1GB ===
+  diagnostics for esgf.bsc.es (traceroute=on) ...
+  2026-07-07 15:42:42
+  BSC_1GB              [############################] 100.0%  1.2GB/1.2GB  2.13MB/s  ETA 00:00
+  2026-07-07 15:48:23
+  status=verified  bytes=1341138713  resumes=0  stalls=0  avg=3.766 MB/s  sha_match=True
+  logged -> 20260707T154140_esgf_results.json / 20260707T154140_esgf_results.csv
+
+=== CEDA_1GB ===
+  diagnostics for esgf.ceda.ac.uk (traceroute=on) ...
+  2026-07-07 15:49:25
+  CEDA_1GB             [############################] 100.0%  1.0GB/1.0GB  1.62MB/s  ETA 00:00
+  2026-07-07 16:02:27
+  status=verified  bytes=1110603079  resumes=0  stalls=0  avg=1.357 MB/s  sha_match=True
+  logged -> 20260707T154140_esgf_results.json / 20260707T154140_esgf_results.csv
+
+=== DKRZ_1GB ===
+  diagnostics for esgf3.dkrz.de (traceroute=on) ...
+  2026-07-07 16:03:20
+  DKRZ_1GB             [############################] 100.0%  1.0GB/1.0GB  3.55MB/s  ETA 00:00
+  2026-07-07 16:09:31
+  status=verified  bytes=1110603079  resumes=0  stalls=0  avg=2.863 MB/s  sha_match=True
+  logged -> 20260707T154140_esgf_results.json / 20260707T154140_esgf_results.csv
+
+=== IPSL_1GB ===
+  diagnostics for vesg.ipsl.upmc.fr (traceroute=on) ...
+  2026-07-07 16:10:33
+  IPSL_1GB             [##--------------------------]   8.8%  116.0MB/1.3GB  4.95MB/s  ETA 04:03
+  IPSL_1GB             [############################] 100.0%  1.3GB/1.3GB  3.53MB/s  ETA 00:00
+  2026-07-07 16:18:48
+  status=verified  bytes=1384821748  resumes=1  stalls=0  avg=2.696 MB/s  sha_match=True
+  logged -> 20260707T154140_esgf_results.json / 20260707T154140_esgf_results.csv
+
+=== NCI_1GB ===
+  diagnostics for esgf.nci.org.au (traceroute=on) ...
+  2026-07-07 16:19:03
+  NCI_1GB              [############################] 100.0%  1.0GB/1.0GB  19.98MB/s  ETA 00:00
+  2026-07-07 16:19:54
+  status=verified  bytes=1110603079  resumes=0  stalls=0  avg=21.113 MB/s  sha_match=True
+  logged -> 20260707T154140_esgf_results.json / 20260707T154140_esgf_results.csv
+
+=== NORESG_1GB ===
+  diagnostics for noresg.nird.sigma2.no (traceroute=on) ...
+  2026-07-07 16:20:42
+  NORESG_1GB           [############################] 100.0%  1.2GB/1.2GB  2.26MB/s  ETA 00:00
+  2026-07-07 16:26:24
+  status=complete_unverified  bytes=1249487683  resumes=0  stalls=0  avg=3.503 MB/s  sha_match=None
+  logged -> 20260707T154140_esgf_results.json / 20260707T154140_esgf_results.csv
+
+=== LIU_1GB ===
+  diagnostics for esg-dn1.nsc.liu.se (traceroute=on) ...
+  2026-07-07 16:27:02
+  LIU_1GB              [#####################-------]  76.8%  1.2GB/1.6GB  4.09MB/s  ETA 01:31
+  LIU_1GB              [############################] 100.0%  1.6GB/1.6GB  4.99MB/s  ETA 00:00
+  2026-07-07 16:37:28
+  status=verified  bytes=1692839176  resumes=2  stalls=1  avg=2.768 MB/s  sha_match=True
+  logged -> 20260707T154140_esgf_results.json / 20260707T154140_esgf_results.csv
+
+=== ORNL_1GB ===
+  diagnostics for esgf-node.ornl.gov (traceroute=on) ...
+  2026-07-07 16:38:29
+  ORNL_1GB             [############################] 100.0%  1.0GB/1.0GB  0.61MB/s  ETA 00:00
+  2026-07-07 17:43:38
+  status=verified  bytes=1110603079  resumes=0  stalls=0  avg=0.271 MB/s  sha_match=True
+  logged -> 20260707T154140_esgf_results.json / 20260707T154140_esgf_results.csv
+
+=== ANL-GLOBUS_1GB ===
+  diagnostics for g-52ba3.fd635.8443.data.globus.org (traceroute=on) ...
+  2026-07-07 17:44:26
+  ANL-GLOBUS_1GB       1.0GB (size unknown)  22.00MB/s
+  2026-07-07 17:45:38
+  status=verified  bytes=1110603079  resumes=0  stalls=0  avg=15.167 MB/s  sha_match=True
+  logged -> 20260707T154140_esgf_results.json / 20260707T154140_esgf_results.csv
+
+=== NERSC-GLOBUS_1GB ===
+  diagnostics for g-eba899.6b7bd8.0ec8.data.globus.org (traceroute=on) ...
+  2026-07-07 17:46:39
+  NERSC-GLOBUS_1GB     1.0GB (size unknown)  4.59MB/s
+  2026-07-07 17:50:25
+  status=verified  bytes=1110603079  resumes=0  stalls=0  avg=4.759 MB/s  sha_match=True
+  logged -> 20260707T154140_esgf_results.json / 20260707T154140_esgf_results.csv
+
+Wrote:
+  C:\Users\durackp\git\ESGFDownload\20260707T154140_esgf_results.json
+  C:\Users\durackp\git\ESGFDownload\20260707T154140_esgf_results.csv
