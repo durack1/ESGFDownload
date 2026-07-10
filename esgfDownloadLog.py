@@ -30,6 +30,10 @@ PJD  4 Jul 2026 - added host diagnostics (rDNS, traceroute, ISP) and
 PJD  4 Jul 2026 - commented >2 GB targets to reduce test time, and
                   download burden.
 PJD  4 Jul 2026 - added BSC, IPSL, LIU, NORESG targets.
+PJD 10 Jul 2026 - added timeout in case of non-responsive nodes.
+                  === NCI_1GB ===
+                  diagnostics for esgf.nci.org.au (traceroute=on) ...
+                  2026-07-09 17:32:41
 
 TODO: add additional nodes - dataset counts below targeting
 experiment_id = historical
@@ -269,9 +273,15 @@ BAR_REFRESH_SEC = 0.25  # redraw the on-screen progress bar this often
 _BAR_ENABLED = True  # toggled off by --no-bar
 MAX_ATTEMPTS = 100  # per-file (re)connection attempts before giving up
 CONNECT_TIMEOUT = 30.0  # socket connect timeout (s)
-READ_TIMEOUT = 60.0  # per-read socket timeout (s) -> detects stalls
+READ_TIMEOUT = 60.0  # per-read socket timeout (s) -> detects mid-stream stalls
+DNS_TIMEOUT = 15.0  # cap on hostname resolution (s) -> dead/slow DNS
 BACKOFF_BASE = 2.0  # exponential backoff base (s)
 BACKOFF_CAP = 60.0  # max backoff between attempts (s)
+# Overall guards so an unresponsive node can't stall the whole run:
+# abandon a file after this much wall time (30 min)
+PER_FILE_DEADLINE_S = 1800.0
+MAX_CONSECUTIVE_FAILS = 6  # give up on a file after this many *fruitless*
+#                            attempts in a row (no bytes gained between them)
 MAX_REDIRECTS = 5
 USER_AGENT = "esgf-download-test/1.0 (+stdlib)"
 
@@ -707,6 +717,34 @@ def collect_host_diagnostics(host, do_isp, do_trace):
     }
 
 
+def _getaddrinfo_with_timeout(host, port, timeout):
+    """socket.getaddrinfo has no timeout arg and can hang on a dead resolver.
+    Run it in a daemon thread and bound the wait, so DNS can't stall the run.
+    Cross-platform, stdlib only. Raises socket.gaierror/timeout on failure."""
+    import threading
+
+    result = {}
+
+    def _resolve():
+        try:
+            result["ok"] = socket.getaddrinfo(
+                host, port, proto=socket.IPPROTO_TCP)
+        except Exception as e:  # noqa: BLE001 - re-raised in caller thread
+            result["err"] = e
+
+    th = threading.Thread(target=_resolve, daemon=True)
+    th.start()
+    th.join(timeout)
+    if th.is_alive():
+        # The thread is stuck in the C resolver; we abandon it (daemon, so it
+        # won't block interpreter exit) and treat this as a timeout.
+        raise TimeoutError(
+            f"DNS resolution for {host!r} exceeded {timeout}s")
+    if "err" in result:
+        raise result["err"]
+    return result["ok"]
+
+
 def open_connection(url, timeout):
     """
     Open an HTTPS connection with per-phase timing.
@@ -725,7 +763,7 @@ def open_connection(url, timeout):
     timings = {}
 
     t0 = time.perf_counter()
-    addrinfo = socket.getaddrinfo(host, port, proto=socket.IPPROTO_TCP)
+    addrinfo = _getaddrinfo_with_timeout(host, port, DNS_TIMEOUT)
     timings["dns_s"] = round(time.perf_counter() - t0, 4)
 
     family, socktype, proto, _, sockaddr = addrinfo[0]
@@ -742,6 +780,9 @@ def open_connection(url, timeout):
     timings["tls_handshake_s"] = round(time.perf_counter() - t2, 4)
     timings["tls_version"] = ssock.version()
     timings["peer_ip"] = sockaddr[0]
+    # Enforce a read timeout for the whole life of this socket, so a node that
+    # accepts the connection then goes silent mid-stream can't hang us.
+    ssock.settimeout(READ_TIMEOUT)
 
     conn = http.client.HTTPSConnection(host, port, timeout=timeout)
     conn.sock = ssock  # reuse the socket we already connected + timed
@@ -861,9 +902,29 @@ def download_target(target, tmp_dir, progress_path=None):
     result["downloaded_bytes"] = downloaded
 
     wall_start = time.perf_counter()
+    consecutive_fails = 0  # attempts in a row that gained zero bytes
+    bytes_at_attempt_start = downloaded
 
     while result["attempts"] < MAX_ATTEMPTS:
+        # --- overall guards: never let a dead node stall the run ---
+        elapsed = time.perf_counter() - wall_start
+        if elapsed > PER_FILE_DEADLINE_S:
+            result["errors"].append(
+                f"aborted: per-file deadline of {PER_FILE_DEADLINE_S:.0f}s "
+                f"exceeded ({elapsed:.0f}s elapsed, {downloaded} bytes)")
+            log_progress("deadline_exceeded", downloaded_bytes=downloaded,
+                         elapsed_s=round(elapsed, 1))
+            break
+        if consecutive_fails >= MAX_CONSECUTIVE_FAILS:
+            result["errors"].append(
+                f"aborted: {consecutive_fails} consecutive failed attempts "
+                f"with no progress (node likely unresponsive)")
+            log_progress("node_unresponsive", downloaded_bytes=downloaded,
+                         consecutive_fails=consecutive_fails)
+            break
+
         result["attempts"] += 1
+        bytes_at_attempt_start = downloaded
         headers = {}
         if downloaded > 0:
             headers["Range"] = f"bytes={downloaded}-"
@@ -989,6 +1050,10 @@ def download_target(target, tmp_dir, progress_path=None):
 
             result["downloaded_bytes"] = downloaded
 
+            # Any forward progress this attempt clears the failure streak.
+            if downloaded > bytes_at_attempt_start:
+                consecutive_fails = 0
+
             # Completed?
             if result["total_bytes"] is None or downloaded >= result["total_bytes"]:
                 break
@@ -1032,7 +1097,18 @@ def download_target(target, tmp_dir, progress_path=None):
                 downloaded_bytes=downloaded,
                 backoff_s=round(backoff, 1),
             )
-            time.sleep(backoff)
+            # Count this as a fruitless attempt only if it gained no bytes;
+            # a partial-then-dropped connection resets the streak instead.
+            if downloaded > bytes_at_attempt_start:
+                consecutive_fails = 0
+            else:
+                consecutive_fails += 1
+            # Don't sleep past the per-file deadline.
+            remaining = PER_FILE_DEADLINE_S - \
+                (time.perf_counter() - wall_start)
+            if remaining <= 0:
+                continue  # loop-top guard will abort cleanly
+            time.sleep(min(backoff, remaining))
             continue
 
     # --- finalize ---
@@ -1244,6 +1320,15 @@ def parse_args(argv):
         "machine's country/city/ISP + public IP (one lightweight HTTPS call) "
         "so shared logs are self-identifying; use this for privacy.",
     )
+    p.add_argument(
+        "--deadline",
+        type=float,
+        default=None,
+        metavar="SECONDS",
+        help="Max wall-clock time to spend per file before giving up and "
+        f"moving on (default {PER_FILE_DEADLINE_S:.0f}s). Guards against an "
+        "unresponsive node stalling the whole run.",
+    )
     return p.parse_args(argv)
 
 
@@ -1252,8 +1337,10 @@ def main(argv=None):
     do_isp = args.isp
     do_trace = not args.no_traceroute
     do_geo = not args.no_geo
-    global _BAR_ENABLED
+    global _BAR_ENABLED, PER_FILE_DEADLINE_S
     _BAR_ENABLED = not args.no_bar
+    if args.deadline is not None:
+        PER_FILE_DEADLINE_S = args.deadline
 
     if not TARGETS:
         print(
@@ -1277,6 +1364,9 @@ def main(argv=None):
             "max_attempts": MAX_ATTEMPTS,
             "connect_timeout": CONNECT_TIMEOUT,
             "read_timeout": READ_TIMEOUT,
+            "dns_timeout": DNS_TIMEOUT,
+            "per_file_deadline_s": PER_FILE_DEADLINE_S,
+            "max_consecutive_fails": MAX_CONSECUTIVE_FAILS,
             "isp_lookup": do_isp,
             "traceroute": do_trace,
             "geolocate_origin": do_geo,
