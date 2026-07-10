@@ -1,0 +1,85 @@
+(base) durack1@perlmutter:login15:~/git/ESGFDownload> python esgfDownloadLog.py
+Collecting run/host diagnostics ...
+  origin: login15 | Berkeley, United States | National Energy Research Scientific Computing Center | 128.55.64.24 [ipwho.is]
+
+=== BSC_1GB ===
+  diagnostics for esgf.bsc.es (traceroute=on) ...
+  2026-07-09 17:59:01
+  BSC_1GB              [############################] 100.0%  1.2GB/1.2GB  10.97MB/s  ETA 00:00
+  2026-07-09 18:00:25
+  status=verified  bytes=1341138713  resumes=0  stalls=0  avg=15.457 MB/s  sha_match=True
+  logged -> 20260709T175901_esgf_results.json / 20260709T175901_esgf_results.csv
+
+=== CEDA_1GB ===
+  diagnostics for esgf.ceda.ac.uk (traceroute=on) ...
+  2026-07-09 18:00:26
+  CEDA_1GB             [############################] 100.0%  1.0GB/1.0GB  20.98MB/s  ETA 00:00
+  2026-07-09 18:05:51
+  status=verified  bytes=1110603079  resumes=0  stalls=0  avg=3.266 MB/s  sha_match=True
+  logged -> 20260709T175901_esgf_results.json / 20260709T175901_esgf_results.csv
+
+=== DKRZ_1GB ===
+  diagnostics for esgf3.dkrz.de (traceroute=on) ...
+  2026-07-09 18:05:52
+  DKRZ_1GB             [############################] 100.0%  1.0GB/1.0GB  20.68MB/s  ETA 00:00
+  2026-07-09 18:06:46
+  status=verified  bytes=1110603079  resumes=0  stalls=0  avg=19.905 MB/s  sha_match=True
+  logged -> 20260709T175901_esgf_results.json / 20260709T175901_esgf_results.csv
+
+=== IPSL_1GB ===
+  diagnostics for vesg.ipsl.upmc.fr (traceroute=on) ...
+  2026-07-09 18:06:47
+  IPSL_1GB             [############################] 100.0%  1.3GB/1.3GB  16.16MB/s  ETA 00:00
+  2026-07-09 18:08:33
+  status=verified  bytes=1384821748  resumes=0  stalls=0  avg=12.616 MB/s  sha_match=True
+  logged -> 20260709T175901_esgf_results.json / 20260709T175901_esgf_results.csv
+
+=== NCI_1GB ===
+  diagnostics for esgf.nci.org.au (traceroute=on) ...
+  2026-07-09 18:08:33
+  2026-07-09 18:13:36
+  status=failed  bytes=0  resumes=0  stalls=0  avg=None MB/s  sha_match=None
+  logged -> 20260709T175901_esgf_results.json / 20260709T175901_esgf_results.csv
+
+=== NORESG_1GB ===
+  diagnostics for noresg.nird.sigma2.no (traceroute=on) ...
+  2026-07-09 18:13:42
+  NORESG_1GB           [############################] 100.0%  1.2GB/1.2GB  44.24MB/s  ETA 00:00
+  2026-07-09 18:14:03
+  status=complete_unverified  bytes=1249487683  resumes=0  stalls=0  avg=59.526 MB/s  sha_match=None
+  logged -> 20260709T175901_esgf_results.json / 20260709T175901_esgf_results.csv
+
+=== LIU_1GB ===
+  diagnostics for esg-dn1.nsc.liu.se (traceroute=on) ...
+  2026-07-09 18:14:05
+  2026-07-09 18:19:07
+  status=failed  bytes=0  resumes=0  stalls=0  avg=None MB/s  sha_match=None
+  logged -> 20260709T175901_esgf_results.json / 20260709T175901_esgf_results.csv
+
+=== ORNL_1GB ===
+  diagnostics for esgf-node.ornl.gov (traceroute=on) ...
+  2026-07-09 18:19:08
+  ORNL_1GB             [############################] 100.0%  1.0GB/1.0GB  59.64MB/s  ETA 00:00
+  2026-07-09 18:19:28
+  status=verified  bytes=1110603079  resumes=0  stalls=0  avg=54.566 MB/s  sha_match=True
+  logged -> 20260709T175901_esgf_results.json / 20260709T175901_esgf_results.csv
+
+=== ANL-GLOBUS_1GB ===
+  diagnostics for g-52ba3.fd635.8443.data.globus.org (traceroute=on) ...
+  2026-07-09 18:19:28
+  ANL-GLOBUS_1GB       1.0GB (size unknown)  117.95MB/s
+  2026-07-09 18:19:41
+  status=verified  bytes=1110603079  resumes=0  stalls=0  avg=87.467 MB/s  sha_match=True
+  logged -> 20260709T175901_esgf_results.json / 20260709T175901_esgf_results.csv
+
+=== NERSC-GLOBUS_1GB ===
+  diagnostics for g-eba899.6b7bd8.0ec8.data.globus.org (traceroute=on) ...
+  2026-07-09 18:19:41
+  NERSC-GLOBUS_1GB     1.0GB (size unknown)  172.65MB/s
+  2026-07-09 18:19:48
+  status=verified  bytes=1110603079  resumes=0  stalls=0  avg=186.431 MB/s  sha_match=True
+  logged -> 20260709T175901_esgf_results.json / 20260709T175901_esgf_results.csv
+
+Wrote:
+  /global/u2/d/durack1/git/ESGFDownload/20260709T175901_esgf_results.json
+  /global/u2/d/durack1/git/ESGFDownload/20260709T175901_esgf_results.csv
