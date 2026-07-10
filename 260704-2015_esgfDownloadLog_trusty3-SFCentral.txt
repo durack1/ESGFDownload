@@ -1,0 +1,79 @@
+(xcd0112) duro@trusty3:~/git/ESGFDownload$ python esgfDownloadLog.py
+Collecting run/host diagnostics ...
+  origin: trusty3 | Perth, Australia | SUPERLOOP AUSTRALIA PTY LTD | 45.118.64.0 [ipwho.is]
+
+=== BSC_1GB ===
+  diagnostics for esgf.bsc.es (traceroute=on) ...
+  2026-07-04 19:23:08
+  BSC_1GB              [############################] 100.0%  1.2GB/1.2GB  8.07MB/s  ETA 00:00
+  2026-07-04 19:25:41
+  status=verified  bytes=1341138713  resumes=0  stalls=0  avg=8.446 MB/s  sha_match=True
+  logged -> 20260704T192306_esgf_results.json / 20260704T192306_esgf_results.csv
+
+=== CEDA_1GB ===
+  diagnostics for esgf.ceda.ac.uk (traceroute=on) ...
+  2026-07-04 19:25:43
+  CEDA_1GB             [############################] 100.0%  1.0GB/1.0GB  6.83MB/s  ETA 00:00
+  2026-07-04 19:27:54
+  status=verified  bytes=1110603079  resumes=0  stalls=0  avg=8.17 MB/s  sha_match=True
+  logged -> 20260704T192306_esgf_results.json / 20260704T192306_esgf_results.csv
+
+=== DKRZ_1GB ===
+  diagnostics for esgf3.dkrz.de (traceroute=on) ...
+  2026-07-04 19:27:56
+  DKRZ_1GB             [############################] 100.0%  1.0GB/1.0GB  9.63MB/s  ETA 00:00
+  2026-07-04 19:30:00
+  status=verified  bytes=1110603079  resumes=0  stalls=0  avg=8.65 MB/s  sha_match=True
+  logged -> 20260704T192306_esgf_results.json / 20260704T192306_esgf_results.csv
+
+=== IPSL_1GB ===
+  diagnostics for vesg.ipsl.upmc.fr (traceroute=on) ...
+  2026-07-04 19:30:02
+  IPSL_1GB             [############################] 100.0%  1.3GB/1.3GB  6.53MB/s  ETA 00:00
+  2026-07-04 19:32:47
+  status=verified  bytes=1384821748  resumes=0  stalls=0  avg=8.06 MB/s  sha_match=True
+  logged -> 20260704T192306_esgf_results.json / 20260704T192306_esgf_results.csv
+
+=== NCI_1GB ===
+  diagnostics for esgf.nci.org.au (traceroute=on) ...
+  2026-07-04 19:32:47
+  NCI_1GB              [############################] 100.0%  1.0GB/1.0GB  5.26MB/s  ETA 00:00
+  2026-07-04 19:34:27
+  status=verified  bytes=1110603079  resumes=0  stalls=0  avg=10.658 MB/s  sha_match=True
+  logged -> 20260704T192306_esgf_results.json / 20260704T192306_esgf_results.csv
+
+=== NORESG_1GB ===
+  diagnostics for noresg.nird.sigma2.no (traceroute=on) ...
+  2026-07-04 19:34:30
+  NORESG_1GB           [############################] 100.0%  1.2GB/1.2GB  11.93MB/s  ETA 00:00
+  2026-07-04 19:36:04
+  status=complete_unverified  bytes=1249487683  resumes=0  stalls=0  avg=12.897 MB/s  sha_match=None
+  logged -> 20260704T192306_esgf_results.json / 20260704T192306_esgf_results.csv
+
+=== ORNL_1GB ===
+  diagnostics for esgf-node.ornl.gov (traceroute=on) ...
+  2026-07-04 19:36:05
+  ORNL_1GB             [############################] 100.0%  1.0GB/1.0GB  1.76MB/s  ETA 00:00
+  2026-07-04 20:12:42
+  status=verified  bytes=1110603079  resumes=0  stalls=0  avg=0.483 MB/s  sha_match=True
+  logged -> 20260704T192306_esgf_results.json / 20260704T192306_esgf_results.csv
+
+=== ANL-GLOBUS_1GB ===
+  diagnostics for g-52ba3.fd635.8443.data.globus.org (traceroute=on) ...
+  2026-07-04 20:12:42
+  ANL-GLOBUS_1GB       1.0GB (size unknown)  16.15MB/s
+  2026-07-04 20:13:53
+  status=verified  bytes=1110603079  resumes=0  stalls=0  avg=15.183 MB/s  sha_match=True
+  logged -> 20260704T192306_esgf_results.json / 20260704T192306_esgf_results.csv
+
+=== NERSC-GLOBUS_1GB ===
+  diagnostics for g-eba899.6b7bd8.0ec8.data.globus.org (traceroute=on) ...
+  2026-07-04 20:13:54
+  NERSC-GLOBUS_1GB     1.0GB (size unknown)  19.17MB/s
+  2026-07-04 20:15:18
+  status=verified  bytes=1110603079  resumes=0  stalls=0  avg=12.865 MB/s  sha_match=True
+  logged -> 20260704T192306_esgf_results.json / 20260704T192306_esgf_results.csv
+
+Wrote:
+  /home/duro/git/ESGFDownload/20260704T192306_esgf_results.json
+  /home/duro/git/ESGFDownload/20260704T192306_esgf_results.csv
