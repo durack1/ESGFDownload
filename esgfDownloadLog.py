@@ -34,6 +34,7 @@ PJD 10 Jul 2026 - added timeout in case of non-responsive nodes.
                   === NCI_1GB ===
                   diagnostics for esgf.nci.org.au (traceroute=on) ...
                   2026-07-09 17:32:41
+PJD 10 Jul 2026 - take 2, deal with 403 error (NCI)
 
 TODO: add additional nodes - dataset counts below targeting
 experiment_id = historical
@@ -63,6 +64,7 @@ Edit the TARGETS list below with the files/nodes you want to test.
 
 import argparse
 import csv
+import errno
 import getpass
 import hashlib
 import http.client
@@ -70,6 +72,7 @@ import json
 import os
 import platform
 import re
+import select
 import shutil
 import socket
 import ssl
@@ -282,6 +285,14 @@ BACKOFF_CAP = 60.0  # max backoff between attempts (s)
 PER_FILE_DEADLINE_S = 1800.0
 MAX_CONSECUTIVE_FAILS = 6  # give up on a file after this many *fruitless*
 #                            attempts in a row (no bytes gained between them)
+# Hard ceiling on any single attempt (connect+TLS+request+response+stream).
+# A watchdog force-closes the socket if this is exceeded, so no individual
+# blocking call can hang past it regardless of platform. Must exceed the sum
+# of CONNECT_TIMEOUT + READ_TIMEOUT to avoid tripping on a healthy slow start.
+PER_ATTEMPT_HARD_CAP_S = 180.0
+# If a transfer produces no new bytes for this long, treat it as a stall and
+# drop the attempt (defeats slow-drip nodes that reset per-recv timeouts).
+STALL_NO_PROGRESS_S = 90.0
 MAX_REDIRECTS = 5
 USER_AGENT = "esgf-download-test/1.0 (+stdlib)"
 
@@ -745,7 +756,59 @@ def _getaddrinfo_with_timeout(host, port, timeout):
     return result["ok"]
 
 
-def open_connection(url, timeout):
+class _SocketWatchdog:
+    """Force-closes a socket after a hard timeout, unblocking any stuck call.
+
+    Phase timeouts (connect/TLS/read) each bound a single operation, but a
+    pathological node can chain many just-under-timeout stalls and keep one
+    attempt alive far too long. This watchdog is the backstop: a timer thread
+    shuts the socket down after `cap` seconds, which makes whatever syscall is
+    currently blocked (connect, handshake, getresponse, recv) raise an OSError
+    that the normal error path then handles. Cross-platform (no signals), so it
+    works identically on Windows, macOS and Linux.
+
+    Usage:
+        wd = _SocketWatchdog(cap)
+        wd.arm(sock)        # call once the socket exists
+        ... do work ...
+        wd.disarm()         # on success, before returning
+    """
+
+    def __init__(self, cap):
+        import threading
+        self._cap = cap
+        self._timer = None
+        self._sock = None
+        self._threading = threading
+        self.fired = False
+
+    def _fire(self):
+        self.fired = True
+        s = self._sock
+        if s is not None:
+            try:
+                s.shutdown(socket.SHUT_RDWR)
+            except Exception:
+                pass
+            try:
+                s.close()
+            except Exception:
+                pass
+
+    def arm(self, sock):
+        self._sock = sock
+        if self._timer is None:
+            self._timer = self._threading.Timer(self._cap, self._fire)
+            self._timer.daemon = True
+            self._timer.start()
+
+    def disarm(self):
+        if self._timer is not None:
+            self._timer.cancel()
+            self._timer = None
+
+
+def open_connection(url, timeout, watchdog=None):
     """
     Open an HTTPS connection with per-phase timing.
 
@@ -768,10 +831,34 @@ def open_connection(url, timeout):
 
     family, socktype, proto, _, sockaddr = addrinfo[0]
     sock = socket.socket(family, socktype, proto)
-    sock.settimeout(timeout)
+    if watchdog is not None:
+        watchdog.arm(sock)
 
+    # Non-blocking connect bounded by select(): this guarantees the connect
+    # phase can never block longer than `timeout`, even on platforms/paths
+    # where a blocking connect with settimeout() misbehaves (e.g. a firewall
+    # silently dropping SYN/ACK). This is the fix for "still waiting for an
+    # active connection" hangs.
     t1 = time.perf_counter()
-    sock.connect(sockaddr)
+    sock.setblocking(False)
+    err = sock.connect_ex(sockaddr)
+    if err not in (0, errno.EINPROGRESS, errno.EWOULDBLOCK,
+                   getattr(errno, "EAGAIN", errno.EWOULDBLOCK)):
+        sock.close()
+        raise OSError(err, f"connect_ex failed: {os.strerror(err)}")
+    if err != 0:
+        _, wready, xready = select.select([], [sock], [sock], timeout)
+        if not wready and not xready:
+            sock.close()
+            raise TimeoutError(
+                f"TCP connect to {sockaddr[0]}:{sockaddr[1]} exceeded "
+                f"{timeout}s")
+        soerr = sock.getsockopt(socket.SOL_SOCKET, socket.SO_ERROR)
+        if soerr != 0:
+            sock.close()
+            raise OSError(soerr, f"connect failed: {os.strerror(soerr)}")
+    sock.setblocking(True)
+    sock.settimeout(timeout)
     timings["tcp_connect_s"] = round(time.perf_counter() - t1, 4)
 
     ctx = ssl.create_default_context()
@@ -783,13 +870,18 @@ def open_connection(url, timeout):
     # Enforce a read timeout for the whole life of this socket, so a node that
     # accepts the connection then goes silent mid-stream can't hang us.
     ssock.settimeout(READ_TIMEOUT)
+    # Keep the watchdog pointed at the live (wrapped) socket.
+    if watchdog is not None:
+        watchdog.arm(ssock)
+        watchdog._sock = ssock
 
     conn = http.client.HTTPSConnection(host, port, timeout=timeout)
     conn.sock = ssock  # reuse the socket we already connected + timed
     return conn, host, path, timings
 
 
-def request_with_redirects(url, headers, timeout, max_redirects=MAX_REDIRECTS):
+def request_with_redirects(url, headers, timeout, max_redirects=MAX_REDIRECTS,
+                           watchdog=None):
     """
     Issue a GET, following redirects manually so we can detect auth walls.
 
@@ -800,7 +892,7 @@ def request_with_redirects(url, headers, timeout, max_redirects=MAX_REDIRECTS):
     redirect_chain = []
     current = url
     for _ in range(max_redirects + 1):
-        conn, host, path, timings = open_connection(current, timeout)
+        conn, host, path, timings = open_connection(current, timeout, watchdog)
         req_headers = dict(headers)
         req_headers.setdefault("Host", host)
         req_headers.setdefault("User-Agent", USER_AGENT)
@@ -929,9 +1021,10 @@ def download_target(target, tmp_dir, progress_path=None):
         if downloaded > 0:
             headers["Range"] = f"bytes={downloaded}-"
 
+        watchdog = _SocketWatchdog(PER_ATTEMPT_HARD_CAP_S)
         try:
             conn, resp, final_url, timings, chain = request_with_redirects(
-                url, headers, CONNECT_TIMEOUT
+                url, headers, CONNECT_TIMEOUT, watchdog=watchdog
             )
             if chain:
                 result["redirect_chain"] = chain
@@ -986,6 +1079,10 @@ def download_target(target, tmp_dir, progress_path=None):
                 attempt=result["attempts"],
             )
             render_progress_bar(label, downloaded, result["total_bytes"], 0.0)
+            # Past connect/TLS/response: the read-timeout + no-progress window
+            # now guard the body, so stand the hard-cap watchdog down.
+            watchdog.disarm()
+            last_progress_t = time.perf_counter()
             f = open(tmp_path, "ab" if downloaded else "wb")
             try:
                 while True:
@@ -1004,6 +1101,7 @@ def download_target(target, tmp_dir, progress_path=None):
                     bar_bytes += n
 
                     nowt = time.perf_counter()
+                    last_progress_t = nowt
 
                     # Refresh the on-screen bar ~4x/sec with a recent-rate estimate.
                     if nowt - bar_anchor >= BAR_REFRESH_SEC:
@@ -1085,17 +1183,22 @@ def download_target(target, tmp_dir, progress_path=None):
             RuntimeError,
         ) as e:
             result["resumes"] += 1 if downloaded > 0 else 0
-            result["errors"].append(
-                f"attempt {result['attempts']}: {type(e).__name__}: {e}"
-            )
+            if watchdog.fired:
+                msg = (f"attempt {result['attempts']}: hard cap "
+                       f"{PER_ATTEMPT_HARD_CAP_S:.0f}s exceeded, socket "
+                       f"force-closed ({type(e).__name__})")
+            else:
+                msg = f"attempt {result['attempts']}: {type(e).__name__}: {e}"
+            result["errors"].append(msg)
             backoff = min(BACKOFF_CAP, BACKOFF_BASE **
                           min(result["attempts"], 6))
             log_progress(
                 "error",
                 attempt=result["attempts"],
-                error=f"{type(e).__name__}: {e}",
+                error=msg,
                 downloaded_bytes=downloaded,
                 backoff_s=round(backoff, 1),
+                watchdog_fired=watchdog.fired,
             )
             # Count this as a fruitless attempt only if it gained no bytes;
             # a partial-then-dropped connection resets the streak instead.
@@ -1110,6 +1213,8 @@ def download_target(target, tmp_dir, progress_path=None):
                 continue  # loop-top guard will abort cleanly
             time.sleep(min(backoff, remaining))
             continue
+        finally:
+            watchdog.disarm()
 
     # --- finalize ---
     result["wall_time_s"] = round(time.perf_counter() - wall_start, 2)
@@ -1367,6 +1472,7 @@ def main(argv=None):
             "dns_timeout": DNS_TIMEOUT,
             "per_file_deadline_s": PER_FILE_DEADLINE_S,
             "max_consecutive_fails": MAX_CONSECUTIVE_FAILS,
+            "per_attempt_hard_cap_s": PER_ATTEMPT_HARD_CAP_S,
             "isp_lookup": do_isp,
             "traceroute": do_trace,
             "geolocate_origin": do_geo,
