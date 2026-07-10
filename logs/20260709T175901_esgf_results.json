@@ -1,0 +1,986 @@
+{
+  "run_started": "2026-07-10T00:59:01.022790+00:00",
+  "platform": "Linux-6.4.0-150600.23.103_15.0.24-cray_shasta_c-x86_64-with-glibc2.38",
+  "python": "3.12.10",
+  "config": {
+    "chunk_size": 1048576,
+    "max_attempts": 100,
+    "connect_timeout": 30.0,
+    "read_timeout": 60.0,
+    "dns_timeout": 15.0,
+    "per_file_deadline_s": 1800.0,
+    "max_consecutive_fails": 6,
+    "isp_lookup": false,
+    "traceroute": true,
+    "geolocate_origin": true
+  },
+  "run_diagnostics": {
+    "origin": {
+      "hostname": "login15",
+      "fqdn": "login15.chn",
+      "username": "durack1",
+      "local_ips": [
+        "128.55.64.24"
+      ],
+      "timezone": "PDT (UTC-07:00)",
+      "geo": {
+        "public_ip": "128.55.64.24",
+        "country": "United States",
+        "country_code": "US",
+        "region": "California",
+        "city": "Berkeley",
+        "latitude": 37.8715926,
+        "longitude": -122.272747,
+        "isp": "National Energy Research Scientific Computing Center",
+        "org": "ESnet",
+        "asn": "AS2936",
+        "_provider": "ipwho.is"
+      }
+    },
+    "hostname": "login15",
+    "platform": "Linux-6.4.0-150600.23.103_15.0.24-cray_shasta_c-x86_64-with-glibc2.38",
+    "system": "Linux",
+    "release": "6.4.0-150600.23.103_15.0.24-cray_shasta_c",
+    "machine": "x86_64",
+    "processor": "x86_64",
+    "python_version": "3.12.10",
+    "python_build": "main Apr 10 2025 22:21:13",
+    "local_ip": "128.55.64.24",
+    "public_ip": null,
+    "isp_lookup_enabled": false,
+    "local_isp": null
+  },
+  "host_diagnostics": {
+    "esgf.bsc.es": {
+      "host": "esgf.bsc.es",
+      "resolved_ips": [
+        "84.88.53.197"
+      ],
+      "reverse_dns": "esgf.bsc.es",
+      "dest_isp": null,
+      "traceroute": {
+        "tool": null,
+        "hop_count": null,
+        "status": "unavailable: traceroute not installed (try `apt install traceroute` / `brew install traceroute`)",
+        "raw": null
+      }
+    },
+    "esgf.ceda.ac.uk": {
+      "host": "esgf.ceda.ac.uk",
+      "resolved_ips": [
+        "130.246.128.97"
+      ],
+      "reverse_dns": "k8s-proxy.ceda.ac.uk",
+      "dest_isp": null,
+      "traceroute": {
+        "tool": null,
+        "hop_count": null,
+        "status": "unavailable: traceroute not installed (try `apt install traceroute` / `brew install traceroute`)",
+        "raw": null
+      }
+    },
+    "esgf3.dkrz.de": {
+      "host": "esgf3.dkrz.de",
+      "resolved_ips": [
+        "136.172.32.139"
+      ],
+      "reverse_dns": "esgf-fs1.cloud.dkrz.de",
+      "dest_isp": null,
+      "traceroute": {
+        "tool": null,
+        "hop_count": null,
+        "status": "unavailable: traceroute not installed (try `apt install traceroute` / `brew install traceroute`)",
+        "raw": null
+      }
+    },
+    "vesg.ipsl.upmc.fr": {
+      "host": "vesg.ipsl.upmc.fr",
+      "resolved_ips": [
+        "134.157.240.12"
+      ],
+      "reverse_dns": "vesg.ipsl.upmc.fr",
+      "dest_isp": null,
+      "traceroute": {
+        "tool": null,
+        "hop_count": null,
+        "status": "unavailable: traceroute not installed (try `apt install traceroute` / `brew install traceroute`)",
+        "raw": null
+      }
+    },
+    "esgf.nci.org.au": {
+      "host": "esgf.nci.org.au",
+      "resolved_ips": [
+        "130.56.243.38"
+      ],
+      "reverse_dns": "esgf.nci.org.au",
+      "dest_isp": null,
+      "traceroute": {
+        "tool": null,
+        "hop_count": null,
+        "status": "unavailable: traceroute not installed (try `apt install traceroute` / `brew install traceroute`)",
+        "raw": null
+      }
+    },
+    "noresg.nird.sigma2.no": {
+      "host": "noresg.nird.sigma2.no",
+      "resolved_ips": [
+        "158.36.102.245"
+      ],
+      "reverse_dns": null,
+      "dest_isp": null,
+      "traceroute": {
+        "tool": null,
+        "hop_count": null,
+        "status": "unavailable: traceroute not installed (try `apt install traceroute` / `brew install traceroute`)",
+        "raw": null
+      }
+    },
+    "esg-dn1.nsc.liu.se": {
+      "host": "esg-dn1.nsc.liu.se",
+      "resolved_ips": [
+        "130.236.100.123"
+      ],
+      "reverse_dns": "esg-dn1.nsc.liu.se",
+      "dest_isp": null,
+      "traceroute": {
+        "tool": null,
+        "hop_count": null,
+        "status": "unavailable: traceroute not installed (try `apt install traceroute` / `brew install traceroute`)",
+        "raw": null
+      }
+    },
+    "esgf-node.ornl.gov": {
+      "host": "esgf-node.ornl.gov",
+      "resolved_ips": [
+        "128.219.133.17"
+      ],
+      "reverse_dns": "onyx-external-vip.ccs.ornl.gov",
+      "dest_isp": null,
+      "traceroute": {
+        "tool": null,
+        "hop_count": null,
+        "status": "unavailable: traceroute not installed (try `apt install traceroute` / `brew install traceroute`)",
+        "raw": null
+      }
+    },
+    "g-52ba3.fd635.8443.data.globus.org": {
+      "host": "g-52ba3.fd635.8443.data.globus.org",
+      "resolved_ips": [
+        "140.221.68.105",
+        "140.221.68.106",
+        "140.221.68.107",
+        "140.221.68.108",
+        "140.221.68.109"
+      ],
+      "reverse_dns": "dtn-05.pub.alcf.anl.gov",
+      "dest_isp": null,
+      "traceroute": {
+        "tool": null,
+        "hop_count": null,
+        "status": "unavailable: traceroute not installed (try `apt install traceroute` / `brew install traceroute`)",
+        "raw": null
+      }
+    },
+    "g-eba899.6b7bd8.0ec8.data.globus.org": {
+      "host": "g-eba899.6b7bd8.0ec8.data.globus.org",
+      "resolved_ips": [
+        "128.55.200.27"
+      ],
+      "reverse_dns": "dtn-ro-new.nersc.gov",
+      "dest_isp": null,
+      "traceroute": {
+        "tool": null,
+        "hop_count": null,
+        "status": "unavailable: traceroute not installed (try `apt install traceroute` / `brew install traceroute`)",
+        "raw": null
+      }
+    }
+  },
+  "results": [
+    {
+      "label": "BSC_1GB",
+      "url": "https://esgf.bsc.es/thredds/fileServer/esg_dataroot/a1u8-CMIP-r20/CMIP6/CMIP/EC-Earth-Consortium/EC-Earth3/historical/r20i1p1f1/day/hur/gr/v20210303/hur_day_EC-Earth3_historical_r20i1p1f1_gr_18500101-18501231.nc",
+      "started": "2026-07-10T00:59:01.489150+00:00",
+      "status": "verified",
+      "expected_sha256": "616e02c9704f9b39f6585d3e1c1241abf18c21b94d7f8262ba2c37662cf8100d",
+      "computed_sha256": "616e02c9704f9b39f6585d3e1c1241abf18c21b94d7f8262ba2c37662cf8100d",
+      "sha256_match": true,
+      "total_bytes": 1341138713,
+      "downloaded_bytes": 1341138713,
+      "accept_ranges": true,
+      "resumes": 0,
+      "attempts": 1,
+      "wall_time_s": 83.53,
+      "active_transfer_s": 82.74412944098003,
+      "avg_rate_MBps": 15.457,
+      "first_connect_timings": {
+        "dns_s": 0.0005,
+        "tcp_connect_s": 0.1889,
+        "tls_handshake_s": 0.3845,
+        "tls_version": "TLSv1.2",
+        "peer_ip": "84.88.53.197",
+        "ttfb_s": 0.1935
+      },
+      "throughput_samples": [
+        [
+          5.88,
+          1.765
+        ],
+        [
+          10.88,
+          13.595
+        ],
+        [
+          15.96,
+          16.353
+        ],
+        [
+          21.05,
+          16.506
+        ],
+        [
+          26.15,
+          16.65
+        ],
+        [
+          31.24,
+          16.502
+        ],
+        [
+          36.33,
+          16.511
+        ],
+        [
+          41.43,
+          16.665
+        ],
+        [
+          46.53,
+          16.48
+        ],
+        [
+          51.64,
+          16.627
+        ],
+        [
+          56.73,
+          16.513
+        ],
+        [
+          61.84,
+          16.645
+        ],
+        [
+          66.93,
+          16.475
+        ],
+        [
+          72.04,
+          16.636
+        ],
+        [
+          77.13,
+          16.522
+        ],
+        [
+          82.25,
+          16.594
+        ]
+      ],
+      "stalls": 0,
+      "errors": [],
+      "redirect_chain": [],
+      "finished": "2026-07-10T01:00:25.228836+00:00",
+      "host": "esgf.bsc.es"
+    },
+    {
+      "label": "CEDA_1GB",
+      "url": "https://esgf.ceda.ac.uk/thredds/fileServer/esg_cmip6/CMIP6/CMIP/CCCma/CanESM5/historical/r1i1p2f1/Omon/thetao/gn/v20190429/thetao_Omon_CanESM5_historical_r1i1p2f1_gn_185001-186012.nc",
+      "started": "2026-07-10T01:00:26.046421+00:00",
+      "status": "verified",
+      "expected_sha256": "fa7c3a0a6cbe4aec8805fda48948972a0bc42aec4fdd065ff3c5b61763522ea6",
+      "computed_sha256": "fa7c3a0a6cbe4aec8805fda48948972a0bc42aec4fdd065ff3c5b61763522ea6",
+      "sha256_match": true,
+      "total_bytes": 1110603079,
+      "downloaded_bytes": 1110603079,
+      "accept_ranges": true,
+      "resumes": 0,
+      "attempts": 1,
+      "wall_time_s": 325.02,
+      "active_transfer_s": 324.3311188860098,
+      "avg_rate_MBps": 3.266,
+      "first_connect_timings": {
+        "dns_s": 0.0007,
+        "tcp_connect_s": 0.1665,
+        "tls_handshake_s": 0.1684,
+        "tls_version": "TLSv1.3",
+        "peer_ip": "130.246.128.97",
+        "ttfb_s": 0.3335
+      },
+      "throughput_samples": [
+        [
+          5.72,
+          1.39
+        ],
+        [
+          10.99,
+          1.708
+        ],
+        [
+          16.02,
+          1.592
+        ],
+        [
+          21.36,
+          1.685
+        ],
+        [
+          26.7,
+          1.685
+        ],
+        [
+          31.72,
+          1.595
+        ],
+        [
+          36.79,
+          1.775
+        ],
+        [
+          41.87,
+          3.737
+        ],
+        [
+          47.04,
+          2.517
+        ],
+        [
+          52.13,
+          2.357
+        ],
+        [
+          57.47,
+          1.87
+        ],
+        [
+          62.94,
+          2.012
+        ],
+        [
+          68.1,
+          2.133
+        ],
+        [
+          73.22,
+          2.149
+        ],
+        [
+          78.57,
+          1.494
+        ],
+        [
+          84.0,
+          2.025
+        ],
+        [
+          89.17,
+          1.741
+        ],
+        [
+          94.38,
+          2.112
+        ],
+        [
+          100.04,
+          1.414
+        ],
+        [
+          105.48,
+          4.776
+        ],
+        [
+          110.56,
+          1.97
+        ],
+        [
+          115.61,
+          3.366
+        ],
+        [
+          121.1,
+          2.368
+        ],
+        [
+          126.26,
+          1.742
+        ],
+        [
+          131.38,
+          6.058
+        ],
+        [
+          136.55,
+          2.324
+        ],
+        [
+          141.73,
+          1.928
+        ],
+        [
+          146.89,
+          2.132
+        ],
+        [
+          152.05,
+          2.133
+        ],
+        [
+          157.53,
+          6.568
+        ],
+        [
+          162.73,
+          2.308
+        ],
+        [
+          167.89,
+          2.326
+        ],
+        [
+          173.38,
+          2.187
+        ],
+        [
+          178.54,
+          2.518
+        ],
+        [
+          184.03,
+          2.365
+        ],
+        [
+          189.19,
+          2.325
+        ],
+        [
+          194.35,
+          2.325
+        ],
+        [
+          199.69,
+          2.438
+        ],
+        [
+          204.85,
+          2.518
+        ],
+        [
+          210.01,
+          2.326
+        ],
+        [
+          215.34,
+          2.439
+        ],
+        [
+          221.0,
+          2.296
+        ],
+        [
+          226.17,
+          2.516
+        ],
+        [
+          231.66,
+          2.367
+        ],
+        [
+          236.98,
+          2.255
+        ],
+        [
+          242.14,
+          2.518
+        ],
+        [
+          247.64,
+          2.548
+        ],
+        [
+          252.97,
+          2.439
+        ],
+        [
+          258.3,
+          2.441
+        ],
+        [
+          263.62,
+          2.253
+        ],
+        [
+          268.95,
+          2.44
+        ],
+        [
+          274.11,
+          2.325
+        ],
+        [
+          279.6,
+          2.367
+        ],
+        [
+          284.76,
+          2.325
+        ],
+        [
+          290.26,
+          2.367
+        ],
+        [
+          295.42,
+          2.325
+        ],
+        [
+          300.74,
+          2.254
+        ],
+        [
+          305.9,
+          2.326
+        ],
+        [
+          310.9,
+          2.6
+        ],
+        [
+          315.94,
+          22.047
+        ],
+        [
+          320.99,
+          22.374
+        ]
+      ],
+      "stalls": 0,
+      "errors": [],
+      "redirect_chain": [],
+      "finished": "2026-07-10T01:05:51.240243+00:00",
+      "host": "esgf.ceda.ac.uk"
+    },
+    {
+      "label": "DKRZ_1GB",
+      "url": "https://esgf3.dkrz.de/thredds/fileServer/cmip6/CMIP/CCCma/CanESM5/historical/r1i1p2f1/Omon/thetao/gn/v20190429/thetao_Omon_CanESM5_historical_r1i1p2f1_gn_185001-186012.nc",
+      "started": "2026-07-10T01:05:52.130457+00:00",
+      "status": "verified",
+      "expected_sha256": "fa7c3a0a6cbe4aec8805fda48948972a0bc42aec4fdd065ff3c5b61763522ea6",
+      "computed_sha256": "fa7c3a0a6cbe4aec8805fda48948972a0bc42aec4fdd065ff3c5b61763522ea6",
+      "sha256_match": true,
+      "total_bytes": 1110603079,
+      "downloaded_bytes": 1110603079,
+      "accept_ranges": true,
+      "resumes": 0,
+      "attempts": 1,
+      "wall_time_s": 54.09,
+      "active_transfer_s": 53.209758458076976,
+      "avg_rate_MBps": 19.905,
+      "first_connect_timings": {
+        "dns_s": 0.0003,
+        "tcp_connect_s": 0.1656,
+        "tls_handshake_s": 0.1692,
+        "tls_version": "TLSv1.3",
+        "peer_ip": "136.172.32.139",
+        "ttfb_s": 0.5254
+      },
+      "throughput_samples": [
+        [
+          5.92,
+          16.436
+        ],
+        [
+          10.99,
+          20.322
+        ],
+        [
+          16.06,
+          20.324
+        ],
+        [
+          21.12,
+          19.952
+        ],
+        [
+          26.2,
+          20.489
+        ],
+        [
+          31.26,
+          20.139
+        ],
+        [
+          36.34,
+          20.306
+        ],
+        [
+          41.41,
+          20.317
+        ],
+        [
+          46.47,
+          20.129
+        ],
+        [
+          51.54,
+          19.942
+        ]
+      ],
+      "stalls": 0,
+      "errors": [],
+      "redirect_chain": [],
+      "finished": "2026-07-10T01:06:46.387994+00:00",
+      "host": "esgf3.dkrz.de"
+    },
+    {
+      "label": "IPSL_1GB",
+      "url": "https://vesg.ipsl.upmc.fr/thredds/fileServer/cmip6/CMIP/IPSL/IPSL-CM5A2-INCA/historical/r1i1p1f1/E3hrPt/o3/gr/v20240619/o3_E3hrPt_IPSL-CM5A2-INCA_historical_r1i1p1f1_gr_185001010300-185101010000.nc",
+      "started": "2026-07-10T01:06:47.373855+00:00",
+      "status": "verified",
+      "expected_sha256": "74b74462397db381104f051b3ffd9f9d9af86c54d0f28e2152b1e8dd73c25ce1",
+      "computed_sha256": "74b74462397db381104f051b3ffd9f9d9af86c54d0f28e2152b1e8dd73c25ce1",
+      "sha256_match": true,
+      "total_bytes": 1384821748,
+      "downloaded_bytes": 1384821748,
+      "accept_ranges": true,
+      "resumes": 0,
+      "attempts": 1,
+      "wall_time_s": 105.52,
+      "active_transfer_s": 104.6844974270789,
+      "avg_rate_MBps": 12.616,
+      "first_connect_timings": {
+        "dns_s": 0.0002,
+        "tcp_connect_s": 0.1567,
+        "tls_handshake_s": 0.3181,
+        "tls_version": "TLSv1.2",
+        "peer_ip": "134.157.240.12",
+        "ttfb_s": 0.3446
+      },
+      "throughput_samples": [
+        [
+          5.89,
+          15.218
+        ],
+        [
+          10.91,
+          13.547
+        ],
+        [
+          15.95,
+          11.717
+        ],
+        [
+          20.95,
+          11.993
+        ],
+        [
+          25.97,
+          12.758
+        ],
+        [
+          31.01,
+          16.051
+        ],
+        [
+          36.03,
+          15.144
+        ],
+        [
+          41.05,
+          14.144
+        ],
+        [
+          46.09,
+          13.306
+        ],
+        [
+          51.1,
+          11.963
+        ],
+        [
+          56.13,
+          12.524
+        ],
+        [
+          61.13,
+          11.598
+        ],
+        [
+          66.19,
+          10.087
+        ],
+        [
+          71.21,
+          10.159
+        ],
+        [
+          76.33,
+          10.162
+        ],
+        [
+          81.35,
+          9.354
+        ],
+        [
+          86.37,
+          10.574
+        ],
+        [
+          91.39,
+          10.751
+        ],
+        [
+          96.42,
+          12.73
+        ],
+        [
+          101.44,
+          15.736
+        ]
+      ],
+      "stalls": 0,
+      "errors": [],
+      "redirect_chain": [],
+      "finished": "2026-07-10T01:08:33.105645+00:00",
+      "host": "vesg.ipsl.upmc.fr"
+    },
+    {
+      "label": "NCI_1GB",
+      "url": "https://esgf.nci.org.au/thredds/fileServer/esgcet/replica/CMIP6/CMIP/CCCma/CanESM5/historical/r1i1p2f1/Omon/thetao/gn/v20190429/thetao_Omon_CanESM5_historical_r1i1p2f1_gn_185001-186012.nc",
+      "started": "2026-07-10T01:08:33.645839+00:00",
+      "status": "failed",
+      "expected_sha256": "fa7c3a0a6cbe4aec8805fda48948972a0bc42aec4fdd065ff3c5b61763522ea6",
+      "computed_sha256": null,
+      "sha256_match": null,
+      "total_bytes": null,
+      "downloaded_bytes": 0,
+      "accept_ranges": null,
+      "resumes": 0,
+      "attempts": 6,
+      "wall_time_s": 303.2,
+      "active_transfer_s": 0.0,
+      "avg_rate_MBps": null,
+      "first_connect_timings": null,
+      "throughput_samples": [],
+      "stalls": 0,
+      "errors": [
+        "attempt 1: TimeoutError: _ssl.c:993: The handshake operation timed out",
+        "attempt 2: TimeoutError: _ssl.c:993: The handshake operation timed out",
+        "attempt 3: TimeoutError: _ssl.c:993: The handshake operation timed out",
+        "attempt 4: TimeoutError: _ssl.c:993: The handshake operation timed out",
+        "attempt 5: TimeoutError: _ssl.c:993: The handshake operation timed out",
+        "attempt 6: TimeoutError: _ssl.c:993: The handshake operation timed out",
+        "aborted: 6 consecutive failed attempts with no progress (node likely unresponsive)"
+      ],
+      "redirect_chain": [],
+      "finished": "2026-07-10T01:13:36.844327+00:00",
+      "host": "esgf.nci.org.au"
+    },
+    {
+      "label": "NORESG_1GB",
+      "url": "https://noresg.nird.sigma2.no/thredds/fileServer/esg_dataroot/cmor/CMIP6/CMIP/NCC/NorCPM1/historical/r4i1p1f1/Amon/hus/gn/v20200724/hus_Amon_NorCPM1_historical_r4i1p1f1_gn_185001-201412.nc",
+      "started": "2026-07-10T01:13:42.732806+00:00",
+      "status": "complete_unverified",
+      "expected_sha256": null,
+      "computed_sha256": "ce22a4694c5cd6901b6090fdcdf6bf3f946e9c2c6cd26b1b49cf347476274093",
+      "sha256_match": null,
+      "total_bytes": 1249487683,
+      "downloaded_bytes": 1249487683,
+      "accept_ranges": true,
+      "resumes": 0,
+      "attempts": 1,
+      "wall_time_s": 20.76,
+      "active_transfer_s": 20.018048834986985,
+      "avg_rate_MBps": 59.526,
+      "first_connect_timings": {
+        "dns_s": 0.0034,
+        "tcp_connect_s": 0.1704,
+        "tls_handshake_s": 0.1736,
+        "tls_version": "TLSv1.3",
+        "peer_ip": "158.36.102.245",
+        "ttfb_s": 0.3751
+      },
+      "throughput_samples": [
+        [
+          5.85,
+          45.554
+        ],
+        [
+          10.86,
+          65.191
+        ],
+        [
+          15.96,
+          62.462
+        ]
+      ],
+      "stalls": 0,
+      "errors": [],
+      "redirect_chain": [],
+      "finished": "2026-07-10T01:14:03.685628+00:00",
+      "host": "noresg.nird.sigma2.no"
+    },
+    {
+      "label": "LIU_1GB",
+      "url": "https://esg-dn1.nsc.liu.se/thredds/fileServer/esg_dataroot10/cmip6data/20250305_smhi_req00232/CMIP6/CMIP/EC-Earth-Consortium/EC-Earth3-HR/historical/r1i1p1f1/Omon/so/gn/v20250225/so_Omon_EC-Earth3-HR_historical_r1i1p1f1_gn_185101-185112.nc",
+      "started": "2026-07-10T01:14:05.710849+00:00",
+      "status": "failed",
+      "expected_sha256": "8b0ca29dc71af8ccf11bf7c9670acbf8dae33f1239263a98419b5385350bddc8",
+      "computed_sha256": null,
+      "sha256_match": null,
+      "total_bytes": null,
+      "downloaded_bytes": 0,
+      "accept_ranges": null,
+      "resumes": 0,
+      "attempts": 6,
+      "wall_time_s": 302.19,
+      "active_transfer_s": 0.0,
+      "avg_rate_MBps": null,
+      "first_connect_timings": null,
+      "throughput_samples": [],
+      "stalls": 0,
+      "errors": [
+        "attempt 1: TimeoutError: timed out",
+        "attempt 2: TimeoutError: timed out",
+        "attempt 3: TimeoutError: timed out",
+        "attempt 4: TimeoutError: timed out",
+        "attempt 5: TimeoutError: timed out",
+        "attempt 6: TimeoutError: timed out",
+        "aborted: 6 consecutive failed attempts with no progress (node likely unresponsive)"
+      ],
+      "redirect_chain": [],
+      "finished": "2026-07-10T01:19:07.904526+00:00",
+      "host": "esg-dn1.nsc.liu.se"
+    },
+    {
+      "label": "ORNL_1GB",
+      "url": "https://esgf-node.ornl.gov/thredds/fileServer/css03_data/CMIP6/CMIP/CCCma/CanESM5/historical/r1i1p2f1/Omon/thetao/gn/v20190429/thetao_Omon_CanESM5_historical_r1i1p2f1_gn_185001-186012.nc",
+      "started": "2026-07-10T01:19:08.221638+00:00",
+      "status": "verified",
+      "expected_sha256": "fa7c3a0a6cbe4aec8805fda48948972a0bc42aec4fdd065ff3c5b61763522ea6",
+      "computed_sha256": "fa7c3a0a6cbe4aec8805fda48948972a0bc42aec4fdd065ff3c5b61763522ea6",
+      "sha256_match": true,
+      "total_bytes": 1110603079,
+      "downloaded_bytes": 1110603079,
+      "accept_ranges": true,
+      "resumes": 0,
+      "attempts": 1,
+      "wall_time_s": 19.77,
+      "active_transfer_s": 19.410507414955646,
+      "avg_rate_MBps": 54.566,
+      "first_connect_timings": {
+        "dns_s": 0.0034,
+        "tcp_connect_s": 0.0606,
+        "tls_handshake_s": 0.0625,
+        "tls_version": "TLSv1.3",
+        "peer_ip": "128.219.133.17",
+        "ttfb_s": 0.2143
+      },
+      "throughput_samples": [
+        [
+          5.39,
+          51.109
+        ],
+        [
+          10.42,
+          53.025
+        ],
+        [
+          15.47,
+          55.468
+        ]
+      ],
+      "stalls": 0,
+      "errors": [],
+      "redirect_chain": [],
+      "finished": "2026-07-10T01:19:28.174240+00:00",
+      "host": "esgf-node.ornl.gov"
+    },
+    {
+      "label": "ANL-GLOBUS_1GB",
+      "url": "https://g-52ba3.fd635.8443.data.globus.org/css03_data/CMIP6/CMIP/CCCma/CanESM5/historical/r1i1p2f1/Omon/thetao/gn/v20190429/thetao_Omon_CanESM5_historical_r1i1p2f1_gn_185001-186012.nc",
+      "started": "2026-07-10T01:19:28.240521+00:00",
+      "status": "verified",
+      "expected_sha256": "fa7c3a0a6cbe4aec8805fda48948972a0bc42aec4fdd065ff3c5b61763522ea6",
+      "computed_sha256": "fa7c3a0a6cbe4aec8805fda48948972a0bc42aec4fdd065ff3c5b61763522ea6",
+      "sha256_match": true,
+      "total_bytes": null,
+      "downloaded_bytes": 1110603079,
+      "accept_ranges": true,
+      "resumes": 0,
+      "attempts": 1,
+      "wall_time_s": 12.68,
+      "active_transfer_s": 12.109215463977307,
+      "avg_rate_MBps": 87.467,
+      "first_connect_timings": {
+        "dns_s": 0.0036,
+        "tcp_connect_s": 0.045,
+        "tls_handshake_s": 0.0511,
+        "tls_version": "TLSv1.3",
+        "peer_ip": "140.221.68.107",
+        "ttfb_s": 0.4611
+      },
+      "throughput_samples": [
+        [
+          5.58,
+          76.925
+        ],
+        [
+          10.58,
+          92.923
+        ]
+      ],
+      "stalls": 0,
+      "errors": [],
+      "redirect_chain": [],
+      "finished": "2026-07-10T01:19:41.096917+00:00",
+      "host": "g-52ba3.fd635.8443.data.globus.org"
+    },
+    {
+      "label": "NERSC-GLOBUS_1GB",
+      "url": "https://g-eba899.6b7bd8.0ec8.data.globus.org/css03_data/CMIP6/CMIP/CCCma/CanESM5/historical/r1i1p2f1/Omon/thetao/gn/v20190429/thetao_Omon_CanESM5_historical_r1i1p2f1_gn_185001-186012.nc",
+      "started": "2026-07-10T01:19:41.168963+00:00",
+      "status": "verified",
+      "expected_sha256": "fa7c3a0a6cbe4aec8805fda48948972a0bc42aec4fdd065ff3c5b61763522ea6",
+      "computed_sha256": "fa7c3a0a6cbe4aec8805fda48948972a0bc42aec4fdd065ff3c5b61763522ea6",
+      "sha256_match": true,
+      "total_bytes": null,
+      "downloaded_bytes": 1110603079,
+      "accept_ranges": true,
+      "resumes": 0,
+      "attempts": 1,
+      "wall_time_s": 6.69,
+      "active_transfer_s": 5.681216398021206,
+      "avg_rate_MBps": 186.431,
+      "first_connect_timings": {
+        "dns_s": 0.0026,
+        "tcp_connect_s": 0.0002,
+        "tls_handshake_s": 0.0038,
+        "tls_version": "TLSv1.3",
+        "peer_ip": "128.55.200.27",
+        "ttfb_s": 0.9881
+      },
+      "throughput_samples": [
+        [
+          6.01,
+          188.304
+        ]
+      ],
+      "stalls": 0,
+      "errors": [],
+      "redirect_chain": [],
+      "finished": "2026-07-10T01:19:48.032502+00:00",
+      "host": "g-eba899.6b7bd8.0ec8.data.globus.org"
+    }
+  ],
+  "run_finished": "2026-07-10T01:19:48.035044+00:00"
+}
