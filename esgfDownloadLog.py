@@ -35,6 +35,9 @@ PJD 10 Jul 2026 - added timeout in case of non-responsive nodes.
                   diagnostics for esgf.nci.org.au (traceroute=on) ...
                   2026-07-09 17:32:41
 PJD 10 Jul 2026 - take 2, deal with 403 error (NCI)
+PJD 22 Jul 2026 - add platform tracking; macOS vs Win vs Linux downloads
+                  macOS downloads have been alot faster.
+PJD 22 Jul 2026 - add geolocation info from IP address.
 
 TODO: add additional nodes - dataset counts below targeting
 experiment_id = historical
@@ -542,8 +545,9 @@ def _http_get_json_ipv4(url, timeout):
         socket.getaddrinfo = orig_getaddrinfo
 
 
-def _geo_from_ipwho():
-    d = _http_get_json_ipv4("https://ipwho.is/", GEO_LOOKUP_TIMEOUT_S)
+def _geo_from_ipwho(ip=None):
+    url = f"https://ipwho.is/{ip}" if ip else "https://ipwho.is/"
+    d = _http_get_json_ipv4(url, GEO_LOOKUP_TIMEOUT_S)
     if not d.get("success", True):
         raise RuntimeError(d.get("message", "ipwho.is reported failure"))
     conn = d.get("connection", {}) or {}
@@ -562,9 +566,10 @@ def _geo_from_ipwho():
     }
 
 
-def _geo_from_freeipapi():
-    d = _http_get_json_ipv4("https://freeipapi.com/api/json",
-                            GEO_LOOKUP_TIMEOUT_S)
+def _geo_from_freeipapi(ip=None):
+    url = (f"https://freeipapi.com/api/json/{ip}" if ip
+           else "https://freeipapi.com/api/json")
+    d = _http_get_json_ipv4(url, GEO_LOOKUP_TIMEOUT_S)
     return {
         "public_ip": d.get("ipAddress"),
         "country": d.get("countryName"),
@@ -580,8 +585,9 @@ def _geo_from_freeipapi():
     }
 
 
-def _geo_from_ipapi_co():
-    d = _http_get_json_ipv4("https://ipapi.co/json/", GEO_LOOKUP_TIMEOUT_S)
+def _geo_from_ipapi_co(ip=None):
+    url = f"https://ipapi.co/{ip}/json/" if ip else "https://ipapi.co/json/"
+    d = _http_get_json_ipv4(url, GEO_LOOKUP_TIMEOUT_S)
     if d.get("error"):
         raise RuntimeError(d.get("reason", "ipapi.co reported error"))
     return {
@@ -606,6 +612,25 @@ _GEO_DISPATCH = {
 }
 
 
+def _geolocate(ip=None):
+    """Shared multi-provider geolocation. ip=None geolocates the caller's own
+    public IP (origin); a given ip geolocates that address (destination node).
+    Tries each HTTPS no-key provider until one returns usable data."""
+    attempts = []
+    for name in GEO_PROVIDERS:
+        fn = _GEO_DISPATCH.get(name)
+        if not fn:
+            continue
+        try:
+            result = fn(ip)
+            if result.get("public_ip") or result.get("country"):
+                return result
+            attempts.append(f"{name}: empty response")
+        except Exception as e:
+            attempts.append(f"{name}: {type(e).__name__}: {e}")
+    return {"error": "all geo providers failed", "attempts": attempts}
+
+
 def geolocate_origin():
     """
     Best-effort geolocation of this machine's public IP, for log provenance.
@@ -614,19 +639,15 @@ def geolocate_origin():
     {"error": ...} listing what was tried. Never raises. This is what tells you
     a log came from Dakar vs Colombo.
     """
-    attempts = []
-    for name in GEO_PROVIDERS:
-        fn = _GEO_DISPATCH.get(name)
-        if not fn:
-            continue
-        try:
-            result = fn()
-            if result.get("public_ip") or result.get("country"):
-                return result
-            attempts.append(f"{name}: empty response")
-        except Exception as e:
-            attempts.append(f"{name}: {type(e).__name__}: {e}")
-    return {"error": "all geo providers failed", "attempts": attempts}
+    return _geolocate(None)
+
+
+def geolocate_ip(ip):
+    """Geolocate a specific IP (the ESGF node's peer IP), so each log records
+    where the data came *from* as well as where it went *to*. Never raises."""
+    if not ip:
+        return {"error": "no ip"}
+    return _geolocate(ip)
 
 
 def get_all_local_ips():
@@ -683,6 +704,98 @@ def _local_timezone():
         return None
 
 
+def _windows_edition():
+    """Return e.g. 'Windows 11' vs 'Windows 10' by inspecting the build number.
+    Both report platform.release()=='10'; build >= 22000 means Windows 11."""
+    try:
+        ver = platform.version()  # e.g. '10.0.22631'
+        build = int(ver.split(".")[2])
+        name = "Windows 11" if build >= 22000 else "Windows 10"
+        return f"{name} (build {build})"
+    except Exception:
+        rel = platform.release()
+        return f"Windows {rel}"
+
+
+def _os_description():
+    """Human-friendly OS label that distinguishes Win10/11, macOS version, and
+    Linux distro where possible. Falls back gracefully."""
+    system = platform.system()
+    try:
+        if system == "Windows":
+            return _windows_edition()
+        if system == "Darwin":
+            mac = platform.mac_ver()[0]  # e.g. '14.5'
+            return f"macOS {mac}" if mac else "macOS"
+        if system == "Linux":
+            # Prefer /etc/os-release PRETTY_NAME (stdlib freedesktop reader on
+            # Python 3.10+, manual parse otherwise). Detect WSL too.
+            distro = None
+            try:
+                info = platform.freedesktop_os_release()
+                distro = info.get("PRETTY_NAME") or info.get("NAME")
+            except Exception:
+                try:
+                    with open("/etc/os-release") as fh:
+                        for line in fh:
+                            if line.startswith("PRETTY_NAME="):
+                                distro = line.split(
+                                    "=", 1)[1].strip().strip('"')
+                                break
+                except Exception:
+                    pass
+            rel = platform.release()  # kernel; WSL shows e.g. '...-microsoft-...'
+            is_wsl = "microsoft" in rel.lower() or "wsl" in rel.lower()
+            label = distro or "Linux"
+            if is_wsl:
+                label += " (WSL)"
+            return f"{label}, kernel {rel}"
+        return platform.platform()
+    except Exception:
+        return platform.platform()
+
+
+def _lib_versions():
+    """Versions of libraries relevant to download/TLS behaviour. All stdlib
+    here, but capturing versions makes cross-machine comparison meaningful."""
+    import zlib
+    vers = {}
+    try:
+        vers["openssl"] = ssl.OPENSSL_VERSION
+    except Exception:
+        vers["openssl"] = None
+    try:
+        vers["zlib"] = zlib.ZLIB_VERSION
+    except Exception:
+        vers["zlib"] = None
+    try:
+        vers["ssl_module"] = ".".join(
+            str(x) for x in ssl.OPENSSL_VERSION_INFO[:3])
+    except Exception:
+        vers["ssl_module"] = None
+    return vers
+
+
+def _platform_details():
+    """Full platform + runtime fingerprint for the log, so results from
+    Windows/macOS/Linux (and different Python/OpenSSL builds) are comparable."""
+    return {
+        "os_description": _os_description(),   # e.g. 'Windows 11 (build 22631)'
+        "system": platform.system(),           # Windows / Darwin / Linux
+        "release": platform.release(),
+        "version": platform.version(),
+        "machine": platform.machine(),         # e.g. AMD64 / arm64 / x86_64
+        "processor": platform.processor(),
+        "architecture": platform.architecture()[0],  # e.g. '64bit'
+        "platform_raw": platform.platform(),   # full raw string
+        "python_version": platform.python_version(),
+        "python_implementation": platform.python_implementation(),  # CPython
+        "python_compiler": platform.python_compiler(),
+        "python_build": " ".join(platform.python_build()),
+        "libraries": _lib_versions(),
+    }
+
+
 def collect_run_diagnostics(do_isp, do_geo=True):
     """Host/platform/network context captured once per run."""
     local_ip = get_local_ip()
@@ -692,6 +805,7 @@ def collect_run_diagnostics(do_isp, do_geo=True):
     diag = {
         "origin": collect_origin_identity(do_geo),
         "hostname": socket.gethostname(),
+        "platform_details": _platform_details(),
         "platform": platform.platform(),
         "system": platform.system(),
         "release": platform.release(),
@@ -707,8 +821,9 @@ def collect_run_diagnostics(do_isp, do_geo=True):
     return diag
 
 
-def collect_host_diagnostics(host, do_isp, do_trace):
-    """Per-target-host network context (resolution, rDNS, traceroute, ISP)."""
+def collect_host_diagnostics(host, do_isp, do_trace, do_geo=True):
+    """Per-target-host network context (resolution, rDNS, traceroute, ISP,
+    and geolocation of the node so each log records where data came *from*)."""
     ips = []
     try:
         infos = socket.getaddrinfo(host, 443, proto=socket.IPPROTO_TCP)
@@ -721,6 +836,9 @@ def collect_host_diagnostics(host, do_isp, do_trace):
         "resolved_ips": ips,
         "reverse_dns": reverse_dns(primary) if primary else None,
         "dest_isp": lookup_isp(primary) if (do_isp and primary) else None,
+        "dest_geo": (geolocate_ip(primary) if (do_geo and primary)
+                     else {"status": "skipped (--no-geo)" if not do_geo
+                           else "no ip"}),
         "traceroute": (
             traceroute(host) if do_trace else {
                 "status": "skipped (--no-traceroute)"}
@@ -1272,6 +1390,11 @@ CSV_FIELDS = [
     "origin_isp",
     "origin_public_ip",
     "origin_geo_status",
+    "origin_lat",
+    "origin_lon",
+    "os_description",
+    "python_version",
+    "openssl_version",
     "label",
     "status",
     "url",
@@ -1297,17 +1420,23 @@ CSV_FIELDS = [
     "traceroute_status",
     "dest_org",
     "dest_country",
+    "dest_city",
+    "dest_lat",
+    "dest_lon",
     "started",
     "finished",
 ]
 
 
-def flatten_for_csv(r, host_diag=None, origin=None):
+def flatten_for_csv(r, host_diag=None, origin=None, platform_details=None):
     t = r.get("first_connect_timings") or {}
     hd = host_diag or {}
     tr = hd.get("traceroute") or {}
     isp = hd.get("dest_isp") or {}
+    dgeo = hd.get("dest_geo") or {}
     o = origin or {}
+    pd = platform_details or {}
+    pl = pd.get("libraries") or {}
     geo = o.get("geo") or {}
     if geo.get("error"):
         geo_status = geo["error"]
@@ -1325,6 +1454,11 @@ def flatten_for_csv(r, host_diag=None, origin=None):
         "origin_isp": geo.get("isp"),
         "origin_public_ip": geo.get("public_ip"),
         "origin_geo_status": geo_status,
+        "origin_lat": geo.get("latitude"),
+        "origin_lon": geo.get("longitude"),
+        "os_description": pd.get("os_description"),
+        "python_version": pd.get("python_version"),
+        "openssl_version": pl.get("openssl"),
         "label": r["label"],
         "status": r["status"],
         "url": r["url"],
@@ -1348,8 +1482,12 @@ def flatten_for_csv(r, host_diag=None, origin=None):
         "reverse_dns": hd.get("reverse_dns"),
         "hop_count": tr.get("hop_count"),
         "traceroute_status": tr.get("status"),
-        "dest_org": isp.get("org"),
-        "dest_country": isp.get("country"),
+        # Prefer geo (on by default) for country; fall back to ISP lookup.
+        "dest_org": dgeo.get("org") or isp.get("org"),
+        "dest_country": dgeo.get("country") or isp.get("country"),
+        "dest_city": dgeo.get("city"),
+        "dest_lat": dgeo.get("latitude"),
+        "dest_lon": dgeo.get("longitude"),
         "started": r["started"],
         "finished": r["finished"],
     }
@@ -1385,12 +1523,14 @@ def flush_outputs(run_meta, json_path, csv_path):
     _atomic_write(json_path, _json)
 
     def _csv(f):
-        origin = (run_meta.get("run_diagnostics") or {}).get("origin")
+        rd = run_meta.get("run_diagnostics") or {}
+        origin = rd.get("origin")
+        pdetails = rd.get("platform_details")
         w = csv.DictWriter(f, fieldnames=CSV_FIELDS)
         w.writeheader()
         for r in run_meta["results"]:
             hd = run_meta["host_diagnostics"].get(r.get("host"))
-            w.writerow(flatten_for_csv(r, hd, origin))
+            w.writerow(flatten_for_csv(r, hd, origin, pdetails))
 
     _atomic_write(csv_path, _csv)
 
@@ -1488,7 +1628,15 @@ def main(argv=None):
     # Print a provenance banner so it's obvious which machine/location this
     # log belongs to (also written into the JSON/CSV).
     origin = run_meta["run_diagnostics"].get("origin", {})
+    pd = run_meta["run_diagnostics"].get("platform_details", {})
     geo = origin.get("geo", {})
+    pl = pd.get("libraries", {}) if pd else {}
+    print(
+        f"  system: {pd.get('os_description')} | {pd.get('machine')} | "
+        f"Python {pd.get('python_version')} "
+        f"({pd.get('python_implementation')}) | {pl.get('openssl')}",
+        flush=True,
+    )
     if geo and "error" not in geo and "status" not in geo:
         print(
             f"  origin: {origin.get('hostname')} | "
@@ -1523,7 +1671,7 @@ def main(argv=None):
                     flush=True,
                 )
                 host_diag_cache[host] = collect_host_diagnostics(
-                    host, do_isp, do_trace)
+                    host, do_isp, do_trace, do_geo)
                 run_meta["host_diagnostics"] = host_diag_cache
 
             print(f"  {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
