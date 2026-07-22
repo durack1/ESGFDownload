@@ -1,0 +1,87 @@
+(xcd0112) duro@trusty3:~/git/ESGFDownload$ python esgfDownloadLog.py
+Collecting run/host diagnostics ...
+  system: Ubuntu 24.04.4 LTS (WSL), kernel 6.6.87.1-microsoft-standard-WSL2 | x86_64 | Python 3.14.5 (CPython) | OpenSSL 3.6.2 7 Apr 2026
+  origin: trusty3 | Perth, Australia | Superloop | 45.118.64.0 [ipwho.is]
+
+=== BSC_1GB ===
+  diagnostics for esgf.bsc.es (traceroute=on) ...
+  2026-07-22 20:58:46
+  BSC_1GB              [############################] 100.0%  1.2GB/1.2GB  0.28MB/s  ETA 00:00
+  2026-07-22 21:43:12
+  status=verified  bytes=1341138713  resumes=0  stalls=0  avg=0.48 MB/s  sha_match=True
+  logged -> 20260722T205845_esgf_results.json / 20260722T205845_esgf_results.csv
+
+=== CEDA_1GB ===
+  diagnostics for esgf.ceda.ac.uk (traceroute=on) ...
+  2026-07-22 21:43:13
+  CEDA_1GB             [############################] 100.0%  1.0GB/1.0GB  0.50MB/s  ETA 00:00
+  2026-07-22 22:28:55
+  status=verified  bytes=1110603079  resumes=0  stalls=0  avg=0.387 MB/s  sha_match=True
+  logged -> 20260722T205845_esgf_results.json / 20260722T205845_esgf_results.csv
+
+=== DKRZ_1GB ===
+  diagnostics for esgf3.dkrz.de (traceroute=on) ...
+  2026-07-22 22:28:58
+  DKRZ_1GB             [############################] 100.0%  1.0GB/1.0GB  9.27MB/s  ETA 00:00
+  2026-07-22 22:31:10
+  status=verified  bytes=1110603079  resumes=0  stalls=0  avg=8.114 MB/s  sha_match=True
+  logged -> 20260722T205845_esgf_results.json / 20260722T205845_esgf_results.csv
+
+=== IPSL_1GB ===
+  diagnostics for vesg.ipsl.upmc.fr (traceroute=on) ...
+  2026-07-22 22:31:12
+  IPSL_1GB             [############################] 100.0%  1.3GB/1.3GB  9.94MB/s  ETA 00:00
+  2026-07-22 22:33:55
+  status=verified  bytes=1384821748  resumes=0  stalls=0  avg=8.191 MB/s  sha_match=True
+  logged -> 20260722T205845_esgf_results.json / 20260722T205845_esgf_results.csv
+
+=== NCI_1GB ===
+  diagnostics for esgf.nci.org.au (traceroute=on) ...
+  2026-07-22 22:33:55
+  NCI_1GB              [############################] 100.0%  1.0GB/1.0GB  21.18MB/s  ETA 00:00
+  2026-07-22 22:34:53
+  status=verified  bytes=1110603079  resumes=0  stalls=0  avg=18.712 MB/s  sha_match=True
+  logged -> 20260722T205845_esgf_results.json / 20260722T205845_esgf_results.csv
+
+=== NORESG_1GB ===
+  diagnostics for noresg.nird.sigma2.no (traceroute=on) ...
+  2026-07-22 22:34:56
+  NORESG_1GB           [############################] 100.0%  1.2GB/1.2GB  19.42MB/s  ETA 00:00
+  2026-07-22 22:36:16
+  status=complete_unverified  bytes=1249487683  resumes=0  stalls=0  avg=15.044 MB/s  sha_match=None
+  logged -> 20260722T205845_esgf_results.json / 20260722T205845_esgf_results.csv
+
+=== LIU_1GB ===
+  diagnostics for esg-dn1.nsc.liu.se (traceroute=on) ...
+  2026-07-22 22:36:19
+  LIU_1GB              [############################] 100.0%  1.6GB/1.6GB  8.35MB/s  ETA 00:00
+  2026-07-22 22:39:53
+  status=verified  bytes=1692839176  resumes=0  stalls=0  avg=7.593 MB/s  sha_match=True
+  logged -> 20260722T205845_esgf_results.json / 20260722T205845_esgf_results.csv
+
+=== ORNL_1GB ===
+  diagnostics for esgf-node.ornl.gov (traceroute=on) ...
+  2026-07-22 22:39:54
+  ORNL_1GB             [############################] 100.0%  1.0GB/1.0GB  1.23MB/s  ETA 00:00
+  2026-07-22 23:54:04
+  status=verified  bytes=1110603079  resumes=0  stalls=0  avg=0.238 MB/s  sha_match=True
+  logged -> 20260722T205845_esgf_results.json / 20260722T205845_esgf_results.csv
+
+=== ANL-GLOBUS_1GB ===
+  diagnostics for g-52ba3.fd635.8443.data.globus.org (traceroute=on) ...
+  2026-07-22 23:54:06
+  ANL-GLOBUS_1GB       1.0GB (size unknown)  18.38MB/s
+  2026-07-22 23:55:08
+  status=verified  bytes=1110603079  resumes=0  stalls=0  avg=17.36 MB/s  sha_match=True
+  logged -> 20260722T205845_esgf_results.json / 20260722T205845_esgf_results.csv
+
+=== NERSC-GLOBUS_1GB ===
+  diagnostics for g-eba899.6b7bd8.0ec8.data.globus.org (traceroute=on) ...
+  2026-07-22 23:55:09
+  2026-07-22 23:57:19
+  status=failed  bytes=0  resumes=0  stalls=0  avg=None MB/s  sha_match=None
+  logged -> 20260722T205845_esgf_results.json / 20260722T205845_esgf_results.csv
+
+Wrote:
+  /home/duro/git/ESGFDownload/20260722T205845_esgf_results.json
+  /home/duro/git/ESGFDownload/20260722T205845_esgf_results.csv
