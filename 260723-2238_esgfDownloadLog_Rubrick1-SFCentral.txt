@@ -1,0 +1,90 @@
+(base) juliadurack@Rubrick1 ESGFDownload % python esgfDownloadLog.py 
+Collecting run/host diagnostics ...
+  system: macOS 26.5.2 | arm64 | Python 3.9.7 (CPython) | OpenSSL 1.1.1l  24 Aug 2021
+  origin: Rubrick1.local | Perth, Australia | Superloop | 45.118.64.0 [ipwho.is]
+
+=== BSC_1GB ===
+  diagnostics for esgf.bsc.es (traceroute=on) ...
+  2026-07-23 19:28:24
+  BSC_1GB              [############################] 100.0%  1.2GB/1.2GB  9.29MB/s  ETA 00:00  
+  2026-07-23 19:35:00
+  status=verified  bytes=1341138713  resumes=0  stalls=0  avg=3.239 MB/s  sha_match=True
+  logged -> 20260723T192725_esgf_results.json / 20260723T192725_esgf_results.csv
+
+=== CEDA_1GB ===
+  diagnostics for esgf.ceda.ac.uk (traceroute=on) ...
+  2026-07-23 19:35:59
+  CEDA_1GB             [############################] 100.0%  1.0GB/1.0GB  0.55MB/s  ETA 00:00  
+  2026-07-23 20:09:33
+  status=verified  bytes=1110603079  resumes=0  stalls=0  avg=0.527 MB/s  sha_match=True
+  logged -> 20260723T192725_esgf_results.json / 20260723T192725_esgf_results.csv
+
+=== DKRZ_1GB ===
+  diagnostics for esgf3.dkrz.de (traceroute=on) ...
+  2026-07-23 20:10:34
+  DKRZ_1GB             [############################] 100.0%  1.0GB/1.0GB  5.18MB/s  ETA 00:00  
+  2026-07-23 20:13:08
+  status=verified  bytes=1110603079  resumes=0  stalls=0  avg=6.92 MB/s  sha_match=True
+  logged -> 20260723T192725_esgf_results.json / 20260723T192725_esgf_results.csv
+
+=== IPSL_1GB ===
+  diagnostics for vesg.ipsl.upmc.fr (traceroute=on) ...
+  2026-07-23 20:14:08
+  IPSL_1GB             [############################] 100.0%  1.3GB/1.3GB  2.11MB/s  ETA 00:00  
+  2026-07-23 20:21:35
+  status=verified  bytes=1384821748  resumes=0  stalls=0  avg=2.96 MB/s  sha_match=True
+  logged -> 20260723T192725_esgf_results.json / 20260723T192725_esgf_results.csv
+
+=== NCI_1GB ===
+  diagnostics for esgf.nci.org.au (traceroute=on) ...
+  2026-07-23 20:22:32
+  NCI_1GB              [############################] 100.0%  1.0GB/1.0GB  6.91MB/s  ETA 00:00  
+  2026-07-23 20:24:05
+  status=verified  bytes=1110603079  resumes=0  stalls=0  avg=11.545 MB/s  sha_match=True
+  logged -> 20260723T192725_esgf_results.json / 20260723T192725_esgf_results.csv
+
+=== NORESG_1GB ===
+  diagnostics for noresg.nird.sigma2.no (traceroute=on) ...
+  2026-07-23 20:24:08
+  NORESG_1GB           [############################] 100.0%  1.2GB/1.2GB  10.47MB/s  ETA 00:00 
+  2026-07-23 20:25:57
+  status=complete_unverified  bytes=1249487683  resumes=0  stalls=0  avg=11.13 MB/s  sha_match=None
+  logged -> 20260723T192725_esgf_results.json / 20260723T192725_esgf_results.csv
+
+=== LIU_1GB ===
+  diagnostics for esg-dn1.nsc.liu.se (traceroute=on) ...
+  2026-07-23 20:26:00
+  LIU_1GB              [############################] 100.0%  1.6GB/1.6GB  7.78MB/s  ETA 00:00  
+  2026-07-23 20:32:52
+  status=verified  bytes=1692839176  resumes=0  stalls=0  avg=3.93 MB/s  sha_match=True
+  logged -> 20260723T192725_esgf_results.json / 20260723T192725_esgf_results.csv
+
+=== ORNL_1GB ===
+  diagnostics for esgf-node.ornl.gov (traceroute=on) ...
+  2026-07-23 20:32:54
+  ORNL_1GB             [########--------------------]  30.4%  321.5MB/1.0GB  0.02MB/s  ETA 9:28:
+  ORNL_1GB             [########--------------------]  30.8%  326.5MB/1.0GB  0.22MB/s  ETA 54:42
+  ORNL_1GB             [############################] 100.0%  1.0GB/1.0GB  0.02MB/s  ETA 00:00  
+  2026-07-23 22:14:56
+  status=verified  bytes=1110603079  resumes=2  stalls=1  avg=0.2 MB/s  sha_match=True
+  logged -> 20260723T192725_esgf_results.json / 20260723T192725_esgf_results.csv
+
+=== ANL-GLOBUS_1GB ===
+  diagnostics for g-52ba3.fd635.8443.data.globus.org (traceroute=on) ...
+  2026-07-23 22:14:58
+  ANL-GLOBUS_1GB       144.0MB (size unknown)  14.95MB/s                                        
+  ANL-GLOBUS_1GB       1.0GB (size unknown)  7.88MB/s                                           
+  2026-07-23 22:32:49
+  status=failed  bytes=1110603079  resumes=1  stalls=0  avg=10.023 MB/s  sha_match=None
+  logged -> 20260723T192725_esgf_results.json / 20260723T192725_esgf_results.csv
+
+=== NERSC-GLOBUS_1GB ===
+  diagnostics for g-eba899.6b7bd8.0ec8.data.globus.org (traceroute=on) ...
+  2026-07-23 22:33:46
+  2026-07-23 22:38:49
+  status=failed  bytes=0  resumes=0  stalls=0  avg=None MB/s  sha_match=None
+  logged -> 20260723T192725_esgf_results.json / 20260723T192725_esgf_results.csv
+
+Wrote:
+  /Users/juliadurack/sync/git/ESGFDownload/20260723T192725_esgf_results.json
+  /Users/juliadurack/sync/git/ESGFDownload/20260723T192725_esgf_results.csv
