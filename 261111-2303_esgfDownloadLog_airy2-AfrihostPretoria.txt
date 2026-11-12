@@ -1,0 +1,141 @@
+(base) MacBookAir:ESGFDownload paully$ date
+Wed Nov 11 18:26:00 SAST 2026
+(base) MacBookAir:ESGFDownload paully$ python esgfDownloadLog.py 
+Collecting run/host diagnostics ...
+  system: macOS 15.8.2 | arm64 | Python 3.12.12 (CPython) | OpenSSL 3.6.5 29 Sep 2026
+  origin: airy2.local | Johannesburg, South Africa | AFRIHOST SP PTY LTD | 102.182.95.41 [ipwho.is]
+
+=== BSC_1GB ===
+  diagnostics for esgf.bsc.es (traceroute=on) ...
+  2026-11-11 18:26:35
+  BSC_1GB              [#########################---]  92.1%  1.2GB/1.2GB  0.02MB/s  ETA 1:28:08
+  BSC_1GB              [##########################--]  96.2%  1.2GB/1.2GB  0.01MB/s  ETA 1:56:09
+  BSC_1GB              [############################] 100.0%  1.2GB/1.2GB  6.65MB/s  ETA 00:00  
+  2026-11-11 19:38:40
+  status=verified  bytes=1341138713  resumes=2  stalls=2  avg=1.265 MB/s  sha_match=True
+  logged -> 20261111T182601_esgf_results.json / 20261111T182601_esgf_results.csv
+
+=== CEDA_1GB ===
+  diagnostics for esgf.ceda.ac.uk (traceroute=on) ...
+  2026-11-11 19:45:12
+  CEDA_1GB             [####------------------------]  14.6%  155.0MB/1.0GB  1.74MB/s  ETA 08:41
+  CEDA_1GB             [##################----------]  64.4%  681.7MB/1.0GB  1.93MB/s  ETA 03:15
+  CEDA_1GB             [##################----------]  65.1%  689.4MB/1.0GB  3.69MB/s  ETA 01:40
+  CEDA_1GB             [###################---------]  70.9%  751.4MB/1.0GB  1.62MB/s  ETA 03:09
+  CEDA_1GB             [######################------]  79.8%  845.4MB/1.0GB  0.41MB/s  ETA 08:36
+  CEDA_1GB             [#########################---]  89.9%  952.4MB/1.0GB  2.34MB/s  ETA 00:45
+  CEDA_1GB             [############################] 100.0%  1.0GB/1.0GB  7.45MB/s  ETA 00:00  
+  2026-11-11 20:38:54
+  status=verified  bytes=1110603079  resumes=6  stalls=4  avg=1.185 MB/s  sha_match=True
+  logged -> 20261111T182601_esgf_results.json / 20261111T182601_esgf_results.csv
+
+=== DKRZ_1GB ===
+  diagnostics for esgf3.dkrz.de (traceroute=on) ...
+  2026-11-11 20:39:34
+  DKRZ_1GB             [############################] 100.0%  1.0GB/1.0GB  6.68MB/s  ETA 00:00  
+  2026-11-11 20:42:55
+  status=verified  bytes=1110603079  resumes=0  stalls=0  avg=5.398 MB/s  sha_match=True
+  logged -> 20261111T182601_esgf_results.json / 20261111T182601_esgf_results.csv
+
+=== IPSL_1GB ===
+  diagnostics for vesg.ipsl.upmc.fr (traceroute=on) ...
+  2026-11-11 20:43:27
+  IPSL_1GB             [############################] 100.0%  1.3GB/1.3GB  6.68MB/s  ETA 00:00  
+  2026-11-11 20:46:49
+  status=verified  bytes=1384821748  resumes=0  stalls=0  avg=6.585 MB/s  sha_match=True
+  logged -> 20261111T182601_esgf_results.json / 20261111T182601_esgf_results.csv
+
+=== NCI_1GB ===
+  diagnostics for esgf.nci.org.au (traceroute=on) ...
+  2026-11-11 20:47:22
+  NCI_1GB              [----------------------------]   2.0%  21.6MB/1.0GB  0.58MB/s  ETA 29:39 
+  NCI_1GB              [#---------------------------]   4.2%  44.7MB/1.0GB  0.60MB/s  ETA 28:18 
+  NCI_1GB              [##--------------------------]   8.5%  90.2MB/1.0GB  5.26MB/s  ETA 03:04 
+  NCI_1GB              [##--------------------------]   9.4%  99.9MB/1.0GB  3.98MB/s  ETA 04:01 
+  NCI_1GB              [###-------------------------]  11.1%  118.0MB/1.0GB  6.60MB/s  ETA 02:22
+  NCI_1GB              [###-------------------------]  12.5%  132.1MB/1.0GB  4.90MB/s  ETA 03:09
+  NCI_1GB              [###-------------------------]  14.1%  149.5MB/1.0GB  1.36MB/s  ETA 11:10
+  NCI_1GB              [####------------------------]  15.0%  159.1MB/1.0GB  3.35MB/s  ETA 04:28
+  NCI_1GB              [####------------------------]  16.5%  174.5MB/1.0GB  0.47MB/s  ETA 31:31
+  NCI_1GB              [####------------------------]  16.5%  174.5MB/1.0GB    --    ETA --:--  
+  NCI_1GB              [#####-----------------------]  18.6%  197.3MB/1.0GB  1.57MB/s  ETA 09:08
+  NCI_1GB              [#####-----------------------]  19.8%  210.2MB/1.0GB  0.34MB/s  ETA 41:55
+  NCI_1GB              [#####-----------------------]  20.8%  219.8MB/1.0GB  1.13MB/s  ETA 12:20
+  NCI_1GB              [######----------------------]  21.7%  229.5MB/1.0GB  0.61MB/s  ETA 22:38
+  NCI_1GB              [#######---------------------]  25.2%  266.7MB/1.0GB  0.21MB/s  ETA 1:03:
+  NCI_1GB              [#######---------------------]  26.1%  276.3MB/1.0GB  0.63MB/s  ETA 20:41
+  NCI_1GB              [#######---------------------]  28.2%  298.8MB/1.0GB  1.41MB/s  ETA 08:58
+  NCI_1GB              [########--------------------]  29.1%  308.5MB/1.0GB  1.08MB/s  ETA 11:36
+  NCI_1GB              [########--------------------]  31.5%  334.1MB/1.0GB  0.92MB/s  ETA 13:04
+  NCI_1GB              [#########-------------------]  32.5%  343.8MB/1.0GB  1.99MB/s  ETA 05:59
+  NCI_1GB              [#########-------------------]  34.8%  368.1MB/1.0GB  4.14MB/s  ETA 02:46
+  NCI_1GB              [#########-------------------]  35.5%  376.0MB/1.0GB  2.11MB/s  ETA 05:23
+  NCI_1GB              [##########------------------]  36.4%  385.7MB/1.0GB  0.49MB/s  ETA 22:54
+  NCI_1GB              [############----------------]  44.4%  470.2MB/1.0GB  4.02MB/s  ETA 02:26
+  NCI_1GB              [#############---------------]  49.8%  527.5MB/1.0GB  3.27MB/s  ETA 02:42
+  NCI_1GB              [##############--------------]  50.3%  532.7MB/1.0GB  0.12MB/s  ETA 1:15:
+  NCI_1GB              [##############--------------]  50.9%  539.5MB/1.0GB  4.93MB/s  ETA 01:45
+  NCI_1GB              [##############--------------]  51.9%  549.4MB/1.0GB  0.79MB/s  ETA 10:48
+  NCI_1GB              [##############--------------]  52.8%  559.1MB/1.0GB  3.14MB/s  ETA 02:39
+  NCI_1GB              [##############--------------]  53.5%  567.1MB/1.0GB  0.49MB/s  ETA 16:48
+  NCI_1GB              [###############-------------]  54.5%  576.8MB/1.0GB  0.36MB/s  ETA 22:25
+  NCI_1GB              [###############-------------]  57.0%  603.7MB/1.0GB  0.93MB/s  ETA 08:09
+  NCI_1GB              [################------------]  58.6%  620.4MB/1.0GB  0.50MB/s  ETA 14:32
+  NCI_1GB              [################------------]  59.2%  627.1MB/1.0GB  1.04MB/s  ETA 06:56
+  NCI_1GB              [################------------]  59.8%  633.1MB/1.0GB  0.29MB/s  ETA 24:14
+  NCI_1GB              [################------------]  60.7%  642.9MB/1.0GB  10.78MB/s  ETA 00:3
+  NCI_1GB              [####################--------]  71.5%  757.8MB/1.0GB  8.01MB/s  ETA 00:37
+  NCI_1GB              [####################--------]  73.2%  775.3MB/1.0GB  8.16MB/s  ETA 00:34
+  NCI_1GB              [####################--------]  74.8%  792.2MB/1.0GB  3.15MB/s  ETA 01:24
+  NCI_1GB              [#####################-------]  75.7%  802.1MB/1.0GB  1.18MB/s  ETA 03:37
+  NCI_1GB              [#####################-------]  77.0%  815.4MB/1.0GB  4.65MB/s  ETA 00:52
+  NCI_1GB              [#######################-----]  85.1%  901.4MB/1.0GB  0.67MB/s  ETA 03:54
+  NCI_1GB              [########################----]  86.0%  911.1MB/1.0GB  0.50MB/s  ETA 04:54
+  NCI_1GB              [###########################-]  97.0%  1.0GB/1.0GB  1.70MB/s  ETA 00:18  
+  2026-11-11 22:11:24
+  status=failed  bytes=1076946891  resumes=44  stalls=4  avg=0.656 MB/s  sha_match=None
+  logged -> 20261111T182601_esgf_results.json / 20261111T182601_esgf_results.csv
+
+=== NORESG_1GB ===
+  diagnostics for noresg.nird.sigma2.no (traceroute=on) ...
+  2026-11-11 22:11:34
+  NORESG_1GB           [############################] 100.0%  1.2GB/1.2GB  4.34MB/s  ETA 00:00  
+  2026-11-11 22:15:20
+  status=complete_unverified  bytes=1249487683  resumes=0  stalls=0  avg=5.284 MB/s  sha_match=None
+  logged -> 20261111T182601_esgf_results.json / 20261111T182601_esgf_results.csv
+
+=== LIU_1GB ===
+  diagnostics for esg-dn1.nsc.liu.se (traceroute=on) ...
+  2026-11-11 22:15:24
+  LIU_1GB              [############################] 100.0%  1.6GB/1.6GB  6.33MB/s  ETA 00:00  
+  2026-11-11 22:20:45
+  status=verified  bytes=1692839176  resumes=0  stalls=0  avg=5.051 MB/s  sha_match=True
+  logged -> 20261111T182601_esgf_results.json / 20261111T182601_esgf_results.csv
+
+=== ORNL_1GB ===
+  diagnostics for esgf-node.ornl.gov (traceroute=on) ...
+  2026-11-11 22:20:54
+  ORNL_1GB             [############################] 100.0%  1.0GB/1.0GB  0.52MB/s  ETA 00:00  
+  2026-11-11 22:56:01
+  status=verified  bytes=1110603079  resumes=0  stalls=0  avg=0.503 MB/s  sha_match=True
+  logged -> 20261111T182601_esgf_results.json / 20261111T182601_esgf_results.csv
+
+=== ANL-GLOBUS_1GB ===
+  diagnostics for g-52ba3.fd635.8443.data.globus.org (traceroute=on) ...
+  2026-11-11 22:56:04
+  ANL-GLOBUS_1GB       1.0GB (size unknown)  6.62MB/s                                           
+  2026-11-11 22:59:42
+  status=verified  bytes=1110603079  resumes=0  stalls=0  avg=4.903 MB/s  sha_match=True
+  logged -> 20261111T182601_esgf_results.json / 20261111T182601_esgf_results.csv
+
+=== NERSC-GLOBUS_1GB ===
+  diagnostics for g-eba899.6b7bd8.0ec8.data.globus.org (traceroute=on) ...
+  2026-11-11 22:59:48
+  NERSC-GLOBUS_1GB     1.0GB (size unknown)  2.73MB/s                                           
+  2026-11-11 23:03:26
+  status=verified  bytes=1110603079  resumes=0  stalls=0  avg=4.922 MB/s  sha_match=True
+  logged -> 20261111T182601_esgf_results.json / 20261111T182601_esgf_results.csv
+
+Wrote:
+  /Users/paully/sync/git/ESGFDownload/20261111T182601_esgf_results.json
+  /Users/paully/sync/git/ESGFDownload/20261111T182601_esgf_results.csv

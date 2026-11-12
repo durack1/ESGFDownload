@@ -1,0 +1,4257 @@
+{
+  "run_started": "2026-11-12T06:40:16.533616+00:00",
+  "platform": "macOS-15.8.3-arm64-arm-64bit",
+  "python": "3.12.12",
+  "config": {
+    "chunk_size": 1048576,
+    "max_attempts": 100,
+    "connect_timeout": 30.0,
+    "read_timeout": 60.0,
+    "dns_timeout": 15.0,
+    "per_file_deadline_s": 1800.0,
+    "max_consecutive_fails": 6,
+    "per_attempt_hard_cap_s": 180.0,
+    "isp_lookup": false,
+    "traceroute": true,
+    "geolocate_origin": true
+  },
+  "run_diagnostics": {
+    "origin": {
+      "hostname": "airy2.local",
+      "fqdn": "1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa",
+      "username": "paully",
+      "local_ips": [
+        "192.168.10.220",
+        "fe80::1",
+        "fe80::4d3:eb00:605a:8b60"
+      ],
+      "timezone": "SAST (UTC+02:00)",
+      "geo": {
+        "public_ip": "102.182.95.41",
+        "country": "South Africa",
+        "country_code": "ZA",
+        "region": "Gauteng",
+        "city": "Johannesburg",
+        "latitude": -26.2022719,
+        "longitude": 28.0436337,
+        "isp": "AFRIHOST SP PTY LTD",
+        "org": "AFRIHOST SP PTY LTD",
+        "asn": "AS37611",
+        "_provider": "ipwho.is"
+      }
+    },
+    "hostname": "airy2.local",
+    "platform_details": {
+      "os_description": "macOS 15.8.3",
+      "system": "Darwin",
+      "release": "24.6.0",
+      "version": "Darwin Kernel Version 24.6.0: Sun Oct 11 23:41:01 PDT 2026; root:xnu-11417.140.69.713.47~2/RELEASE_ARM64_T8103",
+      "machine": "arm64",
+      "processor": "arm",
+      "architecture": "64bit",
+      "platform_raw": "macOS-15.8.3-arm64-arm-64bit",
+      "python_version": "3.12.12",
+      "python_implementation": "CPython",
+      "python_compiler": "Clang 19.1.7 ",
+      "python_build": "main Oct 22 2025 23:34:53",
+      "libraries": {
+        "openssl": "OpenSSL 3.6.5 29 Sep 2026",
+        "zlib": "1.3.1",
+        "ssl_module": "3.6.0"
+      }
+    },
+    "platform": "macOS-15.8.3-arm64-arm-64bit",
+    "system": "Darwin",
+    "release": "24.6.0",
+    "machine": "arm64",
+    "processor": "arm",
+    "python_version": "3.12.12",
+    "python_build": "main Oct 22 2025 23:34:53",
+    "local_ip": "192.168.10.220",
+    "public_ip": null,
+    "isp_lookup_enabled": false,
+    "local_isp": null
+  },
+  "host_diagnostics": {
+    "esgf.bsc.es": {
+      "host": "esgf.bsc.es",
+      "resolved_ips": [
+        "84.88.53.197"
+      ],
+      "reverse_dns": "esgf.bsc.es",
+      "dest_isp": null,
+      "dest_geo": {
+        "public_ip": "84.88.53.197",
+        "country": "Spain",
+        "country_code": "ES",
+        "region": "Catalunya",
+        "city": "Barcelona",
+        "latitude": 41.3887862,
+        "longitude": 2.1589886,
+        "isp": "Consorci de Serveis Universitaris de Catalunya",
+        "org": "Consorci de Serveis Universitaris de Catalunya",
+        "asn": "AS13041",
+        "_provider": "ipwho.is"
+      },
+      "traceroute": {
+        "tool": "traceroute",
+        "hop_count": 30,
+        "status": "ok",
+        "raw": "1  192.168.10.1  6.389 ms\n 2  102.182.95.1  8.249 ms\n 3  100.127.18.111  8.552 ms\n 4  100.127.18.194  8.554 ms\n 5  100.127.7.33  9.985 ms\n 6  41.175.242.116  9.441 ms\n 7  41.175.222.255  9.190 ms\n 8  41.175.222.210  27.172 ms\n 9  5.11.8.87  170.133 ms\n10  5.11.10.212  162.710 ms\n11  5.11.10.212  168.170 ms\n12  83.97.90.19  274.115 ms\n13  83.97.90.19  307.890 ms\n14  130.206.245.50  193.501 ms\n15  130.206.245.5  197.194 ms\n16  *\n17  *\n18  *\n19  *\n20  *\n21  *\n22  *\n23  *\n24  *\n25  *\n26  *\n27  *\n28  *\n29  *\n30  *\ntraceroute to esgf.bsc.es (84.88.53.197), 30 hops max, 40 byte packets"
+      }
+    },
+    "esgf.ceda.ac.uk": {
+      "host": "esgf.ceda.ac.uk",
+      "resolved_ips": [
+        "130.246.1.20"
+      ],
+      "reverse_dns": "prod-k8s-proxy-v4.jc.rl.ac.uk",
+      "dest_isp": null,
+      "dest_geo": {
+        "public_ip": "130.246.1.20",
+        "country": "United Kingdom",
+        "country_code": "GB",
+        "region": "England",
+        "city": "Wantage",
+        "latitude": 51.5884626,
+        "longitude": -1.4256455,
+        "isp": "Jisc Services Limited",
+        "org": "Science Technology Facilities Council",
+        "asn": "AS786",
+        "_provider": "ipwho.is"
+      },
+      "traceroute": {
+        "tool": "traceroute",
+        "hop_count": 18,
+        "status": "ok",
+        "raw": "1  192.168.10.1  5.802 ms\n 2  102.182.95.1  8.718 ms\n 3  100.127.18.111  7.847 ms\n 4  100.127.18.194  9.461 ms\n 5  100.127.7.33  7.694 ms\n 6  41.175.242.116  10.109 ms\n 7  41.175.222.138  11.922 ms\n 8  41.175.222.91  27.499 ms\n 9  5.11.12.211  182.211 ms\n10  5.11.10.212  163.970 ms\n11  146.97.35.169  295.046 ms\n12  146.97.33.62  180.017 ms\n13  146.97.33.5  196.017 ms\n14  146.97.41.34  170.957 ms\n15  146.97.33.5  195.965 ms\n16  146.97.41.34  174.272 ms\n17  *\n18  130.246.1.20  179.008 ms !X\ntraceroute to prod-k8s-proxy.jc.rl.ac.uk (130.246.1.20), 30 hops max, 40 byte packets"
+      }
+    },
+    "esgf3.dkrz.de": {
+      "host": "esgf3.dkrz.de",
+      "resolved_ips": [
+        "136.172.32.139"
+      ],
+      "reverse_dns": "esgf-fs1.cloud.dkrz.de",
+      "dest_isp": null,
+      "dest_geo": {
+        "public_ip": "136.172.32.139",
+        "country": "Germany",
+        "country_code": "DE",
+        "region": "Free and Hanseatic City of Hamburg",
+        "city": "Hamburg",
+        "latitude": 53.550725,
+        "longitude": 9.9930209,
+        "isp": "Verein zur Foerderung eines Deutschen Forschungsnetzes e.V.",
+        "org": "Deutsches Klimarechenzentrum GmbH",
+        "asn": "AS680",
+        "_provider": "ipwho.is"
+      },
+      "traceroute": {
+        "tool": "traceroute",
+        "hop_count": 30,
+        "status": "ok",
+        "raw": "1  192.168.10.1  6.378 ms\n 2  102.182.95.1  8.452 ms\n 3  100.127.18.111  8.197 ms\n 4  100.127.18.194  7.884 ms\n 5  100.127.7.33  9.683 ms\n 6  41.175.242.116  9.464 ms\n 7  41.175.222.250  9.096 ms\n 8  5.11.12.113  196.765 ms\n 9  *\n10  188.1.145.221  197.443 ms\n11  188.1.144.109  200.831 ms\n12  188.1.140.106  210.119 ms\n13  *\n14  *\n15  *\n16  *\n17  *\n18  *\n19  *\n20  *\n21  *\n22  *\n23  *\n24  *\n25  *\n26  *\n27  *\n28  *\n29  *\n30  *\ntraceroute to esgf-fs1.cloud.dkrz.de (136.172.32.139), 30 hops max, 40 byte packets"
+      }
+    },
+    "vesg.ipsl.upmc.fr": {
+      "host": "vesg.ipsl.upmc.fr",
+      "resolved_ips": [
+        "134.157.240.12"
+      ],
+      "reverse_dns": "vesg.ipsl.upmc.fr",
+      "dest_isp": null,
+      "dest_geo": {
+        "public_ip": "134.157.240.12",
+        "country": "France",
+        "country_code": "FR",
+        "region": "Ile-de-France",
+        "city": "Paris",
+        "latitude": 48.8534127,
+        "longitude": 2.3488107,
+        "isp": "Renater",
+        "org": "Universite Pierre et Marie Curie",
+        "asn": "AS1307",
+        "_provider": "ipwho.is"
+      },
+      "traceroute": {
+        "tool": "traceroute",
+        "hop_count": 30,
+        "status": "ok",
+        "raw": "1  192.168.10.1  6.442 ms\n 2  102.182.95.1  7.951 ms\n 3  100.127.18.111  8.121 ms\n 4  100.127.18.194  11.929 ms\n 5  100.127.7.33  7.550 ms\n 6  41.175.242.116  9.127 ms\n 7  77.246.58.98  10.094 ms\n 8  41.175.223.145  178.639 ms\n 9  41.175.222.189  32.071 ms\n10  41.175.222.230  174.824 ms\n11  83.97.89.9  188.555 ms\n12  83.97.89.10  174.081 ms\n13  83.97.89.10  167.102 ms\n14  193.55.206.173  178.468 ms\n15  195.221.127.182  181.797 ms\n16  134.157.167.20  177.096 ms\n17  *\n18  *\n19  *\n20  *\n21  *\n22  *\n23  *\n24  *\n25  *\n26  *\n27  *\n28  *\n29  *\n30  *\ntraceroute to vesg.ipsl.upmc.fr (134.157.240.12), 30 hops max, 40 byte packets"
+      }
+    },
+    "esgf.nci.org.au": {
+      "host": "esgf.nci.org.au",
+      "resolved_ips": [
+        "130.56.243.38"
+      ],
+      "reverse_dns": "esgf.nci.org.au",
+      "dest_isp": null,
+      "dest_geo": {
+        "public_ip": "130.56.243.38",
+        "country": "Australia",
+        "country_code": "AU",
+        "region": "Australian Capital Territory",
+        "city": "Canberra",
+        "latitude": -35.2834634,
+        "longitude": 149.1280732,
+        "isp": "Australian Academic and Research Network",
+        "org": "Australian National University",
+        "asn": "AS7575",
+        "_provider": "ipwho.is"
+      },
+      "traceroute": {
+        "tool": "traceroute",
+        "hop_count": 30,
+        "status": "ok",
+        "raw": "1  192.168.10.1  45.760 ms\n 2  102.182.95.1  49.893 ms\n 3  100.127.18.111  135.525 ms\n 4  100.127.18.194  48.716 ms\n 5  100.127.7.33  50.090 ms\n 6  41.175.242.116  9.441 ms\n 7  41.175.222.138  10.174 ms\n 8  41.175.247.124  25.477 ms\n 9  5.11.8.87  187.134 ms\n10  5.11.10.212  165.697 ms\n11  5.11.12.130  163.239 ms\n12  129.250.8.182  176.617 ms\n13  129.250.8.182  168.508 ms\n14  129.250.4.141  178.255 ms\n15  83.231.146.189  461.542 ms\n16  138.44.161.201  511.890 ms\n17  138.44.161.201  439.135 ms\n18  138.44.161.201  433.047 ms\n19  *\n20  *\n21  *\n22  *\n23  *\n24  *\n25  *\n26  *\n27  *\n28  *\n29  *\n30  *\ntraceroute to esgf.nci.org.au (130.56.243.38), 30 hops max, 40 byte packets"
+      }
+    },
+    "noresg.nird.sigma2.no": {
+      "host": "noresg.nird.sigma2.no",
+      "resolved_ips": [
+        "158.36.102.245"
+      ],
+      "reverse_dns": null,
+      "dest_isp": null,
+      "dest_geo": {
+        "public_ip": "158.36.102.245",
+        "country": "Norway",
+        "country_code": "NO",
+        "region": "Oslo",
+        "city": "Oslo",
+        "latitude": 59.9127256,
+        "longitude": 10.7460948,
+        "isp": "Sikt - Kunnskapssektorens Tjenesteleverandor",
+        "org": "Sikt - Kunnskapssektorens Tjenesteleverandor",
+        "asn": "AS224",
+        "_provider": "ipwho.is"
+      },
+      "traceroute": {
+        "tool": "traceroute",
+        "hop_count": 22,
+        "status": "ok",
+        "raw": "1  192.168.10.1  54.340 ms\n 2  102.182.95.1  48.392 ms\n 3  100.127.18.111  8.440 ms\n 4  100.127.18.194  51.556 ms\n 5  100.127.7.33  48.063 ms\n 6  41.175.242.116  12.567 ms\n 7  41.175.223.191  10.500 ms\n 8  5.11.12.113  182.951 ms\n 9  80.249.209.203  186.187 ms\n10  109.105.101.22  193.247 ms\n11  *\n12  109.105.98.121  214.249 ms\n13  128.39.254.196  197.870 ms\n14  128.39.254.201  267.130 ms\n15  128.39.254.203  204.887 ms\n16  128.39.254.167  218.547 ms\n17  128.39.230.78  257.892 ms\n18  128.39.230.76  237.734 ms\n19  128.39.254.36  224.180 ms\n20  128.39.230.72  229.081 ms\n21  128.39.70.55  212.385 ms\n22  158.36.102.245  212.775 ms\ntraceroute to ingress.nird-lmd.sigma2.no (158.36.102.245), 30 hops max, 40 byte packets"
+      }
+    },
+    "esg-dn1.nsc.liu.se": {
+      "host": "esg-dn1.nsc.liu.se",
+      "resolved_ips": [
+        "130.236.100.123"
+      ],
+      "reverse_dns": "esg-dn1.nsc.liu.se",
+      "dest_isp": null,
+      "dest_geo": {
+        "public_ip": "130.236.100.123",
+        "country": "Sweden",
+        "country_code": "SE",
+        "region": "Ostergotland County",
+        "city": "Linkoping",
+        "latitude": 58.4108613,
+        "longitude": 15.6215709,
+        "isp": "Vetenskapsradet / SUNET",
+        "org": "Linkopings Universitet",
+        "asn": "AS1653",
+        "_provider": "ipwho.is"
+      },
+      "traceroute": {
+        "tool": "traceroute",
+        "hop_count": 19,
+        "status": "ok",
+        "raw": "1  192.168.10.1  49.598 ms\n 2  102.182.95.1  48.566 ms\n 3  100.127.18.111  8.409 ms\n 4  100.127.18.194  51.417 ms\n 5  100.127.7.33  48.966 ms\n 6  41.175.242.116  9.094 ms\n 7  41.175.222.138  10.347 ms\n 8  5.11.12.113  183.314 ms\n 9  80.249.209.203  185.892 ms\n10  109.105.101.22  192.422 ms\n11  109.105.98.24  196.857 ms\n12  86.104.202.109  267.341 ms\n13  86.104.202.54  202.334 ms\n14  86.104.202.57  207.237 ms\n15  86.104.202.95  306.463 ms\n16  130.242.64.85  307.934 ms\n17  130.236.228.8  307.168 ms\n18  130.236.228.23  307.052 ms\n19  130.236.100.123  307.207 ms\ntraceroute to esg-dn1.nsc.liu.se (130.236.100.123), 30 hops max, 40 byte packets"
+      }
+    },
+    "esgf-node.ornl.gov": {
+      "host": "esgf-node.ornl.gov",
+      "resolved_ips": [
+        "128.219.133.17"
+      ],
+      "reverse_dns": "onyx-external-vip.ccs.ornl.gov",
+      "dest_isp": null,
+      "dest_geo": {
+        "public_ip": "128.219.133.17",
+        "country": "United States",
+        "country_code": "US",
+        "region": "Tennessee",
+        "city": "Oak Ridge",
+        "latitude": 36.0103571,
+        "longitude": -84.2696421,
+        "isp": "Oak Ridge National Laboratory",
+        "org": "Oak Ridge National Laboratory",
+        "asn": "AS50",
+        "_provider": "ipwho.is"
+      },
+      "traceroute": {
+        "tool": "traceroute",
+        "hop_count": 21,
+        "status": "ok",
+        "raw": "1  192.168.10.1  47.080 ms\n 2  102.182.95.1  49.873 ms\n 3  100.127.18.111  8.305 ms\n 4  100.127.18.194  50.273 ms\n 5  100.127.7.33  50.261 ms\n 6  41.175.242.116  9.355 ms\n 7  41.175.223.191  10.326 ms\n 8  41.175.222.109  180.334 ms\n 9  5.11.8.87  166.269 ms\n10  5.11.8.87  167.874 ms\n11  80.231.20.61  179.145 ms\n12  *\n13  66.198.11.76  258.229 ms\n14  198.124.192.61  307.186 ms\n15  198.124.192.61  307.979 ms\n16  134.55.56.143  248.885 ms\n17  198.124.192.117  255.146 ms\n18  198.124.192.118  314.295 ms\n19  128.219.138.101  307.183 ms\n20  128.219.138.73  253.444 ms\n21  128.219.140.108  359.800 ms !X\ntraceroute to onyx-external-vip.ccs.ornl.gov (128.219.133.17), 30 hops max, 40 byte packets"
+      }
+    },
+    "g-52ba3.fd635.8443.data.globus.org": {
+      "host": "g-52ba3.fd635.8443.data.globus.org",
+      "resolved_ips": [
+        "140.221.68.105",
+        "140.221.68.106",
+        "140.221.68.107",
+        "140.221.68.108",
+        "140.221.68.109"
+      ],
+      "reverse_dns": "dtn-05.pub.alcf.anl.gov",
+      "dest_isp": null,
+      "dest_geo": {
+        "public_ip": "140.221.68.105",
+        "country": "United States",
+        "country_code": "US",
+        "region": "District of Columbia",
+        "city": "Washington",
+        "latitude": 38.8951121,
+        "longitude": -77.0363706,
+        "isp": "Argonne National Laboratory",
+        "org": "Argonne National Laboratory",
+        "asn": "AS683",
+        "_provider": "ipwho.is"
+      },
+      "traceroute": {
+        "tool": "traceroute",
+        "hop_count": 16,
+        "status": "ok",
+        "raw": "1  192.168.10.1  46.486 ms\n 2  102.182.95.1  49.921 ms\n 3  100.127.18.111  8.669 ms\n 4  100.127.18.194  48.038 ms\n 5  100.127.7.33  50.054 ms\n 6  41.175.242.116  8.852 ms\n 7  41.175.223.191  10.132 ms\n 8  5.11.12.113  184.023 ms\n 9  80.249.213.7  189.902 ms\n10  134.55.56.170  334.707 ms\n11  134.55.56.80  306.799 ms\n12  198.124.218.101  307.121 ms\n13  198.124.218.102  279.623 ms\n14  130.202.222.106  335.051 ms\n15  140.221.47.250  306.911 ms\n16  140.221.68.105  307.285 ms !X\ntraceroute: Warning: g-52ba3.fd635.8443.data.globus.org has multiple addresses; using 140.221.68.105\ntraceroute to g-52ba3.fd635.8443.data.globus.org (140.221.68.105), 30 hops max, 40 byte packets"
+      }
+    },
+    "g-eba899.6b7bd8.0ec8.data.globus.org": {
+      "host": "g-eba899.6b7bd8.0ec8.data.globus.org",
+      "resolved_ips": [
+        "128.55.200.27"
+      ],
+      "reverse_dns": "dtn-ro-new.nersc.gov",
+      "dest_isp": null,
+      "dest_geo": {
+        "public_ip": "128.55.200.27",
+        "country": "United States",
+        "country_code": "US",
+        "region": "California",
+        "city": "San Francisco",
+        "latitude": 37.7749262,
+        "longitude": -122.419422,
+        "isp": "National Energy Research Scientific Computing Center",
+        "org": "ESnet",
+        "asn": "AS2936",
+        "_provider": "ipwho.is"
+      },
+      "traceroute": {
+        "tool": "traceroute",
+        "hop_count": 23,
+        "status": "ok",
+        "raw": "1  192.168.10.1  46.974 ms\n 2  102.182.95.1  538.878 ms\n 3  100.127.18.111  69.323 ms\n 4  100.127.18.194  178.877 ms\n 5  100.127.7.33  50.000 ms\n 6  41.175.242.116  11.572 ms\n 7  41.175.222.250  10.860 ms\n 8  5.11.12.113  186.696 ms\n 9  80.249.213.7  190.054 ms\n10  134.55.37.22  430.616 ms\n11  134.55.56.208  409.430 ms\n12  134.55.56.91  409.412 ms\n13  134.55.56.120  409.619 ms\n14  134.55.57.197  409.452 ms\n15  134.55.57.191  409.828 ms\n16  134.55.57.191  409.882 ms\n17  134.55.56.230  321.939 ms\n18  134.55.56.1  395.678 ms\n19  134.55.56.1  407.384 ms\n20  198.129.78.113  410.328 ms\n21  198.129.78.113  409.274 ms\n22  198.129.78.114  409.884 ms\n23  128.55.200.27  409.275 ms\ntraceroute to g-eba899.6b7bd8.0ec8.data.globus.org (128.55.200.27), 30 hops max, 40 byte packets"
+      }
+    }
+  },
+  "results": [
+    {
+      "label": "BSC_1GB",
+      "url": "https://esgf.bsc.es/thredds/fileServer/esg_dataroot/a1u8-CMIP-r20/CMIP6/CMIP/EC-Earth-Consortium/EC-Earth3/historical/r20i1p1f1/day/hur/gr/v20210303/hur_day_EC-Earth3_historical_r20i1p1f1_gr_18500101-18501231.nc",
+      "started": "2026-11-12T06:40:48.741619+00:00",
+      "status": "verified",
+      "expected_sha256": "616e02c9704f9b39f6585d3e1c1241abf18c21b94d7f8262ba2c37662cf8100d",
+      "computed_sha256": "616e02c9704f9b39f6585d3e1c1241abf18c21b94d7f8262ba2c37662cf8100d",
+      "sha256_match": true,
+      "total_bytes": 1341138713,
+      "downloaded_bytes": 1341138713,
+      "accept_ranges": true,
+      "resumes": 0,
+      "attempts": 1,
+      "wall_time_s": 400.71,
+      "active_transfer_s": 399.42402475000017,
+      "avg_rate_MBps": 3.202,
+      "first_connect_timings": {
+        "dns_s": 0.041,
+        "tcp_connect_s": 0.277,
+        "tls_handshake_s": 0.4301,
+        "tls_version": "TLSv1.2",
+        "peer_ip": "84.88.53.197",
+        "ttfb_s": 0.4235
+      },
+      "throughput_samples": [
+        [
+          6.29,
+          0.6
+        ],
+        [
+          11.69,
+          1.666
+        ],
+        [
+          16.87,
+          1.545
+        ],
+        [
+          22.55,
+          1.583
+        ],
+        [
+          27.86,
+          1.695
+        ],
+        [
+          33.46,
+          1.965
+        ],
+        [
+          38.66,
+          3.077
+        ],
+        [
+          43.75,
+          4.122
+        ],
+        [
+          48.87,
+          3.321
+        ],
+        [
+          53.95,
+          2.165
+        ],
+        [
+          59.18,
+          2.295
+        ],
+        [
+          64.36,
+          2.316
+        ],
+        [
+          70.5,
+          0.326
+        ],
+        [
+          75.79,
+          1.322
+        ],
+        [
+          81.04,
+          2.667
+        ],
+        [
+          86.23,
+          4.434
+        ],
+        [
+          91.38,
+          6.407
+        ],
+        [
+          96.53,
+          5.824
+        ],
+        [
+          101.69,
+          4.842
+        ],
+        [
+          106.97,
+          3.411
+        ],
+        [
+          112.39,
+          2.211
+        ],
+        [
+          117.63,
+          1.91
+        ],
+        [
+          123.01,
+          2.229
+        ],
+        [
+          128.27,
+          2.472
+        ],
+        [
+          133.49,
+          2.109
+        ],
+        [
+          138.69,
+          2.498
+        ],
+        [
+          143.97,
+          2.654
+        ],
+        [
+          149.14,
+          3.094
+        ],
+        [
+          154.23,
+          5.306
+        ],
+        [
+          159.32,
+          4.714
+        ],
+        [
+          164.44,
+          4.293
+        ],
+        [
+          169.51,
+          3.753
+        ],
+        [
+          174.73,
+          3.252
+        ],
+        [
+          180.02,
+          3.217
+        ],
+        [
+          185.25,
+          3.056
+        ],
+        [
+          190.45,
+          2.695
+        ],
+        [
+          195.54,
+          2.75
+        ],
+        [
+          200.81,
+          3.227
+        ],
+        [
+          205.84,
+          4.966
+        ],
+        [
+          214.52,
+          2.19
+        ],
+        [
+          219.89,
+          0.931
+        ],
+        [
+          225.08,
+          3.273
+        ],
+        [
+          230.24,
+          4.465
+        ],
+        [
+          235.28,
+          4.167
+        ],
+        [
+          240.42,
+          4.083
+        ],
+        [
+          245.57,
+          4.271
+        ],
+        [
+          250.71,
+          5.055
+        ],
+        [
+          255.79,
+          5.123
+        ],
+        [
+          260.83,
+          4.363
+        ],
+        [
+          266.1,
+          3.417
+        ],
+        [
+          271.39,
+          3.402
+        ],
+        [
+          276.46,
+          3.352
+        ],
+        [
+          281.68,
+          3.066
+        ],
+        [
+          287.05,
+          2.421
+        ],
+        [
+          292.18,
+          1.948
+        ],
+        [
+          297.55,
+          2.049
+        ],
+        [
+          302.92,
+          1.863
+        ],
+        [
+          308.11,
+          1.735
+        ],
+        [
+          313.51,
+          1.666
+        ],
+        [
+          318.68,
+          1.546
+        ],
+        [
+          323.8,
+          1.758
+        ],
+        [
+          328.93,
+          2.73
+        ],
+        [
+          333.96,
+          4.768
+        ],
+        [
+          339.12,
+          5.625
+        ],
+        [
+          344.31,
+          3.468
+        ],
+        [
+          349.52,
+          2.878
+        ],
+        [
+          354.57,
+          3.168
+        ],
+        [
+          359.67,
+          3.528
+        ],
+        [
+          364.77,
+          3.728
+        ],
+        [
+          370.0,
+          4.015
+        ],
+        [
+          375.31,
+          4.332
+        ],
+        [
+          380.5,
+          5.777
+        ],
+        [
+          385.51,
+          4.993
+        ],
+        [
+          390.73,
+          4.789
+        ],
+        [
+          395.76,
+          4.77
+        ]
+      ],
+      "stalls": 0,
+      "errors": [],
+      "redirect_chain": [],
+      "finished": "2026-11-12T06:47:29.477393+00:00",
+      "host": "esgf.bsc.es"
+    },
+    {
+      "label": "CEDA_1GB",
+      "url": "https://esgf.ceda.ac.uk/thredds/fileServer/esg_cmip6/CMIP6/CMIP/CCCma/CanESM5/historical/r1i1p2f1/Omon/thetao/gn/v20190429/thetao_Omon_CanESM5_historical_r1i1p2f1_gn_185001-186012.nc",
+      "started": "2026-11-12T06:47:34.124794+00:00",
+      "status": "verified",
+      "expected_sha256": "fa7c3a0a6cbe4aec8805fda48948972a0bc42aec4fdd065ff3c5b61763522ea6",
+      "computed_sha256": "fa7c3a0a6cbe4aec8805fda48948972a0bc42aec4fdd065ff3c5b61763522ea6",
+      "sha256_match": true,
+      "total_bytes": 1110603079,
+      "downloaded_bytes": 1110603079,
+      "accept_ranges": true,
+      "resumes": 0,
+      "attempts": 1,
+      "wall_time_s": 257.25,
+      "active_transfer_s": 256.36610754100025,
+      "avg_rate_MBps": 4.131,
+      "first_connect_timings": {
+        "dns_s": 0.006,
+        "tcp_connect_s": 0.2012,
+        "tls_handshake_s": 0.212,
+        "tls_version": "TLSv1.3",
+        "peer_ip": "130.246.1.20",
+        "ttfb_s": 0.3989
+      },
+      "throughput_samples": [
+        [
+          6.06,
+          2.696
+        ],
+        [
+          11.09,
+          3.973
+        ],
+        [
+          16.09,
+          5.8
+        ],
+        [
+          21.17,
+          5.909
+        ],
+        [
+          26.27,
+          7.055
+        ],
+        [
+          31.34,
+          7.107
+        ],
+        [
+          36.4,
+          7.507
+        ],
+        [
+          41.64,
+          7.064
+        ],
+        [
+          46.66,
+          6.579
+        ],
+        [
+          51.77,
+          7.425
+        ],
+        [
+          56.82,
+          7.528
+        ],
+        [
+          61.96,
+          7.793
+        ],
+        [
+          67.02,
+          6.315
+        ],
+        [
+          72.12,
+          6.867
+        ],
+        [
+          77.18,
+          6.327
+        ],
+        [
+          82.18,
+          6.798
+        ],
+        [
+          87.28,
+          6.275
+        ],
+        [
+          92.39,
+          6.261
+        ],
+        [
+          97.57,
+          5.983
+        ],
+        [
+          102.74,
+          6.195
+        ],
+        [
+          107.88,
+          6.414
+        ],
+        [
+          112.93,
+          7.131
+        ],
+        [
+          117.97,
+          6.347
+        ],
+        [
+          123.02,
+          7.132
+        ],
+        [
+          128.19,
+          5.997
+        ],
+        [
+          133.49,
+          3.016
+        ],
+        [
+          138.51,
+          0.598
+        ],
+        [
+          146.38,
+          0.127
+        ],
+        [
+          157.86,
+          0.087
+        ],
+        [
+          168.56,
+          0.093
+        ],
+        [
+          180.97,
+          0.081
+        ],
+        [
+          186.31,
+          0.375
+        ],
+        [
+          192.39,
+          0.985
+        ],
+        [
+          198.37,
+          0.836
+        ],
+        [
+          205.05,
+          0.599
+        ],
+        [
+          212.6,
+          0.397
+        ],
+        [
+          219.9,
+          0.274
+        ],
+        [
+          225.55,
+          0.707
+        ],
+        [
+          230.73,
+          3.286
+        ],
+        [
+          235.84,
+          7.037
+        ],
+        [
+          241.12,
+          7.197
+        ],
+        [
+          246.16,
+          6.551
+        ],
+        [
+          251.33,
+          5.993
+        ],
+        [
+          256.37,
+          6.356
+        ]
+      ],
+      "stalls": 0,
+      "errors": [],
+      "redirect_chain": [],
+      "finished": "2026-11-12T06:51:51.405992+00:00",
+      "host": "esgf.ceda.ac.uk"
+    },
+    {
+      "label": "DKRZ_1GB",
+      "url": "https://esgf3.dkrz.de/thredds/fileServer/cmip6/CMIP/CCCma/CanESM5/historical/r1i1p2f1/Omon/thetao/gn/v20190429/thetao_Omon_CanESM5_historical_r1i1p2f1_gn_185001-186012.nc",
+      "started": "2026-11-12T06:52:31.729528+00:00",
+      "status": "verified",
+      "expected_sha256": "fa7c3a0a6cbe4aec8805fda48948972a0bc42aec4fdd065ff3c5b61763522ea6",
+      "computed_sha256": "fa7c3a0a6cbe4aec8805fda48948972a0bc42aec4fdd065ff3c5b61763522ea6",
+      "sha256_match": true,
+      "total_bytes": 1110603079,
+      "downloaded_bytes": 1110603079,
+      "accept_ranges": true,
+      "resumes": 0,
+      "attempts": 1,
+      "wall_time_s": 164.99,
+      "active_transfer_s": 163.82684762500003,
+      "avg_rate_MBps": 6.465,
+      "first_connect_timings": {
+        "dns_s": 0.0045,
+        "tcp_connect_s": 0.2007,
+        "tls_handshake_s": 0.2193,
+        "tls_version": "TLSv1.3",
+        "peer_ip": "136.172.32.139",
+        "ttfb_s": 0.6945
+      },
+      "throughput_samples": [
+        [
+          6.32,
+          3.872
+        ],
+        [
+          11.37,
+          5.154
+        ],
+        [
+          16.55,
+          3.667
+        ],
+        [
+          21.61,
+          3.757
+        ],
+        [
+          26.64,
+          4.37
+        ],
+        [
+          31.66,
+          6.368
+        ],
+        [
+          36.86,
+          7.507
+        ],
+        [
+          41.93,
+          7.687
+        ],
+        [
+          47.01,
+          6.302
+        ],
+        [
+          52.15,
+          7.203
+        ],
+        [
+          57.15,
+          6.792
+        ],
+        [
+          62.16,
+          6.395
+        ],
+        [
+          67.22,
+          6.72
+        ],
+        [
+          72.25,
+          6.762
+        ],
+        [
+          77.32,
+          7.69
+        ],
+        [
+          82.51,
+          7.508
+        ],
+        [
+          87.55,
+          7.145
+        ],
+        [
+          92.64,
+          8.447
+        ],
+        [
+          97.76,
+          8.205
+        ],
+        [
+          102.77,
+          7.182
+        ],
+        [
+          107.84,
+          5.725
+        ],
+        [
+          112.85,
+          6.191
+        ],
+        [
+          117.85,
+          5.191
+        ],
+        [
+          122.87,
+          5.784
+        ],
+        [
+          127.93,
+          5.93
+        ],
+        [
+          132.97,
+          5.75
+        ],
+        [
+          138.11,
+          6.609
+        ],
+        [
+          143.12,
+          7.395
+        ],
+        [
+          148.23,
+          7.63
+        ],
+        [
+          153.23,
+          6.398
+        ],
+        [
+          158.34,
+          7.442
+        ],
+        [
+          163.4,
+          7.697
+        ]
+      ],
+      "stalls": 0,
+      "errors": [],
+      "redirect_chain": [],
+      "finished": "2026-11-12T06:55:16.745803+00:00",
+      "host": "esgf3.dkrz.de"
+    },
+    {
+      "label": "IPSL_1GB",
+      "url": "https://vesg.ipsl.upmc.fr/thredds/fileServer/cmip6/CMIP/IPSL/IPSL-CM5A2-INCA/historical/r1i1p1f1/E3hrPt/o3/gr/v20240619/o3_E3hrPt_IPSL-CM5A2-INCA_historical_r1i1p1f1_gr_185001010300-185101010000.nc",
+      "started": "2026-11-12T06:55:46.823727+00:00",
+      "status": "verified",
+      "expected_sha256": "74b74462397db381104f051b3ffd9f9d9af86c54d0f28e2152b1e8dd73c25ce1",
+      "computed_sha256": "74b74462397db381104f051b3ffd9f9d9af86c54d0f28e2152b1e8dd73c25ce1",
+      "sha256_match": true,
+      "total_bytes": 1384821748,
+      "downloaded_bytes": 1384821748,
+      "accept_ranges": true,
+      "resumes": 0,
+      "attempts": 1,
+      "wall_time_s": 209.46,
+      "active_transfer_s": 208.42362954199962,
+      "avg_rate_MBps": 6.336,
+      "first_connect_timings": {
+        "dns_s": 0.0035,
+        "tcp_connect_s": 0.1737,
+        "tls_handshake_s": 0.355,
+        "tls_version": "TLSv1.2",
+        "peer_ip": "134.157.240.12",
+        "ttfb_s": 0.4678
+      },
+      "throughput_samples": [
+        [
+          6.04,
+          5.79
+        ],
+        [
+          11.07,
+          7.557
+        ],
+        [
+          16.19,
+          6.844
+        ],
+        [
+          21.31,
+          7.415
+        ],
+        [
+          26.4,
+          7.658
+        ],
+        [
+          31.42,
+          7.771
+        ],
+        [
+          36.68,
+          7.41
+        ],
+        [
+          41.74,
+          6.729
+        ],
+        [
+          46.8,
+          6.918
+        ],
+        [
+          51.8,
+          7.188
+        ],
+        [
+          56.89,
+          7.668
+        ],
+        [
+          61.94,
+          7.127
+        ],
+        [
+          66.99,
+          6.541
+        ],
+        [
+          72.08,
+          5.301
+        ],
+        [
+          77.1,
+          5.176
+        ],
+        [
+          82.16,
+          5.539
+        ],
+        [
+          87.21,
+          6.535
+        ],
+        [
+          92.29,
+          6.302
+        ],
+        [
+          97.35,
+          7.113
+        ],
+        [
+          102.47,
+          7.216
+        ],
+        [
+          107.48,
+          6.59
+        ],
+        [
+          112.68,
+          6.92
+        ],
+        [
+          117.78,
+          7.061
+        ],
+        [
+          122.86,
+          7.682
+        ],
+        [
+          127.89,
+          7.547
+        ],
+        [
+          132.89,
+          6.599
+        ],
+        [
+          138.04,
+          6.804
+        ],
+        [
+          143.1,
+          6.125
+        ],
+        [
+          148.21,
+          6.267
+        ],
+        [
+          153.28,
+          7.089
+        ],
+        [
+          158.29,
+          6.795
+        ],
+        [
+          163.34,
+          5.541
+        ],
+        [
+          168.4,
+          5.143
+        ],
+        [
+          173.7,
+          1.508
+        ],
+        [
+          179.09,
+          1.484
+        ],
+        [
+          184.25,
+          2.519
+        ],
+        [
+          189.26,
+          4.989
+        ],
+        [
+          194.41,
+          6.417
+        ],
+        [
+          199.44,
+          7.151
+        ],
+        [
+          204.51,
+          7.101
+        ]
+      ],
+      "stalls": 0,
+      "errors": [],
+      "redirect_chain": [],
+      "finished": "2026-11-12T06:59:16.328989+00:00",
+      "host": "vesg.ipsl.upmc.fr"
+    },
+    {
+      "label": "NCI_1GB",
+      "url": "https://esgf.nci.org.au/thredds/fileServer/esgcet/replica/CMIP6/CMIP/CCCma/CanESM5/historical/r1i1p2f1/Omon/thetao/gn/v20190429/thetao_Omon_CanESM5_historical_r1i1p2f1_gn_185001-186012.nc",
+      "started": "2026-11-12T06:59:44.564258+00:00",
+      "status": "failed",
+      "expected_sha256": "fa7c3a0a6cbe4aec8805fda48948972a0bc42aec4fdd065ff3c5b61763522ea6",
+      "computed_sha256": null,
+      "sha256_match": null,
+      "total_bytes": 1110603079,
+      "downloaded_bytes": 1048583975,
+      "accept_ranges": true,
+      "resumes": 60,
+      "attempts": 60,
+      "wall_time_s": 1800.92,
+      "active_transfer_s": 1681.1865304140038,
+      "avg_rate_MBps": 0.595,
+      "first_connect_timings": {
+        "dns_s": 0.0036,
+        "tcp_connect_s": 0.4375,
+        "tls_handshake_s": 0.5342,
+        "tls_version": "TLSv1.3",
+        "peer_ip": "130.56.243.38",
+        "ttfb_s": 0.9996
+      },
+      "throughput_samples": [
+        [
+          10.24,
+          0.121
+        ],
+        [
+          19.03,
+          0.228
+        ],
+        [
+          25.67,
+          0.301
+        ],
+        [
+          31.27,
+          0.536
+        ],
+        [
+          41.13,
+          0.304
+        ],
+        [
+          46.26,
+          0.584
+        ],
+        [
+          60.7,
+          0.109
+        ],
+        [
+          68.06,
+          0.272
+        ],
+        [
+          76.87,
+          0.227
+        ],
+        [
+          82.01,
+          0.194
+        ],
+        [
+          88.44,
+          0.622
+        ],
+        [
+          100.56,
+          0.141
+        ],
+        [
+          106.67,
+          0.164
+        ],
+        [
+          112.81,
+          0.163
+        ],
+        [
+          118.54,
+          0.175
+        ],
+        [
+          125.53,
+          0.143
+        ],
+        [
+          131.56,
+          0.166
+        ],
+        [
+          137.54,
+          0.335
+        ],
+        [
+          151.88,
+          0.129
+        ],
+        [
+          157.36,
+          0.183
+        ],
+        [
+          165.76,
+          1.429
+        ],
+        [
+          172.75,
+          0.286
+        ],
+        [
+          186.13,
+          0.141
+        ],
+        [
+          191.17,
+          1.192
+        ],
+        [
+          196.58,
+          1.663
+        ],
+        [
+          201.7,
+          3.514
+        ],
+        [
+          213.9,
+          0.13
+        ],
+        [
+          223.06,
+          0.218
+        ],
+        [
+          231.48,
+          0.238
+        ],
+        [
+          244.27,
+          0.138
+        ],
+        [
+          250.12,
+          0.171
+        ],
+        [
+          267.2,
+          0.117
+        ],
+        [
+          272.46,
+          0.19
+        ],
+        [
+          278.09,
+          0.178
+        ],
+        [
+          285.7,
+          0.263
+        ],
+        [
+          291.2,
+          0.182
+        ],
+        [
+          302.4,
+          0.122
+        ],
+        [
+          309.93,
+          0.266
+        ],
+        [
+          322.05,
+          0.396
+        ],
+        [
+          328.99,
+          0.432
+        ],
+        [
+          339.63,
+          0.14
+        ],
+        [
+          345.58,
+          0.168
+        ],
+        [
+          351.18,
+          0.179
+        ],
+        [
+          362.62,
+          0.087
+        ],
+        [
+          368.44,
+          0.172
+        ],
+        [
+          377.16,
+          0.115
+        ],
+        [
+          386.44,
+          0.174
+        ],
+        [
+          391.76,
+          0.563
+        ],
+        [
+          396.99,
+          0.383
+        ],
+        [
+          405.92,
+          0.187
+        ],
+        [
+          412.14,
+          0.483
+        ],
+        [
+          419.62,
+          0.268
+        ],
+        [
+          427.6,
+          0.25
+        ],
+        [
+          433.01,
+          0.236
+        ],
+        [
+          442.13,
+          0.281
+        ],
+        [
+          448.7,
+          0.305
+        ],
+        [
+          459.36,
+          0.197
+        ],
+        [
+          467.1,
+          0.388
+        ],
+        [
+          472.15,
+          1.189
+        ],
+        [
+          477.68,
+          1.626
+        ],
+        [
+          491.41,
+          0.14
+        ],
+        [
+          497.75,
+          0.158
+        ],
+        [
+          502.81,
+          0.593
+        ],
+        [
+          509.52,
+          3.279
+        ],
+        [
+          516.59,
+          0.283
+        ],
+        [
+          521.7,
+          1.762
+        ],
+        [
+          536.36,
+          0.124
+        ],
+        [
+          543.34,
+          0.143
+        ],
+        [
+          551.01,
+          0.261
+        ],
+        [
+          561.15,
+          0.197
+        ],
+        [
+          570.76,
+          0.208
+        ],
+        [
+          575.8,
+          0.199
+        ],
+        [
+          580.9,
+          0.196
+        ],
+        [
+          586.02,
+          0.195
+        ],
+        [
+          591.18,
+          0.194
+        ],
+        [
+          596.57,
+          0.185
+        ],
+        [
+          601.84,
+          0.57
+        ],
+        [
+          614.83,
+          0.132
+        ],
+        [
+          622.19,
+          0.136
+        ],
+        [
+          627.86,
+          0.176
+        ],
+        [
+          633.23,
+          1.249
+        ],
+        [
+          642.86,
+          0.132
+        ],
+        [
+          650.03,
+          0.139
+        ],
+        [
+          656.0,
+          0.502
+        ],
+        [
+          661.33,
+          0.563
+        ],
+        [
+          666.93,
+          0.536
+        ],
+        [
+          676.55,
+          0.16
+        ],
+        [
+          682.79,
+          0.48
+        ],
+        [
+          687.99,
+          0.385
+        ],
+        [
+          695.29,
+          0.411
+        ],
+        [
+          705.94,
+          0.148
+        ],
+        [
+          711.02,
+          0.197
+        ],
+        [
+          716.1,
+          0.197
+        ],
+        [
+          721.3,
+          0.192
+        ],
+        [
+          726.33,
+          0.199
+        ],
+        [
+          731.53,
+          0.192
+        ],
+        [
+          737.55,
+          0.166
+        ],
+        [
+          743.93,
+          0.157
+        ],
+        [
+          749.68,
+          0.174
+        ],
+        [
+          760.96,
+          0.127
+        ],
+        [
+          766.76,
+          0.345
+        ],
+        [
+          777.66,
+          0.26
+        ],
+        [
+          785.78,
+          0.246
+        ],
+        [
+          790.82,
+          2.379
+        ],
+        [
+          799.87,
+          0.152
+        ],
+        [
+          807.06,
+          1.252
+        ],
+        [
+          812.37,
+          0.376
+        ],
+        [
+          820.04,
+          0.391
+        ],
+        [
+          827.17,
+          0.421
+        ],
+        [
+          847.99,
+          0.132
+        ],
+        [
+          854.54,
+          0.153
+        ],
+        [
+          859.75,
+          0.576
+        ],
+        [
+          869.43,
+          0.145
+        ],
+        [
+          882.76,
+          0.143
+        ],
+        [
+          889.41,
+          0.15
+        ],
+        [
+          894.62,
+          1.345
+        ],
+        [
+          902.11,
+          0.93
+        ],
+        [
+          912.27,
+          0.262
+        ],
+        [
+          920.85,
+          0.233
+        ],
+        [
+          929.49,
+          0.231
+        ],
+        [
+          948.48,
+          0.08
+        ],
+        [
+          957.22,
+          0.114
+        ],
+        [
+          965.64,
+          0.119
+        ],
+        [
+          976.5,
+          0.136
+        ],
+        [
+          982.53,
+          0.166
+        ],
+        [
+          988.06,
+          0.181
+        ],
+        [
+          993.8,
+          0.174
+        ],
+        [
+          999.13,
+          0.563
+        ],
+        [
+          1007.19,
+          0.2
+        ],
+        [
+          1017.04,
+          0.187
+        ],
+        [
+          1027.82,
+          1.19
+        ],
+        [
+          1032.97,
+          7.967
+        ],
+        [
+          1043.47,
+          0.136
+        ],
+        [
+          1049.71,
+          0.16
+        ],
+        [
+          1056.21,
+          0.154
+        ],
+        [
+          1062.28,
+          0.165
+        ],
+        [
+          1067.53,
+          0.763
+        ],
+        [
+          1078.3,
+          0.13
+        ],
+        [
+          1084.63,
+          0.158
+        ],
+        [
+          1090.27,
+          0.177
+        ],
+        [
+          1096.3,
+          0.166
+        ],
+        [
+          1102.45,
+          0.163
+        ],
+        [
+          1108.59,
+          0.163
+        ],
+        [
+          1114.77,
+          0.162
+        ],
+        [
+          1120.04,
+          0.19
+        ],
+        [
+          1128.47,
+          0.183
+        ],
+        [
+          1133.9,
+          1.288
+        ],
+        [
+          1147.83,
+          0.135
+        ],
+        [
+          1152.91,
+          0.788
+        ],
+        [
+          1162.59,
+          0.143
+        ],
+        [
+          1168.11,
+          1.451
+        ],
+        [
+          1177.0,
+          0.145
+        ],
+        [
+          1182.86,
+          0.171
+        ],
+        [
+          1187.96,
+          0.196
+        ],
+        [
+          1193.55,
+          0.179
+        ],
+        [
+          1198.64,
+          0.196
+        ],
+        [
+          1205.22,
+          0.609
+        ],
+        [
+          1210.69,
+          0.365
+        ],
+        [
+          1222.1,
+          0.989
+        ],
+        [
+          1232.28,
+          0.143
+        ],
+        [
+          1238.54,
+          0.16
+        ],
+        [
+          1243.97,
+          0.184
+        ],
+        [
+          1248.99,
+          1.568
+        ],
+        [
+          1259.05,
+          0.123
+        ],
+        [
+          1265.58,
+          0.153
+        ],
+        [
+          1270.91,
+          0.563
+        ],
+        [
+          1280.33,
+          0.135
+        ],
+        [
+          1293.07,
+          0.142
+        ],
+        [
+          1298.65,
+          0.179
+        ],
+        [
+          1304.3,
+          0.177
+        ],
+        [
+          1309.56,
+          1.141
+        ],
+        [
+          1314.94,
+          0.744
+        ],
+        [
+          1324.97,
+          0.124
+        ],
+        [
+          1330.02,
+          0.198
+        ],
+        [
+          1335.74,
+          0.524
+        ],
+        [
+          1340.82,
+          1.378
+        ],
+        [
+          1351.71,
+          0.375
+        ],
+        [
+          1356.75,
+          7.348
+        ],
+        [
+          1367.5,
+          0.133
+        ],
+        [
+          1373.0,
+          1.636
+        ],
+        [
+          1379.8,
+          0.294
+        ],
+        [
+          1385.72,
+          0.338
+        ],
+        [
+          1396.76,
+          0.134
+        ],
+        [
+          1401.8,
+          0.199
+        ],
+        [
+          1410.9,
+          0.589
+        ],
+        [
+          1416.41,
+          1.815
+        ],
+        [
+          1422.1,
+          1.583
+        ],
+        [
+          1427.28,
+          1.737
+        ],
+        [
+          1441.1,
+          0.28
+        ],
+        [
+          1451.59,
+          0.99
+        ],
+        [
+          1462.19,
+          0.142
+        ],
+        [
+          1468.34,
+          0.162
+        ],
+        [
+          1474.51,
+          0.162
+        ],
+        [
+          1481.14,
+          0.151
+        ],
+        [
+          1486.81,
+          0.176
+        ],
+        [
+          1493.44,
+          0.151
+        ],
+        [
+          1499.57,
+          0.163
+        ],
+        [
+          1505.59,
+          0.166
+        ],
+        [
+          1512.07,
+          0.154
+        ],
+        [
+          1523.59,
+          0.134
+        ],
+        [
+          1529.3,
+          0.175
+        ],
+        [
+          1535.41,
+          0.164
+        ],
+        [
+          1547.54,
+          0.135
+        ],
+        [
+          1552.57,
+          0.994
+        ],
+        [
+          1563.27,
+          0.148
+        ],
+        [
+          1569.27,
+          0.167
+        ],
+        [
+          1574.79,
+          0.181
+        ],
+        [
+          1580.88,
+          0.164
+        ],
+        [
+          1586.53,
+          0.177
+        ],
+        [
+          1592.35,
+          0.172
+        ],
+        [
+          1597.57,
+          0.957
+        ],
+        [
+          1607.92,
+          0.136
+        ],
+        [
+          1615.08,
+          0.14
+        ],
+        [
+          1620.92,
+          0.171
+        ],
+        [
+          1626.96,
+          0.166
+        ],
+        [
+          1632.45,
+          0.182
+        ],
+        [
+          1638.43,
+          0.167
+        ],
+        [
+          1645.0,
+          0.152
+        ],
+        [
+          1650.44,
+          0.184
+        ],
+        [
+          1661.49,
+          0.144
+        ],
+        [
+          1666.9,
+          0.185
+        ],
+        [
+          1672.02,
+          0.195
+        ],
+        [
+          1677.14,
+          0.195
+        ],
+        [
+          1682.57,
+          0.553
+        ],
+        [
+          1687.69,
+          0.391
+        ],
+        [
+          1692.81,
+          0.39
+        ],
+        [
+          1706.63,
+          0.119
+        ],
+        [
+          1713.19,
+          0.153
+        ],
+        [
+          1718.61,
+          0.184
+        ],
+        [
+          1727.01,
+          0.818
+        ],
+        [
+          1735.82,
+          0.148
+        ],
+        [
+          1741.25,
+          0.184
+        ],
+        [
+          1746.37,
+          0.195
+        ],
+        [
+          1751.79,
+          0.184
+        ],
+        [
+          1757.63,
+          0.171
+        ],
+        [
+          1762.81,
+          0.193
+        ],
+        [
+          1768.79,
+          0.167
+        ],
+        [
+          1773.81,
+          0.199
+        ],
+        [
+          1778.84,
+          0.199
+        ],
+        [
+          1784.26,
+          0.185
+        ],
+        [
+          1789.38,
+          0.195
+        ],
+        [
+          1794.5,
+          0.195
+        ],
+        [
+          1800.74,
+          0.16
+        ]
+      ],
+      "stalls": 0,
+      "errors": [
+        "aborted: per-file deadline of 1800s exceeded (1801s elapsed, 1048583975 bytes)"
+      ],
+      "redirect_chain": [],
+      "finished": "2026-11-12T07:29:45.526747+00:00",
+      "host": "esgf.nci.org.au"
+    },
+    {
+      "label": "NORESG_1GB",
+      "url": "https://noresg.nird.sigma2.no/thredds/fileServer/esg_dataroot/cmor/CMIP6/CMIP/NCC/NorCPM1/historical/r4i1p1f1/Amon/hus/gn/v20200724/hus_Amon_NorCPM1_historical_r4i1p1f1_gn_185001-201412.nc",
+      "started": "2026-11-12T07:29:51.794844+00:00",
+      "status": "complete_unverified",
+      "expected_sha256": null,
+      "computed_sha256": "ce22a4694c5cd6901b6090fdcdf6bf3f946e9c2c6cd26b1b49cf347476274093",
+      "sha256_match": null,
+      "total_bytes": 1249487683,
+      "downloaded_bytes": 1249487683,
+      "accept_ranges": true,
+      "resumes": 0,
+      "attempts": 1,
+      "wall_time_s": 234.01,
+      "active_transfer_s": 233.04493891699985,
+      "avg_rate_MBps": 5.113,
+      "first_connect_timings": {
+        "dns_s": 0.0027,
+        "tcp_connect_s": 0.2132,
+        "tls_handshake_s": 0.2186,
+        "tls_version": "TLSv1.3",
+        "peer_ip": "158.36.102.245",
+        "ttfb_s": 0.4883
+      },
+      "throughput_samples": [
+        [
+          6.21,
+          1.522
+        ],
+        [
+          11.29,
+          5.119
+        ],
+        [
+          16.55,
+          4.937
+        ],
+        [
+          21.69,
+          5.446
+        ],
+        [
+          26.73,
+          6.955
+        ],
+        [
+          31.83,
+          7.448
+        ],
+        [
+          36.95,
+          6.45
+        ],
+        [
+          42.05,
+          5.484
+        ],
+        [
+          47.22,
+          5.42
+        ],
+        [
+          52.25,
+          7.355
+        ],
+        [
+          57.27,
+          7.365
+        ],
+        [
+          62.32,
+          7.722
+        ],
+        [
+          67.52,
+          7.114
+        ],
+        [
+          72.6,
+          4.724
+        ],
+        [
+          77.98,
+          3.532
+        ],
+        [
+          83.15,
+          2.9
+        ],
+        [
+          88.2,
+          2.578
+        ],
+        [
+          93.24,
+          2.576
+        ],
+        [
+          98.72,
+          2.738
+        ],
+        [
+          103.77,
+          3.368
+        ],
+        [
+          108.95,
+          5.791
+        ],
+        [
+          114.37,
+          6.64
+        ],
+        [
+          119.37,
+          5.798
+        ],
+        [
+          124.48,
+          5.291
+        ],
+        [
+          129.63,
+          4.463
+        ],
+        [
+          134.78,
+          3.3
+        ],
+        [
+          140.08,
+          3.207
+        ],
+        [
+          145.31,
+          2.103
+        ],
+        [
+          150.83,
+          1.632
+        ],
+        [
+          156.49,
+          1.235
+        ],
+        [
+          161.8,
+          1.509
+        ],
+        [
+          166.93,
+          2.145
+        ],
+        [
+          172.05,
+          2.734
+        ],
+        [
+          177.07,
+          2.984
+        ],
+        [
+          182.22,
+          4.474
+        ],
+        [
+          187.25,
+          7.353
+        ],
+        [
+          192.25,
+          7.995
+        ],
+        [
+          197.31,
+          8.306
+        ],
+        [
+          202.37,
+          7.509
+        ],
+        [
+          207.72,
+          7.854
+        ],
+        [
+          212.77,
+          7.513
+        ],
+        [
+          217.78,
+          8.198
+        ],
+        [
+          222.93,
+          6.599
+        ],
+        [
+          227.96,
+          7.753
+        ],
+        [
+          233.08,
+          7.806
+        ]
+      ],
+      "stalls": 0,
+      "errors": [],
+      "redirect_chain": [],
+      "finished": "2026-11-12T07:33:45.823114+00:00",
+      "host": "noresg.nird.sigma2.no"
+    },
+    {
+      "label": "LIU_1GB",
+      "url": "https://esg-dn1.nsc.liu.se/thredds/fileServer/esg_dataroot10/cmip6data/20250305_smhi_req00232/CMIP6/CMIP/EC-Earth-Consortium/EC-Earth3-HR/historical/r1i1p1f1/Omon/so/gn/v20250225/so_Omon_EC-Earth3-HR_historical_r1i1p1f1_gn_185101-185112.nc",
+      "started": "2026-11-12T07:33:49.612258+00:00",
+      "status": "verified",
+      "expected_sha256": "8b0ca29dc71af8ccf11bf7c9670acbf8dae33f1239263a98419b5385350bddc8",
+      "computed_sha256": "8b0ca29dc71af8ccf11bf7c9670acbf8dae33f1239263a98419b5385350bddc8",
+      "sha256_match": true,
+      "total_bytes": 1692839176,
+      "downloaded_bytes": 1692839176,
+      "accept_ranges": true,
+      "resumes": 0,
+      "attempts": 1,
+      "wall_time_s": 318.24,
+      "active_transfer_s": 316.9341275000006,
+      "avg_rate_MBps": 5.094,
+      "first_connect_timings": {
+        "dns_s": 0.0054,
+        "tcp_connect_s": 0.2988,
+        "tls_handshake_s": 0.5948,
+        "tls_version": "TLSv1.2",
+        "peer_ip": "130.236.100.123",
+        "ttfb_s": 0.3688
+      },
+      "throughput_samples": [
+        [
+          6.35,
+          2.774
+        ],
+        [
+          11.43,
+          4.924
+        ],
+        [
+          16.54,
+          6.65
+        ],
+        [
+          21.7,
+          7.369
+        ],
+        [
+          26.83,
+          7.606
+        ],
+        [
+          31.87,
+          8.137
+        ],
+        [
+          36.96,
+          7.26
+        ],
+        [
+          42.05,
+          6.874
+        ],
+        [
+          47.11,
+          7.719
+        ],
+        [
+          52.34,
+          6.877
+        ],
+        [
+          57.47,
+          6.048
+        ],
+        [
+          62.48,
+          5.781
+        ],
+        [
+          67.6,
+          4.891
+        ],
+        [
+          72.83,
+          4.201
+        ],
+        [
+          77.96,
+          3.512
+        ],
+        [
+          83.16,
+          3.655
+        ],
+        [
+          88.18,
+          3.983
+        ],
+        [
+          93.23,
+          4.35
+        ],
+        [
+          98.25,
+          4.581
+        ],
+        [
+          103.28,
+          4.975
+        ],
+        [
+          108.48,
+          5.577
+        ],
+        [
+          113.57,
+          3.734
+        ],
+        [
+          121.47,
+          2.152
+        ],
+        [
+          126.54,
+          4.534
+        ],
+        [
+          131.66,
+          5.469
+        ],
+        [
+          136.86,
+          5.77
+        ],
+        [
+          142.03,
+          4.257
+        ],
+        [
+          147.07,
+          6.15
+        ],
+        [
+          152.22,
+          6.993
+        ],
+        [
+          157.29,
+          5.716
+        ],
+        [
+          162.43,
+          5.636
+        ],
+        [
+          168.78,
+          1.576
+        ],
+        [
+          173.87,
+          4.125
+        ],
+        [
+          179.02,
+          5.247
+        ],
+        [
+          184.17,
+          4.85
+        ],
+        [
+          189.25,
+          3.938
+        ],
+        [
+          194.27,
+          5.178
+        ],
+        [
+          199.4,
+          4.679
+        ],
+        [
+          204.47,
+          4.144
+        ],
+        [
+          209.69,
+          4.597
+        ],
+        [
+          214.98,
+          3.972
+        ],
+        [
+          220.23,
+          2.285
+        ],
+        [
+          225.44,
+          2.877
+        ],
+        [
+          230.68,
+          3.626
+        ],
+        [
+          235.75,
+          4.145
+        ],
+        [
+          240.83,
+          5.514
+        ],
+        [
+          245.93,
+          4.507
+        ],
+        [
+          251.14,
+          5.759
+        ],
+        [
+          256.24,
+          5.491
+        ],
+        [
+          261.26,
+          5.577
+        ],
+        [
+          266.31,
+          5.15
+        ],
+        [
+          271.39,
+          4.326
+        ],
+        [
+          276.4,
+          6.194
+        ],
+        [
+          281.45,
+          4.549
+        ],
+        [
+          286.53,
+          5.123
+        ],
+        [
+          291.63,
+          5.884
+        ],
+        [
+          296.64,
+          6.183
+        ],
+        [
+          301.8,
+          6.202
+        ],
+        [
+          306.98,
+          6.183
+        ],
+        [
+          312.11,
+          5.846
+        ],
+        [
+          317.2,
+          7.073
+        ]
+      ],
+      "stalls": 0,
+      "errors": [],
+      "redirect_chain": [],
+      "finished": "2026-11-12T07:39:21.345777+00:00",
+      "host": "esg-dn1.nsc.liu.se"
+    },
+    {
+      "label": "ORNL_1GB",
+      "url": "https://esgf-node.ornl.gov/thredds/fileServer/css03_data/CMIP6/CMIP/CCCma/CanESM5/historical/r1i1p2f1/Omon/thetao/gn/v20190429/thetao_Omon_CanESM5_historical_r1i1p2f1_gn_185001-186012.nc",
+      "started": "2026-11-12T07:39:27.736611+00:00",
+      "status": "failed",
+      "expected_sha256": "fa7c3a0a6cbe4aec8805fda48948972a0bc42aec4fdd065ff3c5b61763522ea6",
+      "computed_sha256": null,
+      "sha256_match": null,
+      "total_bytes": 1110603079,
+      "downloaded_bytes": 458521604,
+      "accept_ranges": true,
+      "resumes": 5,
+      "attempts": 5,
+      "wall_time_s": 2355.89,
+      "active_transfer_s": 2344.9872985010015,
+      "avg_rate_MBps": 0.186,
+      "first_connect_timings": {
+        "dns_s": 0.0053,
+        "tcp_connect_s": 0.3013,
+        "tls_handshake_s": 0.2897,
+        "tls_version": "TLSv1.3",
+        "peer_ip": "128.219.133.17",
+        "ttfb_s": 0.5974
+      },
+      "throughput_samples": [
+        [
+          6.25,
+          0.199
+        ],
+        [
+          15.67,
+          0.212
+        ],
+        [
+          25.19,
+          0.21
+        ],
+        [
+          35.33,
+          0.197
+        ],
+        [
+          45.06,
+          0.206
+        ],
+        [
+          54.48,
+          0.212
+        ],
+        [
+          60.12,
+          0.177
+        ],
+        [
+          69.84,
+          0.206
+        ],
+        [
+          75.06,
+          0.191
+        ],
+        [
+          84.89,
+          0.203
+        ],
+        [
+          94.62,
+          0.206
+        ],
+        [
+          104.25,
+          0.208
+        ],
+        [
+          113.87,
+          0.208
+        ],
+        [
+          118.89,
+          0.199
+        ],
+        [
+          130.98,
+          0.166
+        ],
+        [
+          140.81,
+          0.203
+        ],
+        [
+          145.93,
+          0.195
+        ],
+        [
+          152.32,
+          0.156
+        ],
+        [
+          161.85,
+          0.21
+        ],
+        [
+          171.12,
+          0.216
+        ],
+        [
+          180.74,
+          0.208
+        ],
+        [
+          190.27,
+          0.21
+        ],
+        [
+          199.69,
+          0.212
+        ],
+        [
+          209.01,
+          0.215
+        ],
+        [
+          214.02,
+          0.199
+        ],
+        [
+          223.75,
+          0.206
+        ],
+        [
+          228.9,
+          0.195
+        ],
+        [
+          253.0,
+          0.041
+        ],
+        [
+          260.38,
+          0.135
+        ],
+        [
+          270.11,
+          0.206
+        ],
+        [
+          279.79,
+          0.207
+        ],
+        [
+          284.81,
+          0.092
+        ],
+        [
+          291.9,
+          0.191
+        ],
+        [
+          301.73,
+          0.203
+        ],
+        [
+          307.16,
+          0.184
+        ],
+        [
+          312.17,
+          0.199
+        ],
+        [
+          321.84,
+          0.207
+        ],
+        [
+          337.05,
+          0.131
+        ],
+        [
+          342.38,
+          0.188
+        ],
+        [
+          352.04,
+          0.207
+        ],
+        [
+          357.12,
+          0.197
+        ],
+        [
+          367.26,
+          0.197
+        ],
+        [
+          372.27,
+          0.199
+        ],
+        [
+          398.2,
+          0.028
+        ],
+        [
+          405.49,
+          0.185
+        ],
+        [
+          415.42,
+          0.201
+        ],
+        [
+          451.59,
+          0.038
+        ],
+        [
+          458.51,
+          0.176
+        ],
+        [
+          512.45,
+          0.037
+        ],
+        [
+          522.94,
+          0.192
+        ],
+        [
+          532.57,
+          0.208
+        ],
+        [
+          537.61,
+          0.198
+        ],
+        [
+          543.22,
+          0.178
+        ],
+        [
+          548.24,
+          0.199
+        ],
+        [
+          557.96,
+          0.206
+        ],
+        [
+          567.66,
+          0.206
+        ],
+        [
+          576.81,
+          0.219
+        ],
+        [
+          586.54,
+          0.206
+        ],
+        [
+          591.96,
+          0.184
+        ],
+        [
+          601.28,
+          0.215
+        ],
+        [
+          606.3,
+          0.199
+        ],
+        [
+          616.13,
+          0.203
+        ],
+        [
+          625.96,
+          0.203
+        ],
+        [
+          631.18,
+          0.192
+        ],
+        [
+          636.2,
+          0.199
+        ],
+        [
+          641.22,
+          0.199
+        ],
+        [
+          651.05,
+          0.203
+        ],
+        [
+          656.07,
+          0.199
+        ],
+        [
+          665.9,
+          0.203
+        ],
+        [
+          675.7,
+          0.204
+        ],
+        [
+          681.29,
+          0.179
+        ],
+        [
+          691.19,
+          0.202
+        ],
+        [
+          697.03,
+          0.171
+        ],
+        [
+          702.83,
+          0.172
+        ],
+        [
+          712.29,
+          0.211
+        ],
+        [
+          722.12,
+          0.203
+        ],
+        [
+          732.05,
+          0.201
+        ],
+        [
+          737.17,
+          0.195
+        ],
+        [
+          747.0,
+          0.203
+        ],
+        [
+          756.84,
+          0.203
+        ],
+        [
+          766.56,
+          0.206
+        ],
+        [
+          776.36,
+          0.204
+        ],
+        [
+          786.23,
+          0.203
+        ],
+        [
+          796.36,
+          0.197
+        ],
+        [
+          806.19,
+          0.203
+        ],
+        [
+          811.21,
+          0.199
+        ],
+        [
+          816.36,
+          0.194
+        ],
+        [
+          825.86,
+          0.21
+        ],
+        [
+          834.25,
+          0.119
+        ],
+        [
+          845.31,
+          0.09
+        ],
+        [
+          855.14,
+          0.203
+        ],
+        [
+          864.97,
+          0.204
+        ],
+        [
+          874.8,
+          0.203
+        ],
+        [
+          884.63,
+          0.203
+        ],
+        [
+          894.47,
+          0.203
+        ],
+        [
+          899.48,
+          0.199
+        ],
+        [
+          909.31,
+          0.203
+        ],
+        [
+          914.84,
+          0.181
+        ],
+        [
+          919.86,
+          0.199
+        ],
+        [
+          929.8,
+          0.201
+        ],
+        [
+          940.14,
+          0.193
+        ],
+        [
+          949.25,
+          0.11
+        ],
+        [
+          959.19,
+          0.201
+        ],
+        [
+          969.02,
+          0.203
+        ],
+        [
+          978.85,
+          0.203
+        ],
+        [
+          988.78,
+          0.201
+        ],
+        [
+          998.61,
+          0.203
+        ],
+        [
+          1008.44,
+          0.203
+        ],
+        [
+          1018.38,
+          0.201
+        ],
+        [
+          1023.5,
+          0.195
+        ],
+        [
+          1033.33,
+          0.203
+        ],
+        [
+          1038.65,
+          0.188
+        ],
+        [
+          1048.69,
+          0.199
+        ],
+        [
+          1058.48,
+          0.204
+        ],
+        [
+          1068.11,
+          0.208
+        ],
+        [
+          1073.16,
+          0.198
+        ],
+        [
+          1082.95,
+          0.204
+        ],
+        [
+          1092.82,
+          0.203
+        ],
+        [
+          1102.65,
+          0.203
+        ],
+        [
+          1112.48,
+          0.203
+        ],
+        [
+          1122.31,
+          0.204
+        ],
+        [
+          1132.15,
+          0.203
+        ],
+        [
+          1141.98,
+          0.203
+        ],
+        [
+          1151.81,
+          0.203
+        ],
+        [
+          1161.64,
+          0.203
+        ],
+        [
+          1171.47,
+          0.203
+        ],
+        [
+          1176.59,
+          0.195
+        ],
+        [
+          1186.42,
+          0.203
+        ],
+        [
+          1191.44,
+          0.199
+        ],
+        [
+          1201.37,
+          0.201
+        ],
+        [
+          1211.31,
+          0.201
+        ],
+        [
+          1216.33,
+          0.199
+        ],
+        [
+          1226.15,
+          0.204
+        ],
+        [
+          1235.98,
+          0.203
+        ],
+        [
+          1241.21,
+          0.191
+        ],
+        [
+          1246.23,
+          0.199
+        ],
+        [
+          1256.06,
+          0.204
+        ],
+        [
+          1265.58,
+          0.21
+        ],
+        [
+          1275.31,
+          0.206
+        ],
+        [
+          1280.53,
+          0.192
+        ],
+        [
+          1290.26,
+          0.206
+        ],
+        [
+          1300.09,
+          0.203
+        ],
+        [
+          1315.96,
+          0.126
+        ],
+        [
+          1325.8,
+          0.203
+        ],
+        [
+          1335.62,
+          0.203
+        ],
+        [
+          1345.46,
+          0.203
+        ],
+        [
+          1355.29,
+          0.203
+        ],
+        [
+          1365.32,
+          0.199
+        ],
+        [
+          1374.84,
+          0.21
+        ],
+        [
+          1379.86,
+          0.199
+        ],
+        [
+          1389.7,
+          0.203
+        ],
+        [
+          1395.63,
+          0.168
+        ],
+        [
+          1401.44,
+          0.172
+        ],
+        [
+          1406.69,
+          0.19
+        ],
+        [
+          1416.52,
+          0.203
+        ],
+        [
+          1426.36,
+          0.203
+        ],
+        [
+          1431.37,
+          0.2
+        ],
+        [
+          1441.2,
+          0.203
+        ],
+        [
+          1446.22,
+          0.199
+        ],
+        [
+          1456.06,
+          0.203
+        ],
+        [
+          1465.89,
+          0.203
+        ],
+        [
+          1475.41,
+          0.21
+        ],
+        [
+          1485.24,
+          0.203
+        ],
+        [
+          1494.76,
+          0.21
+        ],
+        [
+          1504.18,
+          0.212
+        ],
+        [
+          1514.02,
+          0.203
+        ],
+        [
+          1523.77,
+          0.205
+        ],
+        [
+          1533.16,
+          0.213
+        ],
+        [
+          1542.89,
+          0.206
+        ],
+        [
+          1552.72,
+          0.203
+        ],
+        [
+          1562.55,
+          0.203
+        ],
+        [
+          1567.67,
+          0.195
+        ],
+        [
+          1577.5,
+          0.203
+        ],
+        [
+          1587.34,
+          0.203
+        ],
+        [
+          1597.06,
+          0.206
+        ],
+        [
+          1602.28,
+          0.192
+        ],
+        [
+          1612.11,
+          0.203
+        ],
+        [
+          1621.95,
+          0.203
+        ],
+        [
+          1627.07,
+          0.195
+        ],
+        [
+          1636.9,
+          0.203
+        ],
+        [
+          1646.73,
+          0.203
+        ],
+        [
+          1651.95,
+          0.191
+        ],
+        [
+          1661.78,
+          0.203
+        ],
+        [
+          1671.61,
+          0.203
+        ],
+        [
+          1681.44,
+          0.203
+        ],
+        [
+          1691.28,
+          0.203
+        ],
+        [
+          1701.11,
+          0.203
+        ],
+        [
+          1710.83,
+          0.206
+        ],
+        [
+          1720.67,
+          0.203
+        ],
+        [
+          1730.5,
+          0.203
+        ],
+        [
+          1735.92,
+          0.184
+        ],
+        [
+          1741.45,
+          0.181
+        ],
+        [
+          1746.47,
+          0.199
+        ],
+        [
+          1751.49,
+          0.199
+        ],
+        [
+          1756.66,
+          0.193
+        ],
+        [
+          1766.25,
+          0.208
+        ],
+        [
+          1771.26,
+          0.2
+        ],
+        [
+          1776.27,
+          0.2
+        ],
+        [
+          1786.1,
+          0.203
+        ],
+        [
+          1795.93,
+          0.203
+        ],
+        [
+          1800.95,
+          0.199
+        ],
+        [
+          1806.17,
+          0.192
+        ],
+        [
+          1816.0,
+          0.203
+        ],
+        [
+          1825.84,
+          0.203
+        ],
+        [
+          1835.66,
+          0.204
+        ],
+        [
+          1845.5,
+          0.203
+        ],
+        [
+          1850.52,
+          0.199
+        ],
+        [
+          1860.35,
+          0.203
+        ],
+        [
+          1870.18,
+          0.203
+        ],
+        [
+          1880.01,
+          0.203
+        ],
+        [
+          1889.84,
+          0.203
+        ],
+        [
+          1899.77,
+          0.201
+        ],
+        [
+          1909.6,
+          0.203
+        ],
+        [
+          1919.53,
+          0.201
+        ],
+        [
+          1929.37,
+          0.203
+        ],
+        [
+          1939.2,
+          0.203
+        ],
+        [
+          1949.03,
+          0.203
+        ],
+        [
+          1958.76,
+          0.206
+        ],
+        [
+          1968.69,
+          0.201
+        ],
+        [
+          1978.52,
+          0.203
+        ],
+        [
+          1988.31,
+          0.204
+        ],
+        [
+          1998.28,
+          0.201
+        ],
+        [
+          2003.51,
+          0.192
+        ],
+        [
+          2013.44,
+          0.201
+        ],
+        [
+          2019.08,
+          0.177
+        ],
+        [
+          2029.01,
+          0.201
+        ],
+        [
+          2036.07,
+          0.142
+        ],
+        [
+          2041.48,
+          0.185
+        ],
+        [
+          2046.55,
+          0.197
+        ],
+        [
+          2051.94,
+          0.185
+        ],
+        [
+          2057.58,
+          0.177
+        ],
+        [
+          2062.86,
+          0.189
+        ],
+        [
+          2068.08,
+          0.191
+        ],
+        [
+          2073.14,
+          0.198
+        ],
+        [
+          2078.57,
+          0.184
+        ],
+        [
+          2083.85,
+          0.189
+        ],
+        [
+          2089.32,
+          0.183
+        ],
+        [
+          2094.44,
+          0.195
+        ],
+        [
+          2099.87,
+          0.184
+        ],
+        [
+          2105.09,
+          0.191
+        ],
+        [
+          2110.31,
+          0.192
+        ],
+        [
+          2115.8,
+          0.182
+        ],
+        [
+          2121.17,
+          0.186
+        ],
+        [
+          2126.59,
+          0.184
+        ],
+        [
+          2137.04,
+          0.191
+        ],
+        [
+          2142.36,
+          0.188
+        ],
+        [
+          2147.59,
+          0.191
+        ],
+        [
+          2153.02,
+          0.184
+        ],
+        [
+          2158.31,
+          0.189
+        ],
+        [
+          2163.52,
+          0.192
+        ],
+        [
+          2168.89,
+          0.186
+        ],
+        [
+          2174.32,
+          0.184
+        ],
+        [
+          2179.74,
+          0.184
+        ],
+        [
+          2184.97,
+          0.191
+        ],
+        [
+          2190.09,
+          0.195
+        ],
+        [
+          2195.31,
+          0.191
+        ],
+        [
+          2200.53,
+          0.191
+        ],
+        [
+          2205.78,
+          0.191
+        ],
+        [
+          2215.96,
+          0.197
+        ],
+        [
+          2221.32,
+          0.186
+        ],
+        [
+          2226.75,
+          0.184
+        ],
+        [
+          2232.18,
+          0.184
+        ],
+        [
+          2237.7,
+          0.181
+        ],
+        [
+          2243.01,
+          0.189
+        ],
+        [
+          2249.03,
+          0.166
+        ],
+        [
+          2254.46,
+          0.184
+        ],
+        [
+          2259.52,
+          0.198
+        ],
+        [
+          2264.74,
+          0.192
+        ],
+        [
+          2269.99,
+          0.19
+        ],
+        [
+          2280.46,
+          0.191
+        ],
+        [
+          2290.4,
+          0.201
+        ],
+        [
+          2300.89,
+          0.191
+        ],
+        [
+          2306.11,
+          0.191
+        ],
+        [
+          2311.43,
+          0.188
+        ],
+        [
+          2316.56,
+          0.195
+        ],
+        [
+          2321.72,
+          0.194
+        ],
+        [
+          2327.11,
+          0.186
+        ],
+        [
+          2336.82,
+          0.206
+        ],
+        [
+          2342.05,
+          0.191
+        ],
+        [
+          2355.89,
+          0.042
+        ]
+      ],
+      "stalls": 0,
+      "errors": [
+        "aborted: per-file deadline of 1800s exceeded (2356s elapsed, 458521604 bytes)"
+      ],
+      "redirect_chain": [],
+      "finished": "2026-11-12T08:32:54.189110+00:00",
+      "host": "esgf-node.ornl.gov"
+    },
+    {
+      "label": "ANL-GLOBUS_1GB",
+      "url": "https://g-52ba3.fd635.8443.data.globus.org/css03_data/CMIP6/CMIP/CCCma/CanESM5/historical/r1i1p2f1/Omon/thetao/gn/v20190429/thetao_Omon_CanESM5_historical_r1i1p2f1_gn_185001-186012.nc",
+      "started": "2026-11-12T08:32:57.358213+00:00",
+      "status": "failed",
+      "expected_sha256": "fa7c3a0a6cbe4aec8805fda48948972a0bc42aec4fdd065ff3c5b61763522ea6",
+      "computed_sha256": null,
+      "sha256_match": null,
+      "total_bytes": null,
+      "downloaded_bytes": 1110603079,
+      "accept_ranges": true,
+      "resumes": 2,
+      "attempts": 3,
+      "wall_time_s": 287.95,
+      "active_transfer_s": 276.91521020799973,
+      "avg_rate_MBps": 3.825,
+      "first_connect_timings": {
+        "dns_s": 0.0038,
+        "tcp_connect_s": 0.2945,
+        "tls_handshake_s": 0.2903,
+        "tls_version": "TLSv1.3",
+        "peer_ip": "140.221.68.105",
+        "ttfb_s": 0.9092
+      },
+      "throughput_samples": [
+        [
+          6.62,
+          4.137
+        ],
+        [
+          11.78,
+          3.68
+        ],
+        [
+          16.85,
+          6.118
+        ],
+        [
+          21.96,
+          7.634
+        ],
+        [
+          27.0,
+          7.537
+        ],
+        [
+          40.74,
+          4.106
+        ],
+        [
+          45.88,
+          4.667
+        ],
+        [
+          50.89,
+          4.187
+        ],
+        [
+          56.0,
+          3.718
+        ],
+        [
+          61.38,
+          4.832
+        ],
+        [
+          66.39,
+          4.397
+        ],
+        [
+          71.5,
+          4.695
+        ],
+        [
+          76.68,
+          3.667
+        ],
+        [
+          82.07,
+          4.08
+        ],
+        [
+          87.11,
+          3.179
+        ],
+        [
+          92.13,
+          6.365
+        ],
+        [
+          97.15,
+          6.575
+        ],
+        [
+          102.28,
+          3.12
+        ],
+        [
+          107.35,
+          5.331
+        ],
+        [
+          112.49,
+          6.608
+        ],
+        [
+          117.62,
+          6.623
+        ],
+        [
+          122.77,
+          6.996
+        ],
+        [
+          127.84,
+          6.513
+        ],
+        [
+          132.96,
+          6.248
+        ],
+        [
+          138.09,
+          6.824
+        ],
+        [
+          143.1,
+          6.185
+        ],
+        [
+          148.13,
+          5.166
+        ],
+        [
+          153.13,
+          6.597
+        ],
+        [
+          158.38,
+          2.862
+        ],
+        [
+          167.09,
+          0.23
+        ],
+        [
+          172.14,
+          2.971
+        ],
+        [
+          177.27,
+          4.289
+        ],
+        [
+          182.46,
+          2.694
+        ],
+        [
+          187.5,
+          5.952
+        ],
+        [
+          192.55,
+          5.35
+        ],
+        [
+          197.64,
+          2.753
+        ],
+        [
+          273.63,
+          3.599
+        ],
+        [
+          278.71,
+          5.703
+        ],
+        [
+          283.77,
+          5.934
+        ]
+      ],
+      "stalls": 1,
+      "errors": [
+        "attempt 1: IncompleteRead: IncompleteRead(1007424 bytes read)",
+        "attempt 2: TimeoutError: The read operation timed out"
+      ],
+      "redirect_chain": [],
+      "finished": "2026-11-12T08:56:47.825766+00:00",
+      "host": "g-52ba3.fd635.8443.data.globus.org"
+    },
+    {
+      "label": "NERSC-GLOBUS_1GB",
+      "url": "https://g-eba899.6b7bd8.0ec8.data.globus.org/css03_data/CMIP6/CMIP/CCCma/CanESM5/historical/r1i1p2f1/Omon/thetao/gn/v20190429/thetao_Omon_CanESM5_historical_r1i1p2f1_gn_185001-186012.nc",
+      "started": "2026-11-12T08:56:55.833377+00:00",
+      "status": "verified",
+      "expected_sha256": "fa7c3a0a6cbe4aec8805fda48948972a0bc42aec4fdd065ff3c5b61763522ea6",
+      "computed_sha256": "fa7c3a0a6cbe4aec8805fda48948972a0bc42aec4fdd065ff3c5b61763522ea6",
+      "sha256_match": true,
+      "total_bytes": null,
+      "downloaded_bytes": 1110603079,
+      "accept_ranges": true,
+      "resumes": 0,
+      "attempts": 1,
+      "wall_time_s": 184.91,
+      "active_transfer_s": 182.25245829200048,
+      "avg_rate_MBps": 5.811,
+      "first_connect_timings": {
+        "dns_s": 0.0038,
+        "tcp_connect_s": 0.4048,
+        "tls_handshake_s": 0.3909,
+        "tls_version": "TLSv1.3",
+        "peer_ip": "128.55.200.27",
+        "ttfb_s": 1.8201
+      },
+      "throughput_samples": [
+        [
+          7.7,
+          2.184
+        ],
+        [
+          12.71,
+          4.585
+        ],
+        [
+          17.88,
+          6.003
+        ],
+        [
+          23.04,
+          6.004
+        ],
+        [
+          28.18,
+          4.474
+        ],
+        [
+          33.22,
+          5.76
+        ],
+        [
+          38.25,
+          6.358
+        ],
+        [
+          43.37,
+          5.078
+        ],
+        [
+          48.39,
+          4.78
+        ],
+        [
+          53.49,
+          5.29
+        ],
+        [
+          58.63,
+          6.034
+        ],
+        [
+          63.82,
+          6.365
+        ],
+        [
+          68.87,
+          4.949
+        ],
+        [
+          73.88,
+          5.787
+        ],
+        [
+          78.93,
+          6.332
+        ],
+        [
+          84.04,
+          6.458
+        ],
+        [
+          89.06,
+          6.783
+        ],
+        [
+          94.41,
+          5.971
+        ],
+        [
+          99.45,
+          6.357
+        ],
+        [
+          104.51,
+          6.324
+        ],
+        [
+          109.58,
+          6.711
+        ],
+        [
+          114.58,
+          6.588
+        ],
+        [
+          119.59,
+          4.594
+        ],
+        [
+          124.73,
+          3.891
+        ],
+        [
+          129.8,
+          3.947
+        ],
+        [
+          134.94,
+          5.254
+        ],
+        [
+          140.03,
+          6.282
+        ],
+        [
+          145.18,
+          5.636
+        ],
+        [
+          150.22,
+          6.747
+        ],
+        [
+          155.3,
+          6.883
+        ],
+        [
+          160.44,
+          7.009
+        ],
+        [
+          165.46,
+          6.764
+        ],
+        [
+          170.59,
+          7.027
+        ],
+        [
+          175.72,
+          6.628
+        ],
+        [
+          180.82,
+          6.86
+        ]
+      ],
+      "stalls": 0,
+      "errors": [],
+      "redirect_chain": [],
+      "finished": "2026-11-12T09:00:00.777951+00:00",
+      "host": "g-eba899.6b7bd8.0ec8.data.globus.org"
+    }
+  ],
+  "run_finished": "2026-11-12T09:00:00.803853+00:00"
+}

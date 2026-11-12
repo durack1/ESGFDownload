@@ -1,0 +1,38 @@
+(base) airy2:ESGFDownload paully$ python esgfDownloadLog.py 
+Collecting run/host diagnostics ...
+  system: macOS 15.8.2 | arm64 | Python 3.12.12 (CPython) | OpenSSL 3.6.5 29 Sep 2026
+  origin: airy2.local | Cape Town, South Africa | Vodacom | 41.10.210.135 [ipwho.is]
+
+=== BSC_1GB ===
+  diagnostics for esgf.bsc.es (traceroute=on) ...
+  2026-11-08 06:00:26
+  BSC_1GB              [######----------------------]  23.0%  294.0MB/1.2GB  0.28MB/s  ETA 58:18
+  BSC_1GB              [######----------------------]  24.8%  317.0MB/1.2GB  0.31MB/s  ETA 51:10
+  BSC_1GB              [##########------------------]  37.7%  482.0MB/1.2GB  7.84MB/s  ETA 01:41
+  BSC_1GB              [###########-----------------]  42.6%  545.0MB/1.2GB  0.78MB/s  ETA 15:37
+  BSC_1GB              [############################] 100.0%  1.2GB/1.2GB  14.07MB/s  ETA 00:00 
+  2026-11-08 06:56:14
+  status=verified  bytes=1341138713  resumes=4  stalls=4  avg=1.279 MB/s  sha_match=True
+  logged -> 20261108T055957_esgf_results.json / 20261108T055957_esgf_results.csv
+
+=== CEDA_1GB ===
+  diagnostics for esgf.ceda.ac.uk (traceroute=on) ...
+  2026-11-08 06:56:34
+  CEDA_1GB             [----------------------------]   0.7%  7.0MB/1.0GB  5.26MB/s  ETA 03:20  
+  CEDA_1GB             [----------------------------]   2.1%  22.0MB/1.0GB  0.21MB/s  ETA 1:22:1
+  CEDA_1GB             [#############---------------]  49.3%  522.0MB/1.0GB  0.97MB/s  ETA 09:12
+  CEDA_1GB             [################------------]  57.8%  612.0MB/1.0GB  0.22MB/s  ETA 33:16
+  CEDA_1GB             [#################-----------]  63.7%  675.0MB/1.0GB  0.71MB/s  ETA 09:03
+  CEDA_1GB             [##################----------]  66.5%  704.0MB/1.0GB  0.10MB/s  ETA 58:43
+  CEDA_1GB             [##################----------]  67.2%  712.0MB/1.0GB  0.52MB/s  ETA 11:11
+  CEDA_1GB             [#######################-----]  82.9%  878.0MB/1.0GB  1.82MB/s  ETA 01:39
+  CEDA_1GB             [#######################-----]  83.9%  889.0MB/1.0GB  0.23MB/s  ETA 12:36
+  2026-11-08 08:36:05
+  status=failed  bytes=932184064  resumes=9  stalls=9  avg=0.594 MB/s  sha_match=None
+  logged -> 20261108T055957_esgf_results.json / 20261108T055957_esgf_results.csv
+
+=== DKRZ_1GB ===
+  diagnostics for esgf3.dkrz.de (traceroute=on) ...
+^CTraceback (most recent call last):
+
+Ctrl-c

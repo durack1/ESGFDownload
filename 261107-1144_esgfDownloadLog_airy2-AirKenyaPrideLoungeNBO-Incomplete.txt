@@ -1,0 +1,80 @@
+(base) airy2:ESGFDownload paully$ python esgfDownloadLog.py 
+Collecting run/host diagnostics ...
+  system: macOS 15.8.2 | arm64 | Python 3.12.12 (CPython) | OpenSSL 3.6.5 29 Sep 2026
+  origin: airy2.local | Nairobi, Kenya | ACCESSKENYA GROUP LTD is an ISP serving | 197.254.103.86 [ipwho.is]
+
+=== BSC_1GB ===
+  diagnostics for esgf.bsc.es (traceroute=on) ...
+  2026-11-07 08:32:20
+  BSC_1GB              [########--------------------]  30.0%  384.0MB/1.2GB  1.71MB/s  ETA 08:43
+  BSC_1GB              [##############--------------]  51.6%  660.0MB/1.2GB  5.41MB/s  ETA 01:54
+  BSC_1GB              [##############--------------]  52.5%  671.0MB/1.2GB  0.09MB/s  ETA 1:52:
+  BSC_1GB              [##############--------------]  53.2%  680.0MB/1.2GB  0.31MB/s  ETA 32:11
+  BSC_1GB              [#####################-------]  75.9%  971.0MB/1.2GB  3.34MB/s  ETA 01:32
+  BSC_1GB              [############################] 100.0%  1.2GB/1.2GB  3.10MB/s  ETA 00:00  
+  2026-11-07 09:30:01
+  status=verified  bytes=1341138713  resumes=5  stalls=5  avg=0.997 MB/s  sha_match=True
+  logged -> 20261107T083141_esgf_results.json / 20261107T083141_esgf_results.csv
+
+=== CEDA_1GB ===
+  diagnostics for esgf.ceda.ac.uk (traceroute=on) ...
+  2026-11-07 09:40:49
+  CEDA_1GB             [############################] 100.0%  1.0GB/1.0GB  2.29MB/s  ETA 00:00  
+  2026-11-07 09:46:30
+  status=verified  bytes=1110603079  resumes=0  stalls=0  avg=3.121 MB/s  sha_match=True
+  logged -> 20261107T083141_esgf_results.json / 20261107T083141_esgf_results.csv
+
+=== DKRZ_1GB ===
+  diagnostics for esgf3.dkrz.de (traceroute=on) ...
+  2026-11-07 09:52:39
+  DKRZ_1GB             [############################] 100.0%  1.0GB/1.0GB  5.79MB/s  ETA 00:00  
+  2026-11-07 09:57:29
+  status=verified  bytes=1110603079  resumes=0  stalls=0  avg=3.677 MB/s  sha_match=True
+  logged -> 20261107T083141_esgf_results.json / 20261107T083141_esgf_results.csv
+
+=== IPSL_1GB ===
+  diagnostics for vesg.ipsl.upmc.fr (traceroute=on) ...
+  2026-11-07 10:03:53
+  IPSL_1GB             [###########-----------------]  41.0%  541.0MB/1.3GB  0.14MB/s  ETA 1:30:
+  IPSL_1GB             [############################] 100.0%  1.3GB/1.3GB  2.47MB/s  ETA 00:00  
+  2026-11-07 10:39:30
+  status=verified  bytes=1384821748  resumes=1  stalls=1  avg=1.737 MB/s  sha_match=True
+  logged -> 20261107T083141_esgf_results.json / 20261107T083141_esgf_results.csv
+
+=== NCI_1GB ===
+  diagnostics for esgf.nci.org.au (traceroute=on) ...
+  2026-11-07 10:40:05
+  NCI_1GB              [----------------------------]   0.6%  6.3MB/1.0GB  0.01MB/s  ETA 61:44:2
+  NCI_1GB              [#---------------------------]   6.1%  65.1MB/1.0GB  1.43MB/s  ETA 11:37 
+  NCI_1GB              [####------------------------]  14.9%  158.1MB/1.0GB  0.91MB/s  ETA 16:31
+  NCI_1GB              [####------------------------]  15.7%  166.8MB/1.0GB  0.32MB/s  ETA 46:05
+  NCI_1GB              [####------------------------]  17.4%  184.4MB/1.0GB  0.02MB/s  ETA 13:19
+  NCI_1GB              [#####-----------------------]  18.0%  190.3MB/1.0GB  0.01MB/s  ETA 20:43
+  NCI_1GB              [######----------------------]  23.9%  252.6MB/1.0GB  0.02MB/s  ETA 9:47:
+  NCI_1GB              [######----------------------]  24.3%  257.0MB/1.0GB  0.01MB/s  ETA 32:32
+  NCI_1GB              [######----------------------]  24.6%  260.6MB/1.0GB  0.01MB/s  ETA 25:23
+  NCI_1GB              [######----------------------]  24.7%  261.6MB/1.0GB  0.05MB/s  ETA 4:40:
+  NCI_1GB              [#######---------------------]  25.4%  269.5MB/1.0GB  0.46MB/s  ETA 28:46
+  NCI_1GB              [#######---------------------]  25.5%  270.5MB/1.0GB  0.07MB/s  ETA 3:14:
+  NCI_1GB              [#######---------------------]  26.2%  277.6MB/1.0GB  0.00MB/s  ETA 960:1
+  NCI_1GB              [#######---------------------]  26.4%  279.8MB/1.0GB  0.00MB/s  ETA 48:46
+  2026-11-07 11:23:09
+  status=failed  bytes=293355690  resumes=14  stalls=3  avg=0.167 MB/s  sha_match=None
+  logged -> 20261107T083141_esgf_results.json / 20261107T083141_esgf_results.csv
+
+=== NORESG_1GB ===
+  diagnostics for noresg.nird.sigma2.no (traceroute=on) ...
+  2026-11-07 11:23:15
+  NORESG_1GB           [########--------------------]  30.3%  361.0MB/1.2GB  1.28MB/s  ETA 10:50
+  NORESG_1GB           [###########-----------------]  39.8%  474.0MB/1.2GB  2.04MB/s  ETA 05:52
+  NORESG_1GB           [############################] 100.0%  1.2GB/1.2GB  6.00MB/s  ETA 00:00  
+  2026-11-07 11:43:49
+  status=complete_unverified  bytes=1249487683  resumes=2  stalls=2  avg=1.353 MB/s  sha_match=None
+  logged -> 20261107T083141_esgf_results.json / 20261107T083141_esgf_results.csv
+
+=== LIU_1GB ===
+  diagnostics for esg-dn1.nsc.liu.se (traceroute=on) ...
+  2026-11-07 11:44:01
+  LIU_1GB              [----------------------------]   0.1%  2.0MB/1.6GB  0.57MB/s  ETA 46:56
+
+Ctrl-C

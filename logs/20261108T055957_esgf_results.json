@@ -1,0 +1,1066 @@
+{
+  "run_started": "2026-11-08T03:59:57.267907+00:00",
+  "platform": "macOS-15.8.2-arm64-arm-64bit",
+  "python": "3.12.12",
+  "config": {
+    "chunk_size": 1048576,
+    "max_attempts": 100,
+    "connect_timeout": 30.0,
+    "read_timeout": 60.0,
+    "dns_timeout": 15.0,
+    "per_file_deadline_s": 1800.0,
+    "max_consecutive_fails": 6,
+    "per_attempt_hard_cap_s": 180.0,
+    "isp_lookup": false,
+    "traceroute": true,
+    "geolocate_origin": true
+  },
+  "run_diagnostics": {
+    "origin": {
+      "hostname": "airy2.local",
+      "fqdn": "1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa",
+      "username": "paully",
+      "local_ips": [
+        "10.0.0.109",
+        "fe80::1",
+        "fe80::1c04:c2a5:df10:a229"
+      ],
+      "timezone": "SAST (UTC+02:00)",
+      "geo": {
+        "public_ip": "41.10.210.135",
+        "country": "South Africa",
+        "country_code": "ZA",
+        "region": "Western Cape",
+        "city": "Cape Town",
+        "latitude": -33.9258419,
+        "longitude": 18.4232205,
+        "isp": "Vodacom",
+        "org": "Vodacom ENS",
+        "asn": "AS36994",
+        "_provider": "ipwho.is"
+      }
+    },
+    "hostname": "airy2.local",
+    "platform_details": {
+      "os_description": "macOS 15.8.2",
+      "system": "Darwin",
+      "release": "24.6.0",
+      "version": "Darwin Kernel Version 24.6.0: Sun Oct 11 23:41:01 PDT 2026; root:xnu-11417.140.69.713.47~2/RELEASE_ARM64_T8103",
+      "machine": "arm64",
+      "processor": "arm",
+      "architecture": "64bit",
+      "platform_raw": "macOS-15.8.2-arm64-arm-64bit",
+      "python_version": "3.12.12",
+      "python_implementation": "CPython",
+      "python_compiler": "Clang 19.1.7 ",
+      "python_build": "main Oct 22 2025 23:34:53",
+      "libraries": {
+        "openssl": "OpenSSL 3.6.5 29 Sep 2026",
+        "zlib": "1.3.1",
+        "ssl_module": "3.6.0"
+      }
+    },
+    "platform": "macOS-15.8.2-arm64-arm-64bit",
+    "system": "Darwin",
+    "release": "24.6.0",
+    "machine": "arm64",
+    "processor": "arm",
+    "python_version": "3.12.12",
+    "python_build": "main Oct 22 2025 23:34:53",
+    "local_ip": "10.0.0.109",
+    "public_ip": null,
+    "isp_lookup_enabled": false,
+    "local_isp": null
+  },
+  "host_diagnostics": {
+    "esgf.bsc.es": {
+      "host": "esgf.bsc.es",
+      "resolved_ips": [
+        "84.88.53.197"
+      ],
+      "reverse_dns": "esgf.bsc.es",
+      "dest_isp": null,
+      "dest_geo": {
+        "public_ip": "84.88.53.197",
+        "country": "Spain",
+        "country_code": "ES",
+        "region": "Catalunya",
+        "city": "Barcelona",
+        "latitude": 41.3887862,
+        "longitude": 2.1589886,
+        "isp": "Consorci de Serveis Universitaris de Catalunya",
+        "org": "Consorci de Serveis Universitaris de Catalunya",
+        "asn": "AS13041",
+        "_provider": "ipwho.is"
+      },
+      "traceroute": {
+        "tool": "traceroute",
+        "hop_count": 30,
+        "status": "ok",
+        "raw": "1  10.0.0.254  3.961 ms\n 2  41.10.192.1  29.887 ms\n 3  10.118.74.251  29.556 ms\n 4  10.118.46.158  173.035 ms\n 5  195.2.30.173  172.165 ms\n 6  195.2.24.125  196.200 ms\n 7  195.2.8.230  312.823 ms\n 8  195.2.9.242  192.703 ms\n 9  109.105.98.2  193.263 ms\n10  109.105.101.90  324.185 ms\n11  109.105.101.102  192.348 ms\n12  109.105.97.10  202.970 ms\n13  109.105.97.3  207.325 ms\n14  109.105.101.23  285.553 ms\n15  5.57.80.168  219.315 ms\n16  *\n17  *\n18  83.97.90.19  204.702 ms\n19  130.206.245.5  283.977 ms\n20  130.206.245.94  205.911 ms\n21  130.206.214.98  213.933 ms\n22  *\n23  *\n24  *\n25  *\n26  *\n27  *\n28  *\n29  *\n30  *\ntraceroute to esgf.bsc.es (84.88.53.197), 30 hops max, 40 byte packets"
+      }
+    },
+    "esgf.ceda.ac.uk": {
+      "host": "esgf.ceda.ac.uk",
+      "resolved_ips": [
+        "130.246.1.20"
+      ],
+      "reverse_dns": "prod-k8s-proxy.jc.rl.ac.uk",
+      "dest_isp": null,
+      "dest_geo": {
+        "public_ip": "130.246.1.20",
+        "country": "United Kingdom",
+        "country_code": "GB",
+        "region": "England",
+        "city": "Wantage",
+        "latitude": 51.5884626,
+        "longitude": -1.4256455,
+        "isp": "Jisc Services Limited",
+        "org": "Science Technology Facilities Council",
+        "asn": "AS786",
+        "_provider": "ipwho.is"
+      },
+      "traceroute": {
+        "tool": "traceroute",
+        "hop_count": 15,
+        "status": "ok",
+        "raw": "1  10.0.0.254  4.531 ms\n 2  41.10.192.1  28.901 ms\n 3  10.118.74.253  29.637 ms\n 4  10.118.46.162  168.874 ms\n 5  212.133.39.169  172.780 ms\n 6  *\n 7  212.187.174.238  184.890 ms\n 8  146.97.35.189  180.262 ms\n 9  146.97.33.41  174.645 ms\n10  146.97.33.21  185.290 ms\n11  146.97.41.34  181.450 ms\n12  *\n13  *\n14  *\n15  130.246.1.20  179.974 ms !X\ntraceroute to prod-k8s-proxy.jc.rl.ac.uk (130.246.1.20), 30 hops max, 40 byte packets"
+      }
+    }
+  },
+  "results": [
+    {
+      "label": "BSC_1GB",
+      "url": "https://esgf.bsc.es/thredds/fileServer/esg_dataroot/a1u8-CMIP-r20/CMIP6/CMIP/EC-Earth-Consortium/EC-Earth3/historical/r20i1p1f1/day/hur/gr/v20210303/hur_day_EC-Earth3_historical_r20i1p1f1_gr_18500101-18501231.nc",
+      "started": "2026-11-08T04:00:26.032785+00:00",
+      "status": "verified",
+      "expected_sha256": "616e02c9704f9b39f6585d3e1c1241abf18c21b94d7f8262ba2c37662cf8100d",
+      "computed_sha256": "616e02c9704f9b39f6585d3e1c1241abf18c21b94d7f8262ba2c37662cf8100d",
+      "sha256_match": true,
+      "total_bytes": 1341138713,
+      "downloaded_bytes": 1341138713,
+      "accept_ranges": true,
+      "resumes": 4,
+      "attempts": 5,
+      "wall_time_s": 1035.42,
+      "active_transfer_s": 999.7398735000024,
+      "avg_rate_MBps": 1.279,
+      "first_connect_timings": {
+        "dns_s": 0.0032,
+        "tcp_connect_s": 0.2206,
+        "tls_handshake_s": 0.5174,
+        "tls_version": "TLSv1.2",
+        "peer_ip": "84.88.53.197",
+        "ttfb_s": 0.5093
+      },
+      "throughput_samples": [
+        [
+          7.17,
+          0.34
+        ],
+        [
+          12.2,
+          0.398
+        ],
+        [
+          18.8,
+          0.454
+        ],
+        [
+          24.47,
+          0.353
+        ],
+        [
+          32.18,
+          0.26
+        ],
+        [
+          49.13,
+          0.118
+        ],
+        [
+          54.95,
+          0.172
+        ],
+        [
+          62.84,
+          0.254
+        ],
+        [
+          67.86,
+          0.399
+        ],
+        [
+          73.89,
+          0.497
+        ],
+        [
+          79.51,
+          1.067
+        ],
+        [
+          84.7,
+          1.926
+        ],
+        [
+          89.76,
+          3.365
+        ],
+        [
+          94.85,
+          5.102
+        ],
+        [
+          99.87,
+          7.778
+        ],
+        [
+          104.89,
+          10.753
+        ],
+        [
+          109.91,
+          12.747
+        ],
+        [
+          169.61,
+          0.703
+        ],
+        [
+          267.9,
+          0.01
+        ],
+        [
+          277.59,
+          0.103
+        ],
+        [
+          285.77,
+          0.245
+        ],
+        [
+          292.5,
+          0.297
+        ],
+        [
+          298.58,
+          0.329
+        ],
+        [
+          304.03,
+          0.367
+        ],
+        [
+          311.06,
+          0.285
+        ],
+        [
+          317.14,
+          0.329
+        ],
+        [
+          392.46,
+          0.169
+        ],
+        [
+          399.42,
+          0.287
+        ],
+        [
+          404.76,
+          0.563
+        ],
+        [
+          411.71,
+          0.431
+        ],
+        [
+          420.21,
+          0.235
+        ],
+        [
+          428.71,
+          0.235
+        ],
+        [
+          435.06,
+          0.315
+        ],
+        [
+          443.45,
+          0.357
+        ],
+        [
+          450.32,
+          0.291
+        ],
+        [
+          456.36,
+          0.331
+        ],
+        [
+          554.76,
+          0.314
+        ],
+        [
+          561.26,
+          0.461
+        ],
+        [
+          568.12,
+          0.292
+        ],
+        [
+          574.64,
+          0.307
+        ],
+        [
+          579.96,
+          0.563
+        ],
+        [
+          585.3,
+          1.313
+        ],
+        [
+          590.45,
+          2.718
+        ],
+        [
+          595.59,
+          4.862
+        ],
+        [
+          600.65,
+          8.306
+        ],
+        [
+          605.93,
+          11.537
+        ],
+        [
+          697.64,
+          0.188
+        ],
+        [
+          702.72,
+          0.394
+        ],
+        [
+          707.75,
+          0.398
+        ],
+        [
+          714.25,
+          0.461
+        ],
+        [
+          720.9,
+          0.452
+        ],
+        [
+          727.06,
+          0.325
+        ],
+        [
+          733.56,
+          0.461
+        ],
+        [
+          738.8,
+          0.763
+        ],
+        [
+          744.78,
+          0.837
+        ],
+        [
+          750.02,
+          0.762
+        ],
+        [
+          755.79,
+          0.867
+        ],
+        [
+          761.77,
+          0.836
+        ],
+        [
+          767.08,
+          0.942
+        ],
+        [
+          850.32,
+          0.048
+        ],
+        [
+          856.57,
+          0.16
+        ],
+        [
+          864.25,
+          0.26
+        ],
+        [
+          870.62,
+          0.314
+        ],
+        [
+          876.33,
+          0.35
+        ],
+        [
+          883.27,
+          0.288
+        ],
+        [
+          889.9,
+          0.453
+        ],
+        [
+          976.34,
+          0.541
+        ],
+        [
+          981.67,
+          2.062
+        ],
+        [
+          986.8,
+          5.66
+        ],
+        [
+          991.84,
+          11.703
+        ],
+        [
+          996.98,
+          13.804
+        ],
+        [
+          1002.05,
+          14.41
+        ],
+        [
+          1007.09,
+          14.482
+        ],
+        [
+          1012.17,
+          14.571
+        ],
+        [
+          1017.19,
+          14.517
+        ],
+        [
+          1022.24,
+          14.665
+        ],
+        [
+          1027.28,
+          14.684
+        ],
+        [
+          1032.28,
+          14.792
+        ]
+      ],
+      "stalls": 4,
+      "errors": [
+        "attempt 1: TimeoutError: The read operation timed out",
+        "attempt 2: TimeoutError: The read operation timed out",
+        "attempt 3: TimeoutError: The read operation timed out",
+        "attempt 4: TimeoutError: The read operation timed out"
+      ],
+      "redirect_chain": [],
+      "finished": "2026-11-08T04:56:14.039197+00:00",
+      "host": "esgf.bsc.es"
+    },
+    {
+      "label": "CEDA_1GB",
+      "url": "https://esgf.ceda.ac.uk/thredds/fileServer/esg_cmip6/CMIP6/CMIP/CCCma/CanESM5/historical/r1i1p2f1/Omon/thetao/gn/v20190429/thetao_Omon_CanESM5_historical_r1i1p2f1_gn_185001-186012.nc",
+      "started": "2026-11-08T04:56:34.215427+00:00",
+      "status": "failed",
+      "expected_sha256": "fa7c3a0a6cbe4aec8805fda48948972a0bc42aec4fdd065ff3c5b61763522ea6",
+      "computed_sha256": null,
+      "sha256_match": null,
+      "total_bytes": 1110603079,
+      "downloaded_bytes": 932184064,
+      "accept_ranges": true,
+      "resumes": 9,
+      "attempts": 9,
+      "wall_time_s": 1800.0,
+      "active_transfer_s": 1495.5582751259935,
+      "avg_rate_MBps": 0.594,
+      "first_connect_timings": {
+        "dns_s": 0.0016,
+        "tcp_connect_s": 0.18,
+        "tls_handshake_s": 0.1912,
+        "tls_version": "TLSv1.3",
+        "peer_ip": "130.246.1.20",
+        "ttfb_s": 0.3557
+      },
+      "throughput_samples": [
+        [
+          77.22,
+          0.095
+        ],
+        [
+          85.35,
+          0.246
+        ],
+        [
+          92.58,
+          0.138
+        ],
+        [
+          99.27,
+          0.149
+        ],
+        [
+          108.44,
+          0.109
+        ],
+        [
+          114.1,
+          0.177
+        ],
+        [
+          122.51,
+          0.119
+        ],
+        [
+          127.62,
+          0.196
+        ],
+        [
+          134.0,
+          0.157
+        ],
+        [
+          139.29,
+          0.189
+        ],
+        [
+          147.38,
+          0.247
+        ],
+        [
+          156.48,
+          0.22
+        ],
+        [
+          226.99,
+          11.541
+        ],
+        [
+          232.04,
+          15.667
+        ],
+        [
+          237.04,
+          13.188
+        ],
+        [
+          242.09,
+          10.494
+        ],
+        [
+          247.33,
+          7.639
+        ],
+        [
+          253.0,
+          2.466
+        ],
+        [
+          258.4,
+          1.113
+        ],
+        [
+          263.43,
+          0.994
+        ],
+        [
+          268.6,
+          0.968
+        ],
+        [
+          274.24,
+          1.063
+        ],
+        [
+          279.85,
+          1.427
+        ],
+        [
+          284.96,
+          1.564
+        ],
+        [
+          290.29,
+          1.502
+        ],
+        [
+          295.36,
+          1.577
+        ],
+        [
+          301.01,
+          1.24
+        ],
+        [
+          306.3,
+          1.133
+        ],
+        [
+          311.6,
+          1.133
+        ],
+        [
+          316.99,
+          1.299
+        ],
+        [
+          322.25,
+          1.9
+        ],
+        [
+          327.58,
+          1.876
+        ],
+        [
+          332.58,
+          1.999
+        ],
+        [
+          338.09,
+          1.453
+        ],
+        [
+          343.58,
+          1.275
+        ],
+        [
+          349.42,
+          1.028
+        ],
+        [
+          355.42,
+          0.833
+        ],
+        [
+          360.73,
+          0.942
+        ],
+        [
+          366.68,
+          0.841
+        ],
+        [
+          372.18,
+          0.909
+        ],
+        [
+          377.52,
+          0.936
+        ],
+        [
+          382.88,
+          0.933
+        ],
+        [
+          388.21,
+          0.938
+        ],
+        [
+          393.7,
+          1.094
+        ],
+        [
+          399.48,
+          1.037
+        ],
+        [
+          405.41,
+          1.012
+        ],
+        [
+          410.44,
+          0.795
+        ],
+        [
+          487.57,
+          4.217
+        ],
+        [
+          494.71,
+          1.262
+        ],
+        [
+          503.91,
+          0.217
+        ],
+        [
+          511.38,
+          0.134
+        ],
+        [
+          520.03,
+          0.115
+        ],
+        [
+          527.81,
+          0.129
+        ],
+        [
+          537.34,
+          0.21
+        ],
+        [
+          542.45,
+          0.196
+        ],
+        [
+          548.65,
+          0.161
+        ],
+        [
+          555.25,
+          0.152
+        ],
+        [
+          560.36,
+          0.195
+        ],
+        [
+          565.45,
+          0.196
+        ],
+        [
+          575.16,
+          0.103
+        ],
+        [
+          582.56,
+          0.135
+        ],
+        [
+          591.58,
+          0.222
+        ],
+        [
+          598.29,
+          0.149
+        ],
+        [
+          607.01,
+          0.115
+        ],
+        [
+          614.43,
+          0.135
+        ],
+        [
+          621.89,
+          0.134
+        ],
+        [
+          629.29,
+          0.135
+        ],
+        [
+          638.05,
+          0.114
+        ],
+        [
+          646.07,
+          0.125
+        ],
+        [
+          655.87,
+          0.204
+        ],
+        [
+          667.39,
+          0.174
+        ],
+        [
+          675.31,
+          0.126
+        ],
+        [
+          685.04,
+          0.103
+        ],
+        [
+          693.78,
+          0.115
+        ],
+        [
+          699.89,
+          0.164
+        ],
+        [
+          707.93,
+          0.124
+        ],
+        [
+          717.82,
+          0.202
+        ],
+        [
+          727.89,
+          0.099
+        ],
+        [
+          736.73,
+          0.113
+        ],
+        [
+          741.85,
+          0.195
+        ],
+        [
+          749.84,
+          0.125
+        ],
+        [
+          758.01,
+          0.122
+        ],
+        [
+          767.23,
+          0.108
+        ],
+        [
+          773.59,
+          0.157
+        ],
+        [
+          780.01,
+          0.312
+        ],
+        [
+          788.84,
+          0.227
+        ],
+        [
+          798.01,
+          0.109
+        ],
+        [
+          805.69,
+          0.13
+        ],
+        [
+          814.87,
+          0.109
+        ],
+        [
+          823.47,
+          0.116
+        ],
+        [
+          833.27,
+          0.102
+        ],
+        [
+          842.28,
+          0.111
+        ],
+        [
+          849.57,
+          0.274
+        ],
+        [
+          855.44,
+          0.17
+        ],
+        [
+          867.27,
+          0.085
+        ],
+        [
+          875.26,
+          0.125
+        ],
+        [
+          882.85,
+          0.132
+        ],
+        [
+          889.21,
+          0.157
+        ],
+        [
+          980.68,
+          1.889
+        ],
+        [
+          985.93,
+          2.099
+        ],
+        [
+          991.48,
+          1.261
+        ],
+        [
+          997.3,
+          1.031
+        ],
+        [
+          1002.34,
+          0.991
+        ],
+        [
+          1008.08,
+          0.871
+        ],
+        [
+          1014.06,
+          0.669
+        ],
+        [
+          1019.79,
+          0.699
+        ],
+        [
+          1025.21,
+          0.738
+        ],
+        [
+          1031.35,
+          0.651
+        ],
+        [
+          1136.92,
+          1.147
+        ],
+        [
+          1143.83,
+          0.434
+        ],
+        [
+          1150.41,
+          0.607
+        ],
+        [
+          1157.67,
+          0.276
+        ],
+        [
+          1166.03,
+          0.12
+        ],
+        [
+          1171.87,
+          0.171
+        ],
+        [
+          1180.95,
+          0.22
+        ],
+        [
+          1189.45,
+          0.235
+        ],
+        [
+          1196.18,
+          0.149
+        ],
+        [
+          1201.85,
+          0.353
+        ],
+        [
+          1215.86,
+          0.143
+        ],
+        [
+          1350.76,
+          0.482
+        ],
+        [
+          1356.86,
+          0.328
+        ],
+        [
+          1362.96,
+          0.492
+        ],
+        [
+          1489.29,
+          3.941
+        ],
+        [
+          1494.72,
+          6.815
+        ],
+        [
+          1499.73,
+          3.591
+        ],
+        [
+          1504.84,
+          5.878
+        ],
+        [
+          1510.12,
+          2.839
+        ],
+        [
+          1515.23,
+          2.936
+        ],
+        [
+          1520.45,
+          3.641
+        ],
+        [
+          1525.79,
+          1.685
+        ],
+        [
+          1657.6,
+          0.124
+        ],
+        [
+          1663.75,
+          0.163
+        ],
+        [
+          1669.37,
+          0.355
+        ],
+        [
+          1675.03,
+          0.707
+        ],
+        [
+          1682.65,
+          0.262
+        ]
+      ],
+      "stalls": 9,
+      "errors": [
+        "attempt 1: TimeoutError: The read operation timed out",
+        "attempt 2: TimeoutError: The read operation timed out",
+        "attempt 3: TimeoutError: The read operation timed out",
+        "attempt 4: TimeoutError: The read operation timed out",
+        "attempt 5: TimeoutError: The read operation timed out",
+        "attempt 6: TimeoutError: The read operation timed out",
+        "attempt 7: TimeoutError: The read operation timed out",
+        "attempt 8: TimeoutError: The read operation timed out",
+        "attempt 9: TimeoutError: The read operation timed out",
+        "aborted: per-file deadline of 1800s exceeded (1800s elapsed, 932184064 bytes)"
+      ],
+      "redirect_chain": [],
+      "finished": "2026-11-08T06:36:05.661707+00:00",
+      "host": "esgf.ceda.ac.uk"
+    }
+  ],
+  "run_finished": "2026-11-08T06:36:05.664832+00:00"
+}
