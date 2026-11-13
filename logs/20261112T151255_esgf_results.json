@@ -1,0 +1,957 @@
+{
+  "run_started": "2026-11-12T13:12:55.037820+00:00",
+  "platform": "macOS-15.8.3-arm64-arm-64bit",
+  "python": "3.12.12",
+  "config": {
+    "chunk_size": 1048576,
+    "max_attempts": 100,
+    "connect_timeout": 30.0,
+    "read_timeout": 60.0,
+    "dns_timeout": 15.0,
+    "per_file_deadline_s": 1800.0,
+    "max_consecutive_fails": 6,
+    "per_attempt_hard_cap_s": 180.0,
+    "isp_lookup": false,
+    "traceroute": true,
+    "geolocate_origin": true
+  },
+  "run_diagnostics": {
+    "origin": {
+      "hostname": "airy2.local",
+      "fqdn": "1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa",
+      "username": "paully",
+      "local_ips": [
+        "172.28.53.80",
+        "fe80::1",
+        "fe80::410:c91:88ad:b958"
+      ],
+      "timezone": "SAST (UTC+02:00)",
+      "geo": {
+        "public_ip": "196.11.7.49",
+        "country": "South Africa",
+        "country_code": "ZA",
+        "region": "Gauteng",
+        "city": "Johannesburg",
+        "latitude": -26.2022719,
+        "longitude": 28.0436337,
+        "isp": "Telkom SA Ltd.",
+        "org": "Airports Company Limited",
+        "asn": "AS5713",
+        "_provider": "ipwho.is"
+      }
+    },
+    "hostname": "airy2.local",
+    "platform_details": {
+      "os_description": "macOS 15.8.3",
+      "system": "Darwin",
+      "release": "24.6.0",
+      "version": "Darwin Kernel Version 24.6.0: Sun Oct 11 23:41:01 PDT 2026; root:xnu-11417.140.69.713.47~2/RELEASE_ARM64_T8103",
+      "machine": "arm64",
+      "processor": "arm",
+      "architecture": "64bit",
+      "platform_raw": "macOS-15.8.3-arm64-arm-64bit",
+      "python_version": "3.12.12",
+      "python_implementation": "CPython",
+      "python_compiler": "Clang 19.1.7 ",
+      "python_build": "main Oct 22 2025 23:34:53",
+      "libraries": {
+        "openssl": "OpenSSL 3.6.5 29 Sep 2026",
+        "zlib": "1.3.1",
+        "ssl_module": "3.6.0"
+      }
+    },
+    "platform": "macOS-15.8.3-arm64-arm-64bit",
+    "system": "Darwin",
+    "release": "24.6.0",
+    "machine": "arm64",
+    "processor": "arm",
+    "python_version": "3.12.12",
+    "python_build": "main Oct 22 2025 23:34:53",
+    "local_ip": "172.28.53.80",
+    "public_ip": null,
+    "isp_lookup_enabled": false,
+    "local_isp": null
+  },
+  "host_diagnostics": {
+    "esgf.bsc.es": {
+      "host": "esgf.bsc.es",
+      "resolved_ips": [
+        "84.88.53.197"
+      ],
+      "reverse_dns": "esgf.bsc.es",
+      "dest_isp": null,
+      "dest_geo": {
+        "public_ip": "84.88.53.197",
+        "country": "Spain",
+        "country_code": "ES",
+        "region": "Catalunya",
+        "city": "Barcelona",
+        "latitude": 41.3887862,
+        "longitude": 2.1589886,
+        "isp": "Consorci de Serveis Universitaris de Catalunya",
+        "org": "Consorci de Serveis Universitaris de Catalunya",
+        "asn": "AS13041",
+        "_provider": "ipwho.is"
+      },
+      "traceroute": {
+        "tool": "traceroute",
+        "hop_count": 30,
+        "status": "ok",
+        "raw": "1  172.28.63.249  847.554 ms\n 2  *\n 3  *\n 4  *\n 5  *\n 6  *\n 7  *\n 8  *\n 9  *\n10  *\n11  *\n12  *\n13  *\n14  *\n15  *\n16  *\n17  *\n18  *\n19  *\n20  *\n21  *\n22  *\n23  *\n24  *\n25  *\n26  *\n27  *\n28  *\n29  *\n30  *\ntraceroute to esgf.bsc.es (84.88.53.197), 30 hops max, 40 byte packets"
+      }
+    },
+    "esgf.ceda.ac.uk": {
+      "host": "esgf.ceda.ac.uk",
+      "resolved_ips": [],
+      "reverse_dns": null,
+      "dest_isp": null,
+      "dest_geo": {
+        "status": "no ip"
+      },
+      "traceroute": {
+        "tool": "traceroute",
+        "hop_count": null,
+        "status": "ran_unparsed",
+        "raw": "traceroute: unknown host esgf.ceda.ac.uk"
+      }
+    },
+    "esgf3.dkrz.de": {
+      "host": "esgf3.dkrz.de",
+      "resolved_ips": [],
+      "reverse_dns": null,
+      "dest_isp": null,
+      "dest_geo": {
+        "status": "no ip"
+      },
+      "traceroute": {
+        "tool": "traceroute",
+        "hop_count": null,
+        "status": "ran_unparsed",
+        "raw": "traceroute: unknown host esgf3.dkrz.de"
+      }
+    },
+    "vesg.ipsl.upmc.fr": {
+      "host": "vesg.ipsl.upmc.fr",
+      "resolved_ips": [],
+      "reverse_dns": null,
+      "dest_isp": null,
+      "dest_geo": {
+        "status": "no ip"
+      },
+      "traceroute": {
+        "tool": "traceroute",
+        "hop_count": null,
+        "status": "ran_unparsed",
+        "raw": "traceroute: unknown host vesg.ipsl.upmc.fr"
+      }
+    },
+    "esgf.nci.org.au": {
+      "host": "esgf.nci.org.au",
+      "resolved_ips": [],
+      "reverse_dns": null,
+      "dest_isp": null,
+      "dest_geo": {
+        "status": "no ip"
+      },
+      "traceroute": {
+        "tool": "traceroute",
+        "hop_count": null,
+        "status": "ran_unparsed",
+        "raw": "traceroute: unknown host esgf.nci.org.au"
+      }
+    }
+  },
+  "results": [
+    {
+      "label": "BSC_1GB",
+      "url": "https://esgf.bsc.es/thredds/fileServer/esg_dataroot/a1u8-CMIP-r20/CMIP6/CMIP/EC-Earth-Consortium/EC-Earth3/historical/r20i1p1f1/day/hur/gr/v20210303/hur_day_EC-Earth3_historical_r20i1p1f1_gr_18500101-18501231.nc",
+      "started": "2026-11-12T13:13:55.249001+00:00",
+      "status": "failed",
+      "expected_sha256": "616e02c9704f9b39f6585d3e1c1241abf18c21b94d7f8262ba2c37662cf8100d",
+      "computed_sha256": null,
+      "sha256_match": null,
+      "total_bytes": 1341138713,
+      "downloaded_bytes": 161480704,
+      "accept_ranges": true,
+      "resumes": 1,
+      "attempts": 1,
+      "wall_time_s": 1999.54,
+      "active_transfer_s": 1998.5534827909978,
+      "avg_rate_MBps": 0.077,
+      "first_connect_timings": {
+        "dns_s": 0.0038,
+        "tcp_connect_s": 0.202,
+        "tls_handshake_s": 0.3579,
+        "tls_version": "TLSv1.2",
+        "peer_ip": "84.88.53.197",
+        "ttfb_s": 0.3825
+      },
+      "throughput_samples": [
+        [
+          12.92,
+          0.084
+        ],
+        [
+          18.57,
+          0.177
+        ],
+        [
+          28.01,
+          0.212
+        ],
+        [
+          35.94,
+          0.126
+        ],
+        [
+          50.42,
+          0.138
+        ],
+        [
+          64.05,
+          0.073
+        ],
+        [
+          76.98,
+          0.077
+        ],
+        [
+          90.08,
+          0.076
+        ],
+        [
+          113.47,
+          0.043
+        ],
+        [
+          135.1,
+          0.046
+        ],
+        [
+          148.93,
+          0.072
+        ],
+        [
+          165.49,
+          0.06
+        ],
+        [
+          192.53,
+          0.037
+        ],
+        [
+          201.22,
+          0.115
+        ],
+        [
+          208.26,
+          0.142
+        ],
+        [
+          213.3,
+          0.199
+        ],
+        [
+          222.69,
+          0.106
+        ],
+        [
+          234.83,
+          0.082
+        ],
+        [
+          244.72,
+          0.101
+        ],
+        [
+          249.9,
+          0.193
+        ],
+        [
+          257.5,
+          0.132
+        ],
+        [
+          270.46,
+          0.077
+        ],
+        [
+          278.39,
+          0.126
+        ],
+        [
+          287.88,
+          0.105
+        ],
+        [
+          310.86,
+          0.044
+        ],
+        [
+          345.72,
+          0.029
+        ],
+        [
+          361.04,
+          0.065
+        ],
+        [
+          371.24,
+          0.098
+        ],
+        [
+          377.5,
+          0.16
+        ],
+        [
+          385.43,
+          0.126
+        ],
+        [
+          398.81,
+          0.075
+        ],
+        [
+          411.43,
+          0.079
+        ],
+        [
+          426.65,
+          0.066
+        ],
+        [
+          440.77,
+          0.071
+        ],
+        [
+          453.71,
+          0.077
+        ],
+        [
+          472.95,
+          0.052
+        ],
+        [
+          486.27,
+          0.075
+        ],
+        [
+          496.74,
+          0.096
+        ],
+        [
+          510.57,
+          0.072
+        ],
+        [
+          533.93,
+          0.043
+        ],
+        [
+          554.47,
+          0.049
+        ],
+        [
+          568.5,
+          0.071
+        ],
+        [
+          581.55,
+          0.077
+        ],
+        [
+          600.07,
+          0.054
+        ],
+        [
+          611.0,
+          0.091
+        ],
+        [
+          623.49,
+          0.08
+        ],
+        [
+          633.23,
+          0.103
+        ],
+        [
+          642.77,
+          0.105
+        ],
+        [
+          649.9,
+          0.14
+        ],
+        [
+          665.0,
+          0.066
+        ],
+        [
+          683.32,
+          0.055
+        ],
+        [
+          696.62,
+          0.075
+        ],
+        [
+          707.0,
+          0.096
+        ],
+        [
+          713.65,
+          0.15
+        ],
+        [
+          725.02,
+          0.088
+        ],
+        [
+          737.89,
+          0.078
+        ],
+        [
+          751.52,
+          0.073
+        ],
+        [
+          798.74,
+          0.021
+        ],
+        [
+          868.04,
+          0.014
+        ],
+        [
+          875.84,
+          0.128
+        ],
+        [
+          887.47,
+          0.086
+        ],
+        [
+          897.75,
+          0.097
+        ],
+        [
+          910.31,
+          0.08
+        ],
+        [
+          923.11,
+          0.078
+        ],
+        [
+          935.66,
+          0.08
+        ],
+        [
+          946.43,
+          0.093
+        ],
+        [
+          959.26,
+          0.078
+        ],
+        [
+          968.48,
+          0.109
+        ],
+        [
+          979.52,
+          0.091
+        ],
+        [
+          988.47,
+          0.112
+        ],
+        [
+          1006.23,
+          0.056
+        ],
+        [
+          1013.49,
+          0.138
+        ],
+        [
+          1023.06,
+          0.105
+        ],
+        [
+          1037.72,
+          0.068
+        ],
+        [
+          1055.5,
+          0.056
+        ],
+        [
+          1062.02,
+          0.153
+        ],
+        [
+          1070.01,
+          0.125
+        ],
+        [
+          1080.61,
+          0.094
+        ],
+        [
+          1089.13,
+          0.117
+        ],
+        [
+          1095.94,
+          0.147
+        ],
+        [
+          1102.09,
+          0.163
+        ],
+        [
+          1111.52,
+          0.106
+        ],
+        [
+          1124.87,
+          0.075
+        ],
+        [
+          1137.86,
+          0.077
+        ],
+        [
+          1150.95,
+          0.076
+        ],
+        [
+          1159.5,
+          0.117
+        ],
+        [
+          1167.04,
+          0.133
+        ],
+        [
+          1174.81,
+          0.129
+        ],
+        [
+          1184.87,
+          0.199
+        ],
+        [
+          1191.49,
+          0.151
+        ],
+        [
+          1199.0,
+          0.133
+        ],
+        [
+          1208.48,
+          0.105
+        ],
+        [
+          1218.65,
+          0.098
+        ],
+        [
+          1231.27,
+          0.079
+        ],
+        [
+          1242.78,
+          0.087
+        ],
+        [
+          1258.27,
+          0.065
+        ],
+        [
+          1265.4,
+          0.14
+        ],
+        [
+          1276.92,
+          0.087
+        ],
+        [
+          1302.54,
+          0.039
+        ],
+        [
+          1312.09,
+          0.105
+        ],
+        [
+          1323.78,
+          0.086
+        ],
+        [
+          1336.43,
+          0.079
+        ],
+        [
+          1350.92,
+          0.069
+        ],
+        [
+          1359.85,
+          0.112
+        ],
+        [
+          1373.3,
+          0.074
+        ],
+        [
+          1388.23,
+          0.067
+        ],
+        [
+          1401.7,
+          0.074
+        ],
+        [
+          1415.2,
+          0.074
+        ],
+        [
+          1425.3,
+          0.099
+        ],
+        [
+          1437.25,
+          0.084
+        ],
+        [
+          1445.95,
+          0.115
+        ],
+        [
+          1453.99,
+          0.124
+        ],
+        [
+          1462.41,
+          0.119
+        ],
+        [
+          1470.83,
+          0.119
+        ],
+        [
+          1484.18,
+          0.075
+        ],
+        [
+          1496.38,
+          0.082
+        ],
+        [
+          1507.25,
+          0.092
+        ],
+        [
+          1522.19,
+          0.134
+        ],
+        [
+          1536.26,
+          0.071
+        ],
+        [
+          1544.51,
+          0.121
+        ],
+        [
+          1550.65,
+          0.163
+        ],
+        [
+          1559.23,
+          0.117
+        ],
+        [
+          1571.57,
+          0.081
+        ],
+        [
+          1589.67,
+          0.055
+        ],
+        [
+          1603.19,
+          0.074
+        ],
+        [
+          1617.33,
+          0.071
+        ],
+        [
+          1632.88,
+          0.064
+        ],
+        [
+          1641.58,
+          0.115
+        ],
+        [
+          1651.68,
+          0.099
+        ],
+        [
+          1662.87,
+          0.089
+        ],
+        [
+          1675.3,
+          0.08
+        ],
+        [
+          1687.53,
+          0.082
+        ],
+        [
+          1700.22,
+          0.079
+        ],
+        [
+          1705.4,
+          0.193
+        ],
+        [
+          1713.3,
+          0.127
+        ],
+        [
+          1722.43,
+          0.11
+        ],
+        [
+          1740.47,
+          0.055
+        ],
+        [
+          1748.55,
+          0.124
+        ],
+        [
+          1754.68,
+          0.163
+        ],
+        [
+          1761.65,
+          0.143
+        ],
+        [
+          1772.87,
+          0.089
+        ],
+        [
+          1784.49,
+          0.086
+        ],
+        [
+          1794.26,
+          0.102
+        ],
+        [
+          1804.53,
+          0.097
+        ],
+        [
+          1812.64,
+          0.123
+        ],
+        [
+          1824.01,
+          0.088
+        ],
+        [
+          1840.57,
+          0.06
+        ],
+        [
+          1871.51,
+          0.032
+        ],
+        [
+          1896.4,
+          0.04
+        ],
+        [
+          1937.93,
+          0.024
+        ]
+      ],
+      "stalls": 1,
+      "errors": [
+        "attempt 1: TimeoutError: The read operation timed out",
+        "aborted: per-file deadline of 1800s exceeded (2000s elapsed, 161480704 bytes)"
+      ],
+      "redirect_chain": [],
+      "finished": "2026-11-12T13:48:23.515355+00:00",
+      "host": "esgf.bsc.es"
+    },
+    {
+      "label": "CEDA_1GB",
+      "url": "https://esgf.ceda.ac.uk/thredds/fileServer/esg_cmip6/CMIP6/CMIP/CCCma/CanESM5/historical/r1i1p2f1/Omon/thetao/gn/v20190429/thetao_Omon_CanESM5_historical_r1i1p2f1_gn_185001-186012.nc",
+      "started": "2026-11-12T13:48:23.554712+00:00",
+      "status": "failed",
+      "expected_sha256": "fa7c3a0a6cbe4aec8805fda48948972a0bc42aec4fdd065ff3c5b61763522ea6",
+      "computed_sha256": null,
+      "sha256_match": null,
+      "total_bytes": null,
+      "downloaded_bytes": 0,
+      "accept_ranges": null,
+      "resumes": 0,
+      "attempts": 6,
+      "wall_time_s": 122.05,
+      "active_transfer_s": 0.0,
+      "avg_rate_MBps": null,
+      "first_connect_timings": null,
+      "throughput_samples": [],
+      "stalls": 0,
+      "errors": [
+        "attempt 1: gaierror: [Errno 8] nodename nor servname provided, or not known",
+        "attempt 2: gaierror: [Errno 8] nodename nor servname provided, or not known",
+        "attempt 3: gaierror: [Errno 8] nodename nor servname provided, or not known",
+        "attempt 4: gaierror: [Errno 8] nodename nor servname provided, or not known",
+        "attempt 5: gaierror: [Errno 8] nodename nor servname provided, or not known",
+        "attempt 6: gaierror: [Errno 8] nodename nor servname provided, or not known",
+        "aborted: 6 consecutive failed attempts with no progress (node likely unresponsive)"
+      ],
+      "redirect_chain": [],
+      "finished": "2026-11-12T13:50:25.605908+00:00",
+      "host": "esgf.ceda.ac.uk"
+    },
+    {
+      "label": "DKRZ_1GB",
+      "url": "https://esgf3.dkrz.de/thredds/fileServer/cmip6/CMIP/CCCma/CanESM5/historical/r1i1p2f1/Omon/thetao/gn/v20190429/thetao_Omon_CanESM5_historical_r1i1p2f1_gn_185001-186012.nc",
+      "started": "2026-11-12T13:50:25.635377+00:00",
+      "status": "failed",
+      "expected_sha256": "fa7c3a0a6cbe4aec8805fda48948972a0bc42aec4fdd065ff3c5b61763522ea6",
+      "computed_sha256": null,
+      "sha256_match": null,
+      "total_bytes": null,
+      "downloaded_bytes": 0,
+      "accept_ranges": null,
+      "resumes": 0,
+      "attempts": 6,
+      "wall_time_s": 122.05,
+      "active_transfer_s": 0.0,
+      "avg_rate_MBps": null,
+      "first_connect_timings": null,
+      "throughput_samples": [],
+      "stalls": 0,
+      "errors": [
+        "attempt 1: gaierror: [Errno 8] nodename nor servname provided, or not known",
+        "attempt 2: gaierror: [Errno 8] nodename nor servname provided, or not known",
+        "attempt 3: gaierror: [Errno 8] nodename nor servname provided, or not known",
+        "attempt 4: gaierror: [Errno 8] nodename nor servname provided, or not known",
+        "attempt 5: gaierror: [Errno 8] nodename nor servname provided, or not known",
+        "attempt 6: gaierror: [Errno 8] nodename nor servname provided, or not known",
+        "aborted: 6 consecutive failed attempts with no progress (node likely unresponsive)"
+      ],
+      "redirect_chain": [],
+      "finished": "2026-11-12T13:52:27.683439+00:00",
+      "host": "esgf3.dkrz.de"
+    },
+    {
+      "label": "IPSL_1GB",
+      "url": "https://vesg.ipsl.upmc.fr/thredds/fileServer/cmip6/CMIP/IPSL/IPSL-CM5A2-INCA/historical/r1i1p1f1/E3hrPt/o3/gr/v20240619/o3_E3hrPt_IPSL-CM5A2-INCA_historical_r1i1p1f1_gr_185001010300-185101010000.nc",
+      "started": "2026-11-12T13:52:27.713177+00:00",
+      "status": "failed",
+      "expected_sha256": "74b74462397db381104f051b3ffd9f9d9af86c54d0f28e2152b1e8dd73c25ce1",
+      "computed_sha256": null,
+      "sha256_match": null,
+      "total_bytes": 1384821748,
+      "downloaded_bytes": 4194304,
+      "accept_ranges": true,
+      "resumes": 7,
+      "attempts": 9,
+      "wall_time_s": 484.27,
+      "active_transfer_s": 179.14694995800164,
+      "avg_rate_MBps": 0.022,
+      "first_connect_timings": {
+        "dns_s": 0.1992,
+        "tcp_connect_s": 1.6704,
+        "tls_handshake_s": 0.3567,
+        "tls_version": "TLSv1.2",
+        "peer_ip": "134.157.240.12",
+        "ttfb_s": 0.7678
+      },
+      "throughput_samples": [
+        [
+          40.53,
+          0.032
+        ],
+        [
+          71.98,
+          0.032
+        ],
+        [
+          100.15,
+          0.035
+        ],
+        [
+          120.43,
+          0.049
+        ]
+      ],
+      "stalls": 1,
+      "errors": [
+        "attempt 1: gaierror: [Errno 8] nodename nor servname provided, or not known",
+        "attempt 2: gaierror: [Errno 8] nodename nor servname provided, or not known",
+        "attempt 3: TimeoutError: The read operation timed out",
+        "attempt 4: gaierror: [Errno 8] nodename nor servname provided, or not known",
+        "attempt 5: gaierror: [Errno 8] nodename nor servname provided, or not known",
+        "attempt 6: gaierror: [Errno 8] nodename nor servname provided, or not known",
+        "attempt 7: gaierror: [Errno 8] nodename nor servname provided, or not known",
+        "attempt 8: gaierror: [Errno 8] nodename nor servname provided, or not known",
+        "attempt 9: gaierror: [Errno 8] nodename nor servname provided, or not known",
+        "aborted: 6 consecutive failed attempts with no progress (node likely unresponsive)"
+      ],
+      "redirect_chain": [],
+      "finished": "2026-11-12T14:01:11.638017+00:00",
+      "host": "vesg.ipsl.upmc.fr"
+    },
+    {
+      "label": "NCI_1GB",
+      "url": "https://esgf.nci.org.au/thredds/fileServer/esgcet/replica/CMIP6/CMIP/CCCma/CanESM5/historical/r1i1p2f1/Omon/thetao/gn/v20190429/thetao_Omon_CanESM5_historical_r1i1p2f1_gn_185001-186012.nc",
+      "started": "2026-11-12T14:01:11.674417+00:00",
+      "status": "failed",
+      "expected_sha256": "fa7c3a0a6cbe4aec8805fda48948972a0bc42aec4fdd065ff3c5b61763522ea6",
+      "computed_sha256": null,
+      "sha256_match": null,
+      "total_bytes": null,
+      "downloaded_bytes": 0,
+      "accept_ranges": null,
+      "resumes": 0,
+      "attempts": 6,
+      "wall_time_s": 122.05,
+      "active_transfer_s": 0.0,
+      "avg_rate_MBps": null,
+      "first_connect_timings": null,
+      "throughput_samples": [],
+      "stalls": 0,
+      "errors": [
+        "attempt 1: gaierror: [Errno 8] nodename nor servname provided, or not known",
+        "attempt 2: gaierror: [Errno 8] nodename nor servname provided, or not known",
+        "attempt 3: gaierror: [Errno 8] nodename nor servname provided, or not known",
+        "attempt 4: gaierror: [Errno 8] nodename nor servname provided, or not known",
+        "attempt 5: gaierror: [Errno 8] nodename nor servname provided, or not known",
+        "attempt 6: gaierror: [Errno 8] nodename nor servname provided, or not known",
+        "aborted: 6 consecutive failed attempts with no progress (node likely unresponsive)"
+      ],
+      "redirect_chain": [],
+      "finished": "2026-11-12T14:03:13.727930+00:00",
+      "host": "esgf.nci.org.au"
+    }
+  ],
+  "run_finished": "2026-11-12T14:03:13.728583+00:00"
+}

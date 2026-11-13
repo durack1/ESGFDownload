@@ -293,9 +293,22 @@ MAX_CONSECUTIVE_FAILS = 6  # give up on a file after this many *fruitless*
 # blocking call can hang past it regardless of platform. Must exceed the sum
 # of CONNECT_TIMEOUT + READ_TIMEOUT to avoid tripping on a healthy slow start.
 PER_ATTEMPT_HARD_CAP_S = 180.0
-# If a transfer produces no new bytes for this long, treat it as a stall and
-# drop the attempt (defeats slow-drip nodes that reset per-recv timeouts).
-STALL_NO_PROGRESS_S = 90.0
+# A connection that is alive but barely moving never trips the read timeout
+# (every trickle of bytes resets it), so also drop an attempt whose average
+# speed stays under LOW_SPEED_BPS for LOW_SPEED_WINDOW_S, and reconnect.
+LOW_SPEED_BPS = 10_000  # bytes per second
+LOW_SPEED_WINDOW_S = 60.0
+# When an attempt gets nowhere, check whether the machine is online at all.
+# If it is not, wait this long for the network to come back (a wifi drop or
+# change of network usually recovers) and then stop the whole run rather than
+# grinding through every remaining target.
+OFFLINE_TIMEOUT_S = 300.0
+OFFLINE_POLL_S = 5.0
+# Well-known addresses used only to tell "this node is down" from "we are
+# offline". IP literals, so the check needs no DNS.
+CONNECTIVITY_ANCHORS = (("1.1.1.1", 443), ("8.8.8.8", 443), ("9.9.9.9", 443))
+# Cap on any single diagnostic step (reverse DNS, ISP lookup, ...).
+DIAG_STEP_TIMEOUT_S = 20.0
 MAX_REDIRECTS = 5
 USER_AGENT = "esgf-download-test/1.0 (+stdlib)"
 
@@ -399,16 +412,109 @@ def looks_like_auth(location):
 # --------------------------------------------------------------------------- #
 
 
+def notify(msg):
+    """One timestamped status line, so a pause is never a silent one."""
+    print(f"  {datetime.now().strftime('%H:%M:%S')}  {msg}", flush=True)
+
+
+def _run_bounded(fn, timeout, default=None):
+    """Run fn() but wait at most `timeout` seconds for it. Returns its result,
+    or `default` if it raises or overruns. Several stdlib calls (DNS lookups
+    inside urlopen, gethostbyaddr, ...) take no timeout and can block for
+    minutes on a dead network; this keeps them from stalling the run. An
+    overrunning call is left behind in a daemon thread."""
+    import threading
+
+    box = {}
+
+    def _work():
+        try:
+            box["value"] = fn()
+        except Exception:  # noqa: BLE001 - best-effort by design
+            pass
+
+    th = threading.Thread(target=_work, daemon=True)
+    th.start()
+    th.join(timeout)
+    return box.get("value", default)
+
+
+def _tcp_reachable(addr, port, timeout):
+    try:
+        socket.create_connection((addr, port), timeout=timeout).close()
+        return True
+    except OSError:
+        return False
+
+
+def network_reachable(host=None, timeout=4.0):
+    """True if this machine can open a TCP connection to anything useful: a
+    well-known anchor, the target host, or any other node in TARGETS. The
+    other nodes matter on networks whose firewall blocks the anchors: one
+    dead node must not be mistaken for being offline. All probes run in
+    parallel, so the answer takes at most about 2 x `timeout` seconds."""
+    import threading
+
+    hits = []
+
+    def _anchor(addr, port):
+        if _tcp_reachable(addr, port, timeout):
+            hits.append(addr)
+
+    def _node(name):
+        try:
+            info = _getaddrinfo_with_timeout(name, 443, timeout)
+            if _tcp_reachable(info[0][4][0], 443, timeout):
+                hits.append(name)
+        except Exception:  # noqa: BLE001
+            pass
+
+    names = [host] if host else []
+    for t in TARGETS:
+        h = urlsplit(t.get("url", "")).hostname
+        if h and h not in names:
+            names.append(h)
+    threads = [threading.Thread(target=_anchor, args=a, daemon=True)
+               for a in CONNECTIVITY_ANCHORS]
+    threads += [threading.Thread(target=_node, args=(n,), daemon=True)
+                for n in names[:12]]
+    for th in threads:
+        th.start()
+    deadline = time.perf_counter() + 2 * timeout + 1
+    while time.perf_counter() < deadline:
+        if hits:
+            return True
+        if not any(th.is_alive() for th in threads):
+            break
+        time.sleep(0.05)
+    return bool(hits)
+
+
+def wait_for_network(host, max_wait):
+    """Poll until the network is reachable again or max_wait seconds pass.
+    Returns True if it came back."""
+    start = time.perf_counter()
+    notify(f"network unreachable; waiting up to {max_wait:.0f}s for it to "
+           "return")
+    while time.perf_counter() - start < max_wait:
+        time.sleep(min(OFFLINE_POLL_S,
+                       max(0.1, max_wait - (time.perf_counter() - start))))
+        if network_reachable(host):
+            notify(f"network is back after "
+                   f"{time.perf_counter() - start:.0f}s; resuming")
+            return True
+    return False
+
+
 def get_public_ip():
     """Best-effort public IP via a tiny HTTPS GET. Returns str or None."""
-    try:
+    def _fetch():
         req = urllib.request.Request(
             "https://api.ipify.org", headers={"User-Agent": USER_AGENT}
         )
         with urllib.request.urlopen(req, timeout=ISP_LOOKUP_TIMEOUT_S) as r:
             return r.read().decode().strip()
-    except Exception:
-        return None
+    return _run_bounded(_fetch, DIAG_STEP_TIMEOUT_S)
 
 
 def lookup_isp(ip):
@@ -418,19 +524,27 @@ def lookup_isp(ip):
     """
     if not ip:
         return {"error": "no ip"}
-    try:
-        url = ISP_LOOKUP_URL.format(ip=ip)
-        req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
-        with urllib.request.urlopen(req, timeout=ISP_LOOKUP_TIMEOUT_S) as r:
-            data = json.loads(r.read().decode())
-        # Keep a tidy, stable subset.
-        return {
-            k: data.get(k)
-            for k in ("ip", "org", "asn", "city", "region", "country", "loc")
-            if k in data
-        }
-    except Exception as e:
-        return {"error": f"{type(e).__name__}: {e}"}
+
+    def _fetch():
+        try:
+            url = ISP_LOOKUP_URL.format(ip=ip)
+            req = urllib.request.Request(
+                url, headers={"User-Agent": USER_AGENT})
+            with urllib.request.urlopen(
+                    req, timeout=ISP_LOOKUP_TIMEOUT_S) as r:
+                data = json.loads(r.read().decode())
+            # Keep a tidy, stable subset.
+            return {
+                k: data.get(k)
+                for k in ("ip", "org", "asn", "city", "region", "country",
+                          "loc")
+                if k in data
+            }
+        except Exception as e:
+            return {"error": f"{type(e).__name__}: {e}"}
+
+    return _run_bounded(_fetch, DIAG_STEP_TIMEOUT_S,
+                        {"error": f"timed out after {DIAG_STEP_TIMEOUT_S:.0f}s"})
 
 
 def get_local_ip():
@@ -447,10 +561,8 @@ def get_local_ip():
 
 
 def reverse_dns(ip):
-    try:
-        return socket.gethostbyaddr(ip)[0]
-    except Exception:
-        return None
+    # gethostbyaddr takes no timeout and can block for a long time offline.
+    return _run_bounded(lambda: socket.gethostbyaddr(ip)[0], 10.0)
 
 
 def traceroute(host):
@@ -525,24 +637,43 @@ def _parse_hop_count(raw, system):
     return hops or None
 
 
-def _http_get_json_ipv4(url, timeout):
-    """GET a URL forcing IPv4, return parsed JSON. Raises on failure.
+def _http_get_json_ipv4(url, timeout, _redirects=3):
+    """GET a URL over IPv4 and return the parsed JSON. Raises on failure.
 
     IPv4 is forced because on WSL2/dual-stack hosts a stalled IPv6 route is a
-    common cause of silent timeouts on these tiny lookup calls.
-    """
-    orig_getaddrinfo = socket.getaddrinfo
-
-    def ipv4_only(host, port, family=0, type=0, proto=0, flags=0):
-        return orig_getaddrinfo(host, port, socket.AF_INET, type, proto, flags)
-
-    socket.getaddrinfo = ipv4_only
+    common cause of silent timeouts on these tiny lookup calls. Every step is
+    bounded: the DNS lookup, the connect, the TLS handshake and each read."""
+    parts = urlsplit(url)
+    host, port = parts.hostname, parts.port or 443
+    infos = _getaddrinfo_with_timeout(host, port, min(timeout, DNS_TIMEOUT),
+                                      family=socket.AF_INET)
+    raw = socket.create_connection(infos[0][4][:2], timeout=timeout)
     try:
-        req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
-        with urllib.request.urlopen(req, timeout=timeout) as r:
-            return json.loads(r.read().decode())
+        ssock = ssl.create_default_context().wrap_socket(
+            raw, server_hostname=host)
+    except Exception:
+        raw.close()
+        raise
+    conn = http.client.HTTPSConnection(host, port, timeout=timeout)
+    conn.sock = ssock
+    try:
+        path = (parts.path or "/") + (f"?{parts.query}" if parts.query else "")
+        conn.request("GET", path, headers={
+            "Host": host, "User-Agent": USER_AGENT,
+            "Accept": "application/json"})
+        resp = conn.getresponse()
+        body = resp.read()
+        if resp.status in (301, 302, 303, 307, 308) and _redirects > 0:
+            loc = resp.getheader("Location", "")
+            if loc.startswith("/"):
+                loc = f"https://{parts.netloc}{loc}"
+            if loc.startswith("https://"):
+                return _http_get_json_ipv4(loc, timeout, _redirects - 1)
+        if resp.status != 200:
+            raise RuntimeError(f"HTTP {resp.status} {resp.reason}")
+        return json.loads(body.decode())
     finally:
-        socket.getaddrinfo = orig_getaddrinfo
+        conn.close()
 
 
 def _geo_from_ipwho(ip=None):
@@ -654,7 +785,9 @@ def get_all_local_ips():
     """All local IPs bound to this host (best-effort), for multi-homed boxes."""
     ips = set()
     try:
-        for info in socket.getaddrinfo(socket.gethostname(), None):
+        for info in _run_bounded(
+                lambda: socket.getaddrinfo(socket.gethostname(), None),
+                5.0, []):
             ip = info[4][0]
             if not ip.startswith("127.") and ip != "::1":
                 ips.add(ip)
@@ -674,7 +807,8 @@ def collect_origin_identity(do_geo):
     """
     fqdn = None
     try:
-        fqdn = socket.getfqdn()
+        # getfqdn does a reverse lookup, which can block offline.
+        fqdn = _run_bounded(socket.getfqdn, 5.0)
     except Exception:
         pass
     identity = {
@@ -826,19 +960,28 @@ def collect_host_diagnostics(host, do_isp, do_trace, do_geo=True):
     and geolocation of the node so each log records where data came *from*)."""
     ips = []
     try:
-        infos = socket.getaddrinfo(host, 443, proto=socket.IPPROTO_TCP)
+        infos = _getaddrinfo_with_timeout(host, 443, DNS_TIMEOUT)
         ips = sorted({i[4][0] for i in infos})
     except Exception:
         pass
     primary = ips[0] if ips else None
+    if not primary:
+        # The name does not resolve: the node's DNS is broken or, far more
+        # often, we are offline. Every remaining step would only wait on the
+        # network, so skip them and let the download attempt decide.
+        why = "skipped: host did not resolve (offline?)"
+        return {
+            "host": host, "resolved_ips": [], "reverse_dns": None,
+            "dest_isp": None, "dest_geo": {"status": why},
+            "traceroute": {"status": why},
+        }
     return {
         "host": host,
         "resolved_ips": ips,
-        "reverse_dns": reverse_dns(primary) if primary else None,
-        "dest_isp": lookup_isp(primary) if (do_isp and primary) else None,
-        "dest_geo": (geolocate_ip(primary) if (do_geo and primary)
-                     else {"status": "skipped (--no-geo)" if not do_geo
-                           else "no ip"}),
+        "reverse_dns": reverse_dns(primary),
+        "dest_isp": lookup_isp(primary) if do_isp else None,
+        "dest_geo": (geolocate_ip(primary) if do_geo
+                     else {"status": "skipped (--no-geo)"}),
         "traceroute": (
             traceroute(host) if do_trace else {
                 "status": "skipped (--no-traceroute)"}
@@ -846,7 +989,7 @@ def collect_host_diagnostics(host, do_isp, do_trace, do_geo=True):
     }
 
 
-def _getaddrinfo_with_timeout(host, port, timeout):
+def _getaddrinfo_with_timeout(host, port, timeout, family=0):
     """socket.getaddrinfo has no timeout arg and can hang on a dead resolver.
     Run it in a daemon thread and bound the wait, so DNS can't stall the run.
     Cross-platform, stdlib only. Raises socket.gaierror/timeout on failure."""
@@ -857,7 +1000,7 @@ def _getaddrinfo_with_timeout(host, port, timeout):
     def _resolve():
         try:
             result["ok"] = socket.getaddrinfo(
-                host, port, proto=socket.IPPROTO_TCP)
+                host, port, family=family, proto=socket.IPPROTO_TCP)
         except Exception as e:  # noqa: BLE001 - re-raised in caller thread
             result["err"] = e
 
@@ -1086,6 +1229,12 @@ def download_target(target, tmp_dir, progress_path=None):
         "sha256_match": None,
         "total_bytes": None,
         "downloaded_bytes": 0,
+        # How we know the whole file arrived: "size" (matches the size the
+        # server reported), "sha256" (checksum matches), "eof_probe" (server
+        # confirmed there is nothing after the last byte) or "clean_end"
+        # (stream ended without any error; no size or checksum to check).
+        "completion_evidence": None,
+        "network_offline": False,  # True if this file was abandoned offline
         "accept_ranges": None,
         "resumes": 0,
         "attempts": 0,
@@ -1114,6 +1263,8 @@ def download_target(target, tmp_dir, progress_path=None):
     wall_start = time.perf_counter()
     consecutive_fails = 0  # attempts in a row that gained zero bytes
     bytes_at_attempt_start = downloaded
+    eof_probes = 0  # extra requests made only to confirm the end of the file
+    host = urlsplit(url).hostname
 
     while result["attempts"] < MAX_ATTEMPTS:
         # --- overall guards: never let a dead node stall the run ---
@@ -1162,9 +1313,12 @@ def download_target(target, tmp_dir, progress_path=None):
                     resp.getheader("Accept-Ranges", "").lower() == "bytes"
                 )
             elif resp.status == 416:
-                # Range not satisfiable: likely already complete
+                # Range not satisfiable: nothing exists past the bytes we
+                # hold, so the file is complete.
                 resp.read()
                 conn.close()
+                if downloaded > 0:
+                    result["completion_evidence"] = "eof_probe"
                 break
             else:
                 body = resp.read(512)
@@ -1200,12 +1354,19 @@ def download_target(target, tmp_dir, progress_path=None):
             # Past connect/TLS/response: the read-timeout + no-progress window
             # now guard the body, so stand the hard-cap watchdog down.
             watchdog.disarm()
-            last_progress_t = time.perf_counter()
+            # read1() hands back whatever has arrived instead of waiting for
+            # a full CHUNK_SIZE. On a slow link read() can sit for minutes
+            # filling one chunk, with the progress bar frozen and none of the
+            # checks below getting a turn.
+            read_some = getattr(resp, "read1", None) or resp.read
+            slow_anchor = transfer_start
+            slow_bytes = 0
+            deadline_cut = False
             f = open(tmp_path, "ab" if downloaded else "wb")
             try:
                 while True:
                     try:
-                        chunk = resp.read(CHUNK_SIZE)
+                        chunk = read_some(CHUNK_SIZE)
                     except (socket.timeout, TimeoutError):
                         result["stalls"] += 1
                         raise
@@ -1217,9 +1378,24 @@ def download_target(target, tmp_dir, progress_path=None):
                     downloaded += n
                     sample_bytes += n
                     bar_bytes += n
+                    slow_bytes += n
 
                     nowt = time.perf_counter()
-                    last_progress_t = nowt
+
+                    # The per-file deadline applies mid-transfer too, not only
+                    # between attempts.
+                    if nowt - wall_start > PER_FILE_DEADLINE_S:
+                        deadline_cut = True
+                        break
+                    # Alive but crawling: give up on this connection.
+                    if nowt - slow_anchor >= LOW_SPEED_WINDOW_S:
+                        if slow_bytes / (nowt - slow_anchor) < LOW_SPEED_BPS:
+                            result["stalls"] += 1
+                            raise TimeoutError(
+                                f"stalled: under {LOW_SPEED_BPS / 1000:.0f} "
+                                f"kB/s for {LOW_SPEED_WINDOW_S:.0f}s")
+                        slow_anchor = nowt
+                        slow_bytes = 0
 
                     # Refresh the on-screen bar ~4x/sec with a recent-rate estimate.
                     if nowt - bar_anchor >= BAR_REFRESH_SEC:
@@ -1270,9 +1446,46 @@ def download_target(target, tmp_dir, progress_path=None):
             if downloaded > bytes_at_attempt_start:
                 consecutive_fails = 0
 
+            if deadline_cut:
+                continue  # the guard at the top of the loop records the abort
+
             # Completed?
-            if result["total_bytes"] is None or downloaded >= result["total_bytes"]:
-                break
+            if result["total_bytes"] is not None:
+                if downloaded >= result["total_bytes"]:
+                    result["completion_evidence"] = "size"
+                    break
+            else:
+                # The server never told us the file size (e.g. a chunked
+                # response), so a stream that simply ends proves nothing:
+                # after a dropped connection the resumed stream can also end
+                # early. Accept the end only on real evidence.
+                if expected_sha and sha.hexdigest() == expected_sha:
+                    result["completion_evidence"] = "sha256"
+                    break
+                if not expected_sha and not result["errors"]:
+                    result["completion_evidence"] = "clean_end"
+                    break
+                if downloaded == bytes_at_attempt_start:
+                    # Asked for the bytes after ours and got none.
+                    result["completion_evidence"] = "eof_probe"
+                    break
+                if not result["accept_ranges"] or eof_probes >= 3:
+                    # Cannot ask for "the rest" (no Range support) or already
+                    # tried. With no errors along the way the clean end
+                    # stands; otherwise it stays unproven.
+                    if not result["errors"]:
+                        result["completion_evidence"] = "clean_end"
+                    break
+                # Otherwise ask for whatever follows our last byte: more data
+                # means the stream was cut short and we carry on; HTTP 416 or
+                # an empty reply confirms we have the whole file.
+                eof_probes += 1
+                log_progress(
+                    "eof_probe",
+                    downloaded_bytes=downloaded,
+                    probe=eof_probes,
+                )
+                continue
             # Short read without error -> loop will resume via Range
             result["resumes"] += 1
             log_progress(
@@ -1318,15 +1531,39 @@ def download_target(target, tmp_dir, progress_path=None):
                 backoff_s=round(backoff, 1),
                 watchdog_fired=watchdog.fired,
             )
+            remaining = PER_FILE_DEADLINE_S - \
+                (time.perf_counter() - wall_start)
             # Count this as a fruitless attempt only if it gained no bytes;
             # a partial-then-dropped connection resets the streak instead.
             if downloaded > bytes_at_attempt_start:
                 consecutive_fails = 0
+            elif not network_reachable(host):
+                # Nothing gained and nothing reachable: this is our network,
+                # not the node. Wait for it rather than burning attempts, and
+                # if it stays down, stop.
+                log_progress("network_offline", attempt=result["attempts"],
+                             downloaded_bytes=downloaded)
+                if wait_for_network(host, min(OFFLINE_TIMEOUT_S,
+                                              max(0.0, remaining))):
+                    log_progress("network_restored",
+                                 downloaded_bytes=downloaded)
+                    continue  # retry straight away, streak untouched
+                if remaining > OFFLINE_TIMEOUT_S:
+                    result["network_offline"] = True
+                    result["errors"].append(
+                        f"aborted: network offline for "
+                        f"{OFFLINE_TIMEOUT_S:.0f}s")
+                    log_progress("network_offline_abort",
+                                 downloaded_bytes=downloaded)
+                    break
+                continue  # deadline reached while offline; loop top aborts
             else:
                 consecutive_fails += 1
+            notify(f"{type(e).__name__}; retrying in "
+                   f"{min(backoff, max(0.0, remaining)):.0f}s "
+                   f"(attempt {result['attempts']}, "
+                   f"{human_bytes(downloaded)} so far)")
             # Don't sleep past the per-file deadline.
-            remaining = PER_FILE_DEADLINE_S - \
-                (time.perf_counter() - wall_start)
             if remaining <= 0:
                 continue  # loop-top guard will abort cleanly
             time.sleep(min(backoff, remaining))
@@ -1341,9 +1578,10 @@ def download_target(target, tmp_dir, progress_path=None):
         result["avg_rate_MBps"] = human_rate(
             downloaded / result["active_transfer_s"])
 
-    complete = (
-        result["total_bytes"] is not None and downloaded >= result["total_bytes"]
-    ) or (result["total_bytes"] is None and downloaded > 0 and not result["errors"])
+    # Complete only on evidence gathered above. Earlier errors no longer rule
+    # a download out: a transfer that was interrupted, resumed and then proven
+    # whole (by size, checksum or end-of-file probe) did succeed.
+    complete = downloaded > 0 and result["completion_evidence"] is not None
 
     if complete:
         result["computed_sha256"] = sha.hexdigest()
@@ -1574,6 +1812,14 @@ def parse_args(argv):
         f"moving on (default {PER_FILE_DEADLINE_S:.0f}s). Guards against an "
         "unresponsive node stalling the whole run.",
     )
+    p.add_argument(
+        "--offline-timeout",
+        type=float,
+        default=None,
+        metavar="SECONDS",
+        help="If the network drops, wait this long for it to return before "
+        f"stopping the run (default {OFFLINE_TIMEOUT_S:.0f}s).",
+    )
     return p.parse_args(argv)
 
 
@@ -1582,10 +1828,12 @@ def main(argv=None):
     do_isp = args.isp
     do_trace = not args.no_traceroute
     do_geo = not args.no_geo
-    global _BAR_ENABLED, PER_FILE_DEADLINE_S
+    global _BAR_ENABLED, PER_FILE_DEADLINE_S, OFFLINE_TIMEOUT_S
     _BAR_ENABLED = not args.no_bar
     if args.deadline is not None:
         PER_FILE_DEADLINE_S = args.deadline
+    if args.offline_timeout is not None:
+        OFFLINE_TIMEOUT_S = args.offline_timeout
 
     if not TARGETS:
         print(
@@ -1609,6 +1857,9 @@ def main(argv=None):
             "max_attempts": MAX_ATTEMPTS,
             "connect_timeout": CONNECT_TIMEOUT,
             "read_timeout": READ_TIMEOUT,
+            "low_speed_bps": LOW_SPEED_BPS,
+            "low_speed_window_s": LOW_SPEED_WINDOW_S,
+            "offline_timeout_s": OFFLINE_TIMEOUT_S,
             "dns_timeout": DNS_TIMEOUT,
             "per_file_deadline_s": PER_FILE_DEADLINE_S,
             "max_consecutive_fails": MAX_CONSECUTIVE_FAILS,
@@ -1698,8 +1949,19 @@ def main(argv=None):
                 flush=True,
             )
 
+            if r.get("network_offline"):
+                left = len(TARGETS) - len(run_meta["results"])
+                run_meta["run_aborted"] = (
+                    f"network offline for {OFFLINE_TIMEOUT_S:.0f}s during "
+                    f"{target['label']}; {left} target(s) not attempted")
+                flush_outputs(run_meta, json_path, csv_path)
+                print(f"\nStopping: {run_meta['run_aborted']}.\n"
+                      "Results so far are saved; re-run when the network is "
+                      "back.", flush=True)
+                break
+
     print(f"\nWrote:\n  {json_path}\n  {csv_path}")
-    return 0
+    return 3 if run_meta.get("run_aborted") else 0
 
 
 if __name__ == "__main__":

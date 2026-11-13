@@ -1,0 +1,104 @@
+(base) airy2:ESGFDownload paully$ date
+Fri Nov 13 17:44:12 AEDT 2026
+(base) airy2:ESGFDownload paully$ python esgfDownloadLog.py 
+Collecting run/host diagnostics ...
+  system: macOS 15.8.3 | arm64 | Python 3.12.12 (CPython) | OpenSSL 3.6.5 29 Sep 2026
+  origin: airy2.local | Sydney, Australia | AAPT Limited | 110.175.244.178 [ipwho.is]
+
+=== BSC_1GB ===
+  diagnostics for esgf.bsc.es (traceroute=on) ...
+  2026-11-13 17:44:53
+  BSC_1GB              [############################] 100.0%  1.2GB/1.2GB  3.35MB/s  ETA 00:00  
+  2026-11-13 17:51:48
+  status=verified  bytes=1341138713  resumes=0  stalls=0  avg=3.092 MB/s  sha_match=True
+  logged -> 20261113T174413_esgf_results.json / 20261113T174413_esgf_results.csv
+
+=== CEDA_1GB ===
+  diagnostics for esgf.ceda.ac.uk (traceroute=on) ...
+  2026-11-13 17:52:04
+  CEDA_1GB             [############################] 100.0%  1.0GB/1.0GB  1.43MB/s  ETA 00:00  
+  2026-11-13 17:58:00
+  status=verified  bytes=1110603079  resumes=0  stalls=0  avg=2.986 MB/s  sha_match=True
+  logged -> 20261113T174413_esgf_results.json / 20261113T174413_esgf_results.csv
+
+=== DKRZ_1GB ===
+  diagnostics for esgf3.dkrz.de (traceroute=on) ...
+  2026-11-13 17:58:39
+  DKRZ_1GB             [############################] 100.0%  1.0GB/1.0GB  2.05MB/s  ETA 00:00  
+  2026-11-13 18:04:32
+  status=verified  bytes=1110603079  resumes=0  stalls=0  avg=3.009 MB/s  sha_match=True
+  logged -> 20261113T174413_esgf_results.json / 20261113T174413_esgf_results.csv
+
+=== IPSL_1GB ===
+  diagnostics for vesg.ipsl.upmc.fr (traceroute=on) ...
+  2026-11-13 18:05:07
+  IPSL_1GB             [############################] 100.0%  1.3GB/1.3GB  3.00MB/s  ETA 00:00  
+  2026-11-13 18:12:10
+  status=verified  bytes=1384821748  resumes=0  stalls=0  avg=3.134 MB/s  sha_match=True
+  logged -> 20261113T174413_esgf_results.json / 20261113T174413_esgf_results.csv
+
+=== NCI_1GB ===
+  diagnostics for esgf.nci.org.au (traceroute=on) ...
+  2026-11-13 18:12:48
+  NCI_1GB              [####################--------]  74.9%  792.9MB/1.0GB  2.38MB/s  ETA 01:52
+  NCI_1GB              [############################] 100.0%  1.0GB/1.0GB  3.42MB/s  ETA 00:00  
+  2026-11-13 18:18:22
+  status=verified  bytes=1110603079  resumes=1  stalls=0  avg=3.179 MB/s  sha_match=True
+  logged -> 20261113T174413_esgf_results.json / 20261113T174413_esgf_results.csv
+
+=== NORESG_1GB ===
+  diagnostics for noresg.nird.sigma2.no (traceroute=on) ...
+  2026-11-13 18:18:39
+  NORESG_1GB           [####------------------------]  14.3%  170.7MB/1.2GB  2.41MB/s  ETA 07:03
+  18:20:51  TimeoutError; retrying in 2s (attempt 1, 170.7MB so far)
+  18:21:12  network unreachable; waiting up to 300s for it to return
+  18:23:47  network is back after 155s; resuming
+  NORESG_1GB           [######----------------------]  24.6%  293.5MB/1.2GB  1.42MB/s  ETA 10:33
+  18:25:37  TimeoutError; retrying in 8s (attempt 3, 293.5MB so far)
+  18:25:45  network unreachable; waiting up to 300s for it to return
+  18:29:25  network is back after 219s; resuming
+  NORESG_1GB           [############################] 100.0%  1.2GB/1.2GB  4.67MB/s  ETA 00:00  
+  2026-11-13 18:35:03
+  status=complete_unverified  bytes=1249487683  resumes=4  stalls=2  avg=2.072 MB/s  sha_match=None
+  logged -> 20261113T174413_esgf_results.json / 20261113T174413_esgf_results.csv
+
+=== LIU_1GB ===
+  diagnostics for esg-dn1.nsc.liu.se (traceroute=on) ...
+  2026-11-13 18:35:15
+  LIU_1GB              [############################] 100.0%  1.6GB/1.6GB  2.94MB/s  ETA 00:00  
+  2026-11-13 18:44:02
+  status=verified  bytes=1692839176  resumes=0  stalls=0  avg=3.073 MB/s  sha_match=True
+  logged -> 20261113T174413_esgf_results.json / 20261113T174413_esgf_results.csv
+
+=== ORNL_1GB ===
+  diagnostics for esgf-node.ornl.gov (traceroute=on) ...
+  2026-11-13 18:44:08
+  18:44:08  SSLCertVerificationError; retrying in 2s (attempt 1, 0B so far)
+  18:44:11  SSLCertVerificationError; retrying in 4s (attempt 2, 0B so far)
+  18:44:15  SSLCertVerificationError; retrying in 8s (attempt 3, 0B so far)
+  18:44:24  SSLCertVerificationError; retrying in 16s (attempt 4, 0B so far)
+  18:44:40  SSLCertVerificationError; retrying in 32s (attempt 5, 0B so far)
+  18:45:13  SSLCertVerificationError; retrying in 60s (attempt 6, 0B so far)
+  2026-11-13 18:46:13
+  status=failed  bytes=0  resumes=0  stalls=0  avg=None MB/s  sha_match=None
+  logged -> 20261113T174413_esgf_results.json / 20261113T174413_esgf_results.csv
+
+=== ANL-GLOBUS_1GB ===
+  diagnostics for g-52ba3.fd635.8443.data.globus.org (traceroute=on) ...
+  2026-11-13 18:46:18
+  ANL-GLOBUS_1GB       1.0GB (size unknown)  1.02MB/s                                           
+  2026-11-13 18:51:51
+  status=verified  bytes=1110603079  resumes=0  stalls=0  avg=3.193 MB/s  sha_match=True
+  logged -> 20261113T174413_esgf_results.json / 20261113T174413_esgf_results.csv
+
+=== NERSC-GLOBUS_1GB ===
+  diagnostics for g-eba899.6b7bd8.0ec8.data.globus.org (traceroute=on) ...
+  2026-11-13 18:51:55
+  NERSC-GLOBUS_1GB     1.0GB (size unknown)  1.19MB/s                                           
+  2026-11-13 18:57:43
+  status=verified  bytes=1110603079  resumes=0  stalls=0  avg=3.064 MB/s  sha_match=True
+  logged -> 20261113T174413_esgf_results.json / 20261113T174413_esgf_results.csv
+
+Wrote:
+  /Users/paully/sync/git/ESGFDownload/20261113T174413_esgf_results.json
+  /Users/paully/sync/git/ESGFDownload/20261113T174413_esgf_results.csv
