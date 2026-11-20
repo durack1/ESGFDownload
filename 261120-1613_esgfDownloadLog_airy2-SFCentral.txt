@@ -1,0 +1,102 @@
+(base) airy2:ESGFDownload paully$ date
+Fri Nov 20 14:35:47 AWST 2026
+(base) airy2:ESGFDownload paully$ python esgfDownloadLog.py 
+Collecting run/host diagnostics ...
+  system: macOS 15.8.3 | arm64 | Python 3.12.12 (CPython) | OpenSSL 3.6.5 29 Sep 2026
+  origin: airy2.local | Perth, Australia | SUPERLOOP AUSTRALIA PTY LTD | 125.253.9.1 [ipwho.is]
+
+=== BSC_1GB ===
+  diagnostics for esgf.bsc.es (traceroute=on) ...
+  2026-11-20 14:36:46
+  BSC_1GB              [############################] 100.0%  1.2GB/1.2GB  6.89MB/s  ETA 00:00  
+  2026-11-20 14:40:37
+  status=verified  bytes=1341138713  resumes=0  stalls=0  avg=5.568 MB/s  sha_match=True
+  logged -> 20261120T143549_esgf_results.json / 20261120T143549_esgf_results.csv
+
+=== CEDA_1GB ===
+  diagnostics for esgf.ceda.ac.uk (traceroute=on) ...
+  2026-11-20 14:40:38
+  CEDA_1GB             [####------------------------]  17.1%  180.7MB/1.0GB  0.27MB/s  ETA 53:33
+  CEDA_1GB             [#########-------------------]  32.8%  347.1MB/1.0GB  0.17MB/s  ETA 1:11:
+  2026-11-20 15:10:38
+  status=failed  bytes=363919492  resumes=1  stalls=0  avg=0.193 MB/s  sha_match=None
+  logged -> 20261120T143549_esgf_results.json / 20261120T143549_esgf_results.csv
+
+=== DKRZ_1GB ===
+  diagnostics for esgf3.dkrz.de (traceroute=on) ...
+  2026-11-20 15:11:36
+  DKRZ_1GB             [############################] 100.0%  1.0GB/1.0GB  1.37MB/s  ETA 00:00  
+  2026-11-20 15:16:02
+  status=verified  bytes=1110603079  resumes=0  stalls=0  avg=4.134 MB/s  sha_match=True
+  logged -> 20261120T143549_esgf_results.json / 20261120T143549_esgf_results.csv
+
+=== IPSL_1GB ===
+  diagnostics for vesg.ipsl.upmc.fr (traceroute=on) ...
+  2026-11-20 15:17:01
+  IPSL_1GB             [############################] 100.0%  1.3GB/1.3GB  5.68MB/s  ETA 00:00  
+  2026-11-20 15:21:49
+  status=verified  bytes=1384821748  resumes=0  stalls=0  avg=4.602 MB/s  sha_match=True
+  logged -> 20261120T143549_esgf_results.json / 20261120T143549_esgf_results.csv
+
+=== NCI_1GB ===
+  diagnostics for esgf.nci.org.au (traceroute=on) ...
+  2026-11-20 15:22:46
+  NCI_1GB              [##############--------------]  53.4%  565.7MB/1.0GB  1.25MB/s  ETA 06:35
+  NCI_1GB              [######################------]  80.0%  847.3MB/1.0GB  1.44MB/s  ETA 02:26
+  NCI_1GB              [######################------]  80.6%  853.7MB/1.0GB  1.56MB/s  ETA 02:11
+  NCI_1GB              [######################------]  81.6%  863.8MB/1.0GB  1.23MB/s  ETA 02:39
+  NCI_1GB              [#######################-----]  85.0%  900.2MB/1.0GB  3.39MB/s  ETA 00:46
+  NCI_1GB              [#######################-----]  85.6%  907.1MB/1.0GB  2.84MB/s  ETA 00:53
+  NCI_1GB              [########################----]  86.4%  915.0MB/1.0GB  1.27MB/s  ETA 01:53
+  15:30:16  TimeoutError; retrying in 60s (attempt 7, 915.0MB so far)
+  NCI_1GB              [##########################--]  95.8%  1014.4MB/1.0GB  1.42MB/s  ETA 00:3
+  NCI_1GB              [###########################-]  97.9%  1.0GB/1.0GB  3.83MB/s  ETA 00:05  
+  NCI_1GB              [###########################-]  99.1%  1.0GB/1.0GB  1.65MB/s  ETA 00:05  
+  NCI_1GB              [############################] 100.0%  1.0GB/1.0GB  4.07MB/s  ETA 00:00  
+  2026-11-20 15:32:19
+  status=verified  bytes=1110603079  resumes=10  stalls=1  avg=2.08 MB/s  sha_match=True
+  logged -> 20261120T143549_esgf_results.json / 20261120T143549_esgf_results.csv
+
+=== NORESG_1GB ===
+  diagnostics for noresg.nird.sigma2.no (traceroute=on) ...
+  2026-11-20 15:32:23
+  NORESG_1GB           [############################] 100.0%  1.2GB/1.2GB  4.80MB/s  ETA 00:00  
+  2026-11-20 15:34:54
+  status=complete_unverified  bytes=1249487683  resumes=0  stalls=0  avg=7.953 MB/s  sha_match=None
+  logged -> 20261120T143549_esgf_results.json / 20261120T143549_esgf_results.csv
+
+=== LIU_1GB ===
+  diagnostics for esg-dn1.nsc.liu.se (traceroute=on) ...
+  2026-11-20 15:34:55
+  LIU_1GB              [############################] 100.0%  1.6GB/1.6GB  13.14MB/s  ETA 00:00 
+  2026-11-20 15:39:51
+  status=verified  bytes=1692839176  resumes=0  stalls=0  avg=5.494 MB/s  sha_match=True
+  logged -> 20261120T143549_esgf_results.json / 20261120T143549_esgf_results.csv
+
+=== ORNL_1GB ===
+  diagnostics for esgf-node.ornl.gov (traceroute=on) ...
+  2026-11-20 15:39:52
+  ORNL_1GB             [#########-------------------]  34.7%  367.2MB/1.0GB  0.23MB/s  ETA 49:36
+  2026-11-20 16:09:52
+  status=failed  bytes=385077676  resumes=0  stalls=0  avg=0.204 MB/s  sha_match=None
+  logged -> 20261120T143549_esgf_results.json / 20261120T143549_esgf_results.csv
+
+=== ANL-GLOBUS_1GB ===
+  diagnostics for g-52ba3.fd635.8443.data.globus.org (traceroute=on) ...
+  2026-11-20 16:09:55
+  ANL-GLOBUS_1GB       1.0GB (size unknown)  15.31MB/s                                          
+  2026-11-20 16:11:09
+  status=verified  bytes=1110603079  resumes=0  stalls=0  avg=14.582 MB/s  sha_match=True
+  logged -> 20261120T143549_esgf_results.json / 20261120T143549_esgf_results.csv
+
+=== NERSC-GLOBUS_1GB ===
+  diagnostics for g-eba899.6b7bd8.0ec8.data.globus.org (traceroute=on) ...
+  2026-11-20 16:11:11
+  NERSC-GLOBUS_1GB     1.0GB (size unknown)  17.86MB/s                                          
+  2026-11-20 16:13:42
+  status=verified  bytes=1110603079  resumes=0  stalls=0  avg=7.13 MB/s  sha_match=True
+  logged -> 20261120T143549_esgf_results.json / 20261120T143549_esgf_results.csv
+
+Wrote:
+  /Users/paully/sync/git/ESGFDownload/20261120T143549_esgf_results.json
+  /Users/paully/sync/git/ESGFDownload/20261120T143549_esgf_results.csv
